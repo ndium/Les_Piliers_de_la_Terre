@@ -1,3 +1,6 @@
+package PDLT ;
+import PDLT.IHM.FrameJeu;
+
 public class Controleur {
 
     public Controleur(){

@@ -1,3 +1,9 @@
+
 ./Metier/Dalle.java
+./Metier/Architecte.java
+./Metier/Pilier.java
 ./Metier/Parterre.java
+
+./IHM/FrameJeu.java
+
 ./Controleur.java

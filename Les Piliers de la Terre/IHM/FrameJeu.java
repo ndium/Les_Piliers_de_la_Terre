@@ -1,4 +1,5 @@
-package IHM ;
+package PDLT.IHM ;
+import PDLT.Controleur ;
 
 import javax.swing.* ;
 
@@ -13,9 +14,8 @@ public class FrameJeu extends JFrame{
         this.setTitle("Les Piliers De La terre");
         this.setSize(1100,680);
         this.setDefaultCloseOperation(3);
-        this.setLayout(new BorderLayout());
 
-        this.add(new JLabel(new ImageIcon("../Les Piliers de la Terre/images/pilier_gris.png")))
+        this.add(new JLabel(new ImageIcon("../Les Piliers de la Terre/images/pilier_gris.png")));
     
         //this.addMouseListener();
         //this.addMouseMotionListener();

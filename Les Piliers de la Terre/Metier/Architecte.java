@@ -1,3 +1,5 @@
+package PDLT.Metier ;
+
 public class Architecte
 {
     private static int nbJoueurs = 0;
