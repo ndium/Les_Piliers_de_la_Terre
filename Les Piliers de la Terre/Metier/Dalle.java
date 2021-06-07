@@ -35,7 +35,7 @@ public class Dalle {
     {
         try{
             this.voisin[index] = dalle ;
-        }catch( ArrayIndexOutOfBoundsException ex ){System.out.println("/!\\ Index du voisin en dehors des plages"+identifiant);}
+        }catch( ArrayIndexOutOfBoundsException ex ){System.out.println("/!\\ Index du voisin en dehors des plages" + identifiant);}
     }
 
     public void prendre(int IDjoueur){
@@ -53,12 +53,12 @@ public class Dalle {
 
     public String toString(){
 
-        String s = " Dalle "+this.identifiant ;
+        String s = " Dalle " + this.identifiant ;
 
         for (int i=0;i<voisin.length;i++) 
         {
             if (voisin[i] != null){
-                s+= voisin.getID()+"|";
+                s += voisin[i].getID() + "|";
             }
             else{
                 s+= " ";
