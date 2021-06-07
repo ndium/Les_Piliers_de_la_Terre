@@ -9,7 +9,7 @@ public class Architecte
 
     public Architecte(String couleur)
     {
-        this.numJoueur = ++nbJoueurs;
+        this.numJoueur = ++Architecte.nbJoueurs;
         this.couleur = couleur;
     }
 

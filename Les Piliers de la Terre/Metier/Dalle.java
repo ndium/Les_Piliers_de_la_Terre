@@ -57,7 +57,7 @@ public class Dalle {
 
         for (int i=0;i<voisin.length;i++) 
         {
-            if (voisin(i)!=null){
+            if (voisin[i] != null){
                 s+= voisin.getID()+"|";
             }
             else{
