@@ -14,8 +14,6 @@ public class Dalle {
 
     private Dalle[] voisin = new Dalle[6];
 
-    /// FAIRE LES PILLIER ///
-
 
     /**Constructeur de dalle qui prend les coordonnées
      * 
@@ -66,6 +64,5 @@ public class Dalle {
             return s ;
 
         }
-
     }
 }
