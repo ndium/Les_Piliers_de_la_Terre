@@ -1,4 +1,4 @@
-//package Metier;
+package LDPLT.Metier;
 
 public class Dalle {
 
