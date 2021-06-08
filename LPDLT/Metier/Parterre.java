@@ -23,17 +23,19 @@ public class Parterre {
 		Dalle.ensembleDalle.add (new Dalle(151, 215));
 		Dalle.ensembleDalle.add (new Dalle(249, 215));
 		Dalle.ensembleDalle.add (new Dalle(200, 248));
+		//verifier apres la taille 
 
 	}
 
 	public String toString()
 	{
-		String s = "          |0|1|2|3|4|5|\n"+
-				   "----------+-+-+-+-+-+-+\n";
+		String s =  "           [   Lié a   ]\n"+
+					"           |0|1|2|3|4|5|\n"+
+				    "+----------+-+-+-+-+-+-+\n";
 		
 		for( Dalle d : Dalle.ensembleDalle )
 		{
-			s += d.toString()+"\n";
+			s += "|"+d.toString()+"\n";
 		}
 
 		return s ;
