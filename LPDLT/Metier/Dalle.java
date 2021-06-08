@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 package LPDLT.Metier;
 
 import java.util.ArrayList ;
-=======
-package LDPLT.Metier;
->>>>>>> 68089bac945511582382eee7b359a2f46d28f979
 
 public class Dalle {
 
@@ -36,6 +32,7 @@ public class Dalle {
         this.y = y;
         this.identifiant = Dalle.Compteur_Nommeur++;
 
+        //reperage des voisin du nouvel objet
         for (Dalle d : ensembleDalle) 
         {
             if(this.x   ==d.getX() && this.y-67==d.getY())
@@ -89,59 +86,6 @@ public class Dalle {
         this.voisin[index] = d ;
     }
 
-    /*
-    public Dalle creerVoisin( int index )
-    {
-        Dalle dalle ;
-
-        if (voisin[index] != null){return null ;}
-
-        switch (index){
-
-            case 0 ->{
-                dalle = new Dalle(this.x,this.y-67);
-            }
-
-            case 1 ->{
-                dalle = new Dalle(this.x+49,this.y-33);
-            }
-
-            case 2 ->{
-                dalle = new Dalle(this.x+49,this.y+33);
-            }
-
-            case 3 ->{
-                dalle = new Dalle(this.x,this.y+67);
-            }
-
-            case 4 ->{
-                
-                dalle = new Dalle(this.x-49,this.y+33) ;
-            }
-
-            case 5 ->{
-
-                dalle = new Dalle(this.x-49,this.y-33) ;
-            }
-            default -> {
-                System.out.println("/!\\ Index du voisin en dehors des plages de " + identifiant);
-                return null ;
-            }
-
-        }
-<<<<<<< HEAD
-
-        this.voisin[index] = dalle ;
-
-        return dalle ;
-    }*/
-=======
-        this.voisin[index] = dalle ;
-
-        return dalle ;
-    }
->>>>>>> 68089bac945511582382eee7b359a2f46d28f979
-
     public void prendre(int IDjoueur){
         this.numJoueur = IDjoueur ;
     }
@@ -153,12 +97,6 @@ public class Dalle {
     }
     public int getJoueur(){
         return this.numJoueur ;
-    }
-    public int getX(){
-        return this.x;
-    }
-    public int getY(){
-        return this.y;
     }
 
     public int getX(){return this.x;}
