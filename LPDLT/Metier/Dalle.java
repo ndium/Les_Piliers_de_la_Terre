@@ -31,11 +31,46 @@ public class Dalle {
 
     /*------------Setteur--------------*/
 
-    public void ajouterVoisin(Dalle dalle, int index)
+    public Dalle creerVoisin( int index )
     {
-        try{
+        Dalle dalle ;
+
+        switch (index){
+
+            case 0 ->{
+                dalle = new Dalle(this.x,this.y-67);
+            }
+
+            case 1 ->{
+                dalle = new Dalle(this.x+49,this.y-33);
+            }
+
+            case 2 ->{
+                dalle = new Dalle(this.x+49,this.y+33);
+            }
+
+            case 3 ->{
+                dalle = new Dalle(this.x,this.y+67);
+            }
+
+            case 4 ->{
+                
+                dalle = new Dalle(this.x-49,this.y+33) ;
+            }
+
+            case 5 ->{
+
+                dalle = new Dalle(this.x-49,this.y-33) ;
+            }
+            default -> {
+                System.out.println("/!\\ Index du voisin en dehors des plages de " + identifiant);
+                return null ;
+            }
+
             this.voisin[index] = dalle ;
-        }catch( ArrayIndexOutOfBoundsException ex ){System.out.println("/!\\ Index du voisin en dehors des plages (" + identifiant + ")");}
+
+            return dalle ;
+        }
     }
 
     public void prendre(int IDjoueur){
