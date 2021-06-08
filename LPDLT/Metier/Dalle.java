@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 package LPDLT.Metier;
 
 import java.util.ArrayList ;
+=======
+package LDPLT.Metier;
+>>>>>>> 68089bac945511582382eee7b359a2f46d28f979
 
 public class Dalle {
 
@@ -125,11 +129,18 @@ public class Dalle {
             }
 
         }
+<<<<<<< HEAD
 
         this.voisin[index] = dalle ;
 
         return dalle ;
     }*/
+=======
+        this.voisin[index] = dalle ;
+
+        return dalle ;
+    }
+>>>>>>> 68089bac945511582382eee7b359a2f46d28f979
 
     public void prendre(int IDjoueur){
         this.numJoueur = IDjoueur ;
@@ -142,6 +153,12 @@ public class Dalle {
     }
     public int getJoueur(){
         return this.numJoueur ;
+    }
+    public int getX(){
+        return this.x;
+    }
+    public int getY(){
+        return this.y;
     }
 
     public int getX(){return this.x;}
