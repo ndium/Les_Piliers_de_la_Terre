@@ -67,10 +67,10 @@ public class Dalle {
                 return null ;
             }
 
-            this.voisin[index] = dalle ;
-
-            return dalle ;
         }
+        this.voisin[index] = dalle ;
+
+        return dalle ;
     }
 
     public void prendre(int IDjoueur){
@@ -84,6 +84,12 @@ public class Dalle {
     }
     public int getJoueur(){
         return this.numJoueur ;
+    }
+    public int getX(){
+        return this.x;
+    }
+    public int getY(){
+        return this.y;
     }
 
     public String toString(){
