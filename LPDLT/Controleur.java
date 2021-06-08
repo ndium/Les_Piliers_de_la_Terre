@@ -14,6 +14,8 @@ public class Controleur {
             
         }
         Parterre   metier = new Parterre() ;
+        FrameJeu   IHM    = new FrameJeu(this,);
+        
         System.out.println( metier.toString());
        
 

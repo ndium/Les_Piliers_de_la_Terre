@@ -28,8 +28,8 @@ public class Pilier
     private  Pilier(String couleur,int x,int y)
     {
         this.couleur = couleur;
-        this.posX    = Dalle.getX() + x;
-        this.posY    = Dalle.getY() + y;
+        //this.posX    = Dalle.getX() + x;
+        //this.posY    = Dalle.getY() + y;
 
     }*/
 
