@@ -2,16 +2,14 @@ package LPDLT.Metier ;
 
 public class Pilier
 {
-    private static int NB_PILIER = 24;
+    private String couleur = "neutre";
 
-    private int[]  tabSommet;
-    private String couleur;
     private int posX;
     private int posY;
 
-    private Dalle dalle;
+    private Dalle[] tabDalles = new Dalle[3];
 
-    public Pilier creerPilier(String couleur,int x, int y)
+    /*public Pilier creerPilier(String couleur,int x, int y)
     {
         if (couleur.equals("Noire") || couleur.equals("Marron"))
         {
@@ -33,6 +31,11 @@ public class Pilier
         this.posX    = Dalle.getX() + x;
         this.posY    = Dalle.getY() + y;
 
-    }
+    }*/
 
+    public Pilier(int x, int y)
+    {
+        this.posX = x;
+        this.posY = y;
+    }
 }
