@@ -15,7 +15,7 @@ public class FrameJeu extends JFrame{
         this.setSize(1100,680);
         this.setDefaultCloseOperation(3);
 
-        this.add(new JLabel(new ImageIcon("../Les Piliers de la Terre/images/pilier_gris.png")));
+        this.add(new JLabel(new ImageIcon("/images/pilier_gris.png")));
     
         //this.addMouseListener();
         //this.addMouseMotionListener();
