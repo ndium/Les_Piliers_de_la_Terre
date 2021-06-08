@@ -1,4 +1,4 @@
-package LPDLT.Metier ;
+//package Metier;
 
 public class Dalle {
 
@@ -8,11 +8,13 @@ public class Dalle {
     //numero du proprietaire de la case 0 pour personne
     private int numJoueur = 0 ;
 
-    private int x,y = 0;
+    private int x, y;
 
     private char identifiant ;
 
     private Dalle[] voisin = new Dalle[6];
+
+    /// FAIRE LES PILLIER ///
 
 
     /**Constructeur de dalle qui prend les coordonnées
@@ -21,19 +23,19 @@ public class Dalle {
      * @param y
      */
     
-    public Dalle(int x,int y){
-        this.x=x;
-        this.y=y;
-        this.identifiant = ++Dalle.Compteur_Nommeur ;
+    public Dalle(int x, int y){
+        this.x = x;
+        this.y = y;
+        this.identifiant = Dalle.Compteur_Nommeur++;
     }
 
     /*------------Setteur--------------*/
 
-    public void ajouterVoisin(Dalle dalle , int index )
+    public void ajouterVoisin(Dalle dalle, int index)
     {
         try{
             this.voisin[index] = dalle ;
-        }catch( ArrayIndexOutOfBoundsException ex ){System.out.println("/!\\ Index du voisin en dehors des plages" + identifiant);}
+        }catch( ArrayIndexOutOfBoundsException ex ){System.out.println("/!\\ Index du voisin en dehors des plages (" + identifiant + ")");}
     }
 
     public void prendre(int IDjoueur){
@@ -51,18 +53,19 @@ public class Dalle {
 
     public String toString(){
 
-        String s = " Dalle " + this.identifiant ;
+        String s = " Dalle " + this.identifiant + ": |";
 
-        for (int i=0;i<voisin.length;i++) 
+
+        for (int i=0; i<voisin.length; i++)
         {
             if (voisin[i] != null){
-                s += voisin[i].getID() + "|";
+                s+= voisin[i].getID();
             }
             else{
                 s+= " ";
             }
-            return s ;
-
+            s += "|";
         }
+        return s ;
     }
 }
