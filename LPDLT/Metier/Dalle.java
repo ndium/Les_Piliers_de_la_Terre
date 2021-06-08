@@ -35,7 +35,7 @@ public class Dalle {
         //reperage des voisin du nouvel objet
         for (Dalle d : ensembleDalle) 
         {
-            if(this.x   ==d.getX() && this.y-67==d.getY())
+            if(this.x   ==d.getX() && this.y-66==d.getY())
             {
                 d.setVoisin(0,this);
                 this.setVoisin(3,d);
@@ -56,7 +56,7 @@ public class Dalle {
             }
 
 
-            if(this.x   ==d.getX() && this.y+67==d.getY())
+            if(this.x   ==d.getX() && this.y+66==d.getY())
             {
                 d.setVoisin(3,this);
                 this.setVoisin(0,d);

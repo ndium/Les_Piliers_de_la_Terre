@@ -2,6 +2,7 @@ package LPDLT ;
 import LPDLT.IHM.FrameJeu;
 import LPDLT.Metier.Architecte;
 import LPDLT.Metier.Parterre;
+import LPDLT.Metier.Dalle ;
 
 public class Controleur {
 
@@ -14,11 +15,10 @@ public class Controleur {
             
         }
         Parterre   metier = new Parterre() ;
-        FrameJeu   IHM    = new FrameJeu(this,);
+        FrameJeu   IHM    = new FrameJeu(this,Dalle.ensembleDalle);
         
         System.out.println( metier.toString());
        
-
         /*
         while (!Joueur1.gagner() || !Joueur2.gagner()){
 

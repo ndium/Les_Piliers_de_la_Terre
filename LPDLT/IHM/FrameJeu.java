@@ -1,28 +1,34 @@
 package LPDLT.IHM ;
 import LPDLT.Controleur ;
+import LPDLT.Metier.Dalle ;
 
-import java.util.Scanner;
-import java.io.FileInputStream;
 import javax.swing.* ;
+import java.util.ArrayList ;
 
 public class FrameJeu extends JFrame{
 
     private Controleur ctrl ;
-    private ImageIcon imageDalle = new ImageIcon("./LPDLT/images/Dalle.png");
-    private JLabel labelDalle = new JLabel(imageDalle);
+    private JPanel panel = new JPanel();
 
-    public FrameJeu(Controleur ctrl)
+    public FrameJeu(Controleur ctrl, ArrayList<Dalle> list)
     {
         this.ctrl = ctrl ;
 
         this.setTitle("Les Piliers De La terre");
-        this.setSize(1100,680);
+        this.setSize(400,300);
         this.setDefaultCloseOperation(3);
+        panel.setLayout(null);
 
-        this.add(labelDalle);
 
-        //this.add(new JLabel(new ImageIcon("/images/pilier_gris.png")));
-    
+        for (Dalle d : list) 
+        {
+            JLabel labelTmp = new JLabel(new ImageIcon("./LPDLT/images/Dalle.png"));
+            panel.add(labelTmp);
+            labelTmp.setLocation(d.getX(),d.getY()); 
+            labelTmp.setSize(67,67);
+        }
+        this.add(panel);
+
         //this.addMouseListener();
         //this.addMouseMotionListener();
 
