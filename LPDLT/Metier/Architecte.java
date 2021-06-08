@@ -20,4 +20,5 @@ public class Architecte
     public String getCouleur  () { return this.couleur;   }
 
     public void ajouterDalle() { this.nbDalles++; }
+    public void ajouterPilier(){}
 }

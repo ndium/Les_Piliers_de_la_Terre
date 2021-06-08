@@ -1,9 +1,13 @@
-//package Metier;
+package LPDLT.Metier;
+
+import java.util.ArrayList ;
 
 public class Dalle {
 
     //compteur auto incrementé
     public static char Compteur_Nommeur = 'A' ;
+
+    public static ArrayList<Dalle> ensembleDalle = new ArrayList<Dalle>(16);
     
     //numero du proprietaire de la case 0 pour personne
     private int numJoueur = 0 ;
@@ -27,13 +31,66 @@ public class Dalle {
         this.x = x;
         this.y = y;
         this.identifiant = Dalle.Compteur_Nommeur++;
+
+        for (Dalle d : ensembleDalle) 
+        {
+            if(this.x   ==d.getX() && this.y-67==d.getY())
+            {
+                d.setVoisin(0,this);
+                this.setVoisin(3,d);
+            }
+
+
+            if(this.x+49==d.getX() && this.y-33==d.getY())
+            {
+                d.setVoisin(1,this);
+                this.setVoisin(4,d);
+            }
+
+
+            if(this.x+49==d.getX() && this.y+33==d.getY())
+            {
+                d.setVoisin(2,this);
+                this.setVoisin(5,d);
+            }
+
+
+            if(this.x   ==d.getX() && this.y+67==d.getY())
+            {
+                d.setVoisin(3,this);
+                this.setVoisin(0,d);
+            }
+
+
+            if(this.x-49==d.getX() && this.y+33==d.getY())
+            {
+                d.setVoisin(4,this);
+                this.setVoisin(1,d);
+            }
+
+
+            if(this.x-49==d.getX() && this.y-33==d.getY())
+            {
+                d.setVoisin(5,this);
+                this.setVoisin(2,d);
+            }
+
+        }
     }
 
     /*------------Setteur--------------*/
 
+    public void setVoisin (int index ,Dalle d)
+    {
+        this.voisin[index] = d ;
+    }
+
+    /*
     public Dalle creerVoisin( int index )
     {
         Dalle dalle ;
+
+        if (voisin[index] != null){return null ;}
 
         switch (index){
 
@@ -67,11 +124,12 @@ public class Dalle {
                 return null ;
             }
 
-            this.voisin[index] = dalle ;
-
-            return dalle ;
         }
-    }
+
+        this.voisin[index] = dalle ;
+
+        return dalle ;
+    }*/
 
     public void prendre(int IDjoueur){
         this.numJoueur = IDjoueur ;
@@ -85,6 +143,11 @@ public class Dalle {
     public int getJoueur(){
         return this.numJoueur ;
     }
+
+    public int getX(){return this.x;}
+
+    public int getY(){return this.y;}
+
 
     public String toString(){
 
