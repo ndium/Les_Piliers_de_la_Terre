@@ -1,11 +1,15 @@
-package PDLT.IHM ;
-import PDLT.Controleur ;
+package LPDLT.IHM ;
+import LPDLT.Controleur ;
 
+import java.util.Scanner;
+import java.io.FileInputStream;
 import javax.swing.* ;
 
 public class FrameJeu extends JFrame{
 
     private Controleur ctrl ;
+    private ImageIcon imageDalle = new ImageIcon("./LPDLT/images/Dalle.png");
+    private JLabel labelDalle = new JLabel(imageDalle);
 
     public FrameJeu(Controleur ctrl)
     {
@@ -15,10 +19,18 @@ public class FrameJeu extends JFrame{
         this.setSize(1100,680);
         this.setDefaultCloseOperation(3);
 
-        this.add(new JLabel(new ImageIcon("/images/pilier_gris.png")));
+        this.add(labelDalle);
+
+        //this.add(new JLabel(new ImageIcon("/images/pilier_gris.png")));
     
         //this.addMouseListener();
         //this.addMouseMotionListener();
+
+        this.setVisible(true);
+    }
+
+    public void maj(){
+
     }
 
 

@@ -1,5 +1,5 @@
-package PDLT ;
-import PDLT.IHM.FrameJeu;
+package LPDLT ;
+import LPDLT.IHM.FrameJeu;
 
 public class Controleur {
 
