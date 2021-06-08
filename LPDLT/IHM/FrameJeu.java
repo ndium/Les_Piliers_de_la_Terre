@@ -20,11 +20,12 @@ public class FrameJeu extends JFrame{
     private final ImageIcon imageAnneauGris  = new ImageIcon("./LPDLT/images/anneau_gris.png");
     private final ImageIcon imageAnneauMaron = new ImageIcon("./LPDLT/images/anneau_maron.png");
 
-    //panel dessous
-    private JPanel panelDalle = new JPanel();
+    //panel
+    private JPanel panelDalle  = new JPanel();
+    private JPanel panelPillier= new JPanel();
 
     //liste des dalle pour les changer
-    private ArrayList<JLabel> tabPanelPillier = new ArrayList<JLabel>();
+    private ArrayList<JLabel> tabLabelPilier = new ArrayList<JLabel>();
 
     /* ------------ */
     /* Constructeur */
@@ -53,7 +54,17 @@ public class FrameJeu extends JFrame{
         }
         this.add(panelDalle);
 
-        //tabPanelDalle.get(8).setIcon(imagePillierGris);
+        /*
+        for(Pilier p ; ensemblePilier)
+        {
+            JLabel labelTmp = new JLabel(imagePillierGris);
+
+            tabPanelPillier.add(labelTmp);
+            panelPilier.add(labelTmp);
+            labelTmp.setLocation(p.getX(),p.getY()); 
+            labelTmp.setSize(67,67);          
+        }
+        */
 
         //this.addMouseListener();
         //this.addMouseMotionListener();
@@ -69,5 +80,23 @@ public class FrameJeu extends JFrame{
 
     }
 
+    public void getID(int index)
+    {
+        tabLabelPilier.get(index).setIcon(null);
+    }
 
+    public void prendrePilier(String couleur,int index)
+    {
+        if(couleur.equals("GRIS")){
+            tabLabelPilier.get(index).setIcon(imagePillierGris);
+        }
+        if(couleur.equals("MARON")){
+            tabLabelPilier.get(index).setIcon(imagePillierMaron);
+        }
+    }
+
+    public void detruirePilier(int index)
+    {
+        tabLabelPilier.get(index).setIcon(null);
+    }
 }
