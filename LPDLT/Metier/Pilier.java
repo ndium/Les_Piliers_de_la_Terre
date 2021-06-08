@@ -4,7 +4,7 @@ public class Pilier
 {
     private static int NB_PILIER = 24;
 
-    private int[]  tabSommet;
+    private int nbPilier;
     private String couleur;
     private int posX;
     private int posY;
@@ -15,24 +15,42 @@ public class Pilier
     {
         if (couleur.equals("Noire") || couleur.equals("Marron"))
         {
-            if((x==-16 && y==-33) || (x==16 && y==-33) || (x==-33 && y==0) || (x==33 && y==0) || (x==-16 && y==33) || (x==16 && y==33))
-            {
-                new Pilier(couleur,x,y);
-            }
-            else
-            {
-                System.out.println("les coordonnées du pilier sont incorrectes");
-            }
+            return new Pilier (couleur);
         }
         return null;
     }
 
-    private  Pilier(String couleur,int x,int y)
+    private  Pilier(String couleur/*,int posX,int posY*/)
     {
-        this.couleur = couleur;
-        this.posX    = Dalle.getX() + x;
-        this.posY    = Dalle.getY() + y;
+        this.couleur  = couleur;
+        /*this.posX   = posX;
+        this.posY     = posY;*/
+        this.nbPilier = 0;
 
+    }
+
+    private boolean placerPillier (String couleur, int x, int y)
+    {
+        if (nbPilier <= NB_PILIER)
+        {
+            if (couleur.equals("Noire") || couleur.equals("Marron"))
+            {
+                if((x==-16 && y==-33) || (x==16 && y==-33) || (x==-33 && y==0) || (x==33 && y==0) || (x==-16 && y==33) || (x==16 && y==33))
+                {
+                    this.posX = Dalle.getX() + x;
+                    this.posY = Dalle.getY() + y;
+
+                    nbPilier ++;
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    private void destructionPilier ()
+    {
+        
     }
 
 }
