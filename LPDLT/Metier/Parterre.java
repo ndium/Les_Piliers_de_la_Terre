@@ -4,9 +4,17 @@ import java.util.ArrayList ;
 
 public class Parterre {
 
-	public final int DECALX = -20 ;
-	public final int DECALY = -30 ;
+	/* -------- */
+	/* Attribut */
+	/* -------- */
 
+	//Constante
+	public final int DECALX = -40 ;
+	public final int DECALY = -50 ;
+
+	/* ------------ */
+	/* Constructeur */
+	/* ------------ */
 
 	public Parterre(){
 
@@ -32,23 +40,32 @@ public class Parterre {
 
 	}
 
+	/* -------- */
+	/* Methodes */
+	/* -------- */
+
 	public String toString()
 	{
 		String s =  "           [   Lié a   ]\n"+
 					"           |0|1|2|3|4|5|\n"+
 				    "+----------+-+-+-+-+-+-+\n";
 		
-		String m = 	"           |x|y| | | | |\n"+
-					"+----------+-+-+-+-+-+-+\n";
+		String m =  "           [Coord  ]\n"+
+					"           | x | y |\n"+
+					"+----------+---+---+\n";
+
 
 		for( Dalle d : Dalle.ensembleDalle )
 		{
 			s += "|"+d.toString()+"\n";
+			m += "| Dalle " + d.getID() + ": |" + String.format("%3d", d.getX() ) + "|" + String.format("%3d", d.getY() ) + "|\n";
 		}
+		s += "+----------+-+-+-+-+-+-+";
+		m += "+----------+---+---+";
 
-		
+		return s + "\n\n" + m;
 
-		return s ;
+
 	}
 }
 
