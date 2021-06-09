@@ -8,7 +8,7 @@ public class Pilier
     /* Attribut */
     /* -------- */
 
-    private String couleur = "maron";
+    private String couleur = "neutre";
 
     private int nbPilier;
     private int posX;

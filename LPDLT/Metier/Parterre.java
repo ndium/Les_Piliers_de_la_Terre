@@ -58,14 +58,14 @@ public class Parterre {
 		//ajout des piliers  tabPilier de Dalle.java
 		for( Dalle d: Dalle.ensembleDalle )
 		{
-			for( Pilier p: Pilier.ensemblePilier )
+			for( Pilier p: Pilier.ensemblePilier ) // à faire en switch
 			{
-				if( ( p.getX()==d.getX()+16 && p.getY()==d.getY()-33 ) ||
-					( p.getX()==d.getX()+33 && p.getY()==d.getY()    ) ||
-					( p.getX()==d.getX()+16 && p.getY()==d.getY()+33 ) ||
-					( p.getX()==d.getX()-16 && p.getY()==d.getY()+33 ) ||
-					( p.getX()==d.getX()-33 && p.getY()==d.getY()    ) ||
-					( p.getX()==d.getX()-16 && p.getY()==d.getY()-33 ) ) {
+				if( ( p.getX()==d.getX()+16 && p.getY()==d.getY()-33 ) || // en haut à droite indice: 0
+					( p.getX()==d.getX()+33 && p.getY()==d.getY()    ) || // à droite               : 1
+					( p.getX()==d.getX()+16 && p.getY()==d.getY()+33 ) || // en bas à droite        : 2
+					( p.getX()==d.getX()-16 && p.getY()==d.getY()+33 ) || // en bas à gauche        : 3
+					( p.getX()==d.getX()-33 && p.getY()==d.getY()    ) || // à gauche               : 4
+					( p.getX()==d.getX()-16 && p.getY()==d.getY()-33 ) ) {// en haut à gauche       : 5
 					
 					d.getPilier().add( p );
 				}

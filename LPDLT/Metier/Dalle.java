@@ -12,7 +12,7 @@ public class Dalle {
     //numero du proprietaire de la case 0 pour personne
     private int x, y;
     
-    private String couleur = "maron";
+    private String couleur = "neutre";
 
     private char identifiant ;
 

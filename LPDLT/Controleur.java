@@ -22,15 +22,19 @@ public class Controleur {
             System.out.println( metier.toString());
 
             //inversement des joueur a la mi-temps
-            if (joueurActif == joueur1){joueurActif = joueur2 ;}
-            if (joueurActif == joueur2){joueurActif = joueur1 ;}
+            if (joueurActif == joueur1){
+                joueurActif = joueur2 ;
+            }
+            else{
+                joueurActif = joueur1 ;
+            }
 
             System.out.println("Au "+joueurActif.toString()+" de jouer !");
 
 
-            System.out.println("Sur quelle dalle voulez vous poser un pilier ? ");
+            System.out.println("Sur quelle dalle voulez vous poser un pilier[A-P] ? ");
             
-            char lettreDalle = Clavier.lire_char();
+            char lettreDalle = Character.toUpperCase(Clavier.lire_char());
 
             System.out.println("Sur quel sommet voulez vous jouer de [0-5] ?");
 
