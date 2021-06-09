@@ -9,8 +9,8 @@ public class Parterre {
 	/* -------- */
 
 	//Constante
-	public final int DECALX = -40 ;
-	public final int DECALY = -50 ;
+	public final int DECALX = 50 ;
+	public final int DECALY = 50 ;
 
 	/* ------------ */
 	/* Constructeur */
@@ -54,6 +54,51 @@ public class Parterre {
 			if(!existe) { Pilier.ensemblePilier.add( new Pilier( d.getSommets()[0][i], d.getSommets()[1][i] ) ); } // ajout du pilier
 			}
 		}
+
+		//complétion tabPilier de Dalle.java
+		for( Dalle d: Dalle.ensembleDalle )
+		{
+			for( Pilier p: Pilier.ensemblePilier )
+			{
+				if( ( p.getX()==d.getX()+16 && p.getY()==d.getY()-33 ) ||
+					( p.getX()==d.getX()+33 && p.getY()==d.getY()    ) ||
+					( p.getX()==d.getX()+16 && p.getY()==d.getY()+33 ) ||
+					( p.getX()==d.getX()-16 && p.getY()==d.getY()+33 ) ||
+					( p.getX()==d.getX()-33 && p.getY()==d.getY()    ) ||
+					( p.getX()==d.getX()-16 && p.getY()==d.getY()-33 ) ) {
+					
+					d.getPilier().add( p );
+				}
+			}
+		}
+
+		//complétion tabDalle de Pilier.java
+		/*for( Pilier p: Pilier.ensemblePilier )
+		{
+			
+		}
+
+		for( Pilier p : Pilier.ensemblePilier )
+		{
+			System.out.println(p);
+			for ( int i = 0; i < 6; i++ )
+			{
+				try {
+					System.out.println( p.getDalle().get(i) );
+				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
+			}
+		}*/
+
+		/*for( Dalle d : Dalle.ensembleDalle )
+		{
+			System.out.println(d);
+			for ( int i = 0; i < 6; i++ )
+			{
+				try {
+					System.out.println( d.getPilier().get(i) );
+				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
+			}
+		}*/
 
 	}
 

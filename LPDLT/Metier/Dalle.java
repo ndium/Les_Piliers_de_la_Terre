@@ -10,16 +10,17 @@ public class Dalle {
     public static ArrayList<Dalle> ensembleDalle = new ArrayList<Dalle>(16);
     
     //numero du proprietaire de la case 0 pour personne
-    private int numJoueur = 0 ;
-
     private int x, y;
+    
+    private String couleur = "Gris";
 
     private char identifiant ;
 
-    private Dalle[] voisin = new Dalle[6];
+    private Dalle [] voisin    = new Dalle [6];
+    
+    public ArrayList<Pilier> tabPilier = new ArrayList<Pilier>(16);
 
-    private int[][] sommets  ;
-
+    private final int[][] sommets  ;
 
     /**Constructeur de dalle qui prend les coordonnées
      * 
@@ -87,8 +88,8 @@ public class Dalle {
         this.voisin[index] = d ;
     }
 
-    public void prendre(int IDjoueur){
-        this.numJoueur = IDjoueur ;
+    public void prendre(String couleur){
+        this.couleur = couleur ;
     }
 
     /*----------getteur----------*/
@@ -96,13 +97,15 @@ public class Dalle {
     public char getID(){
         return this.identifiant ;
     }
-    public int getJoueur(){
-        return this.numJoueur ;
+    public String getCouleur(){
+        return this.couleur ;
     }
 
     public int getX(){return this.x;}
 
     public int getY(){return this.y;}
+
+    public ArrayList<Pilier> getPilier() { return this.tabPilier; }
 
     public int[][] getSommets() { return this.sommets; }
 
