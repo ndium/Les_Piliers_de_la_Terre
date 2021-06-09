@@ -9,8 +9,8 @@ public class Parterre {
 	/* -------- */
 
 	//Constante
-	public final int DECALX = 50 ;
-	public final int DECALY = 50 ;
+	public final int DECALX = 0 ;
+	public final int DECALY = 0 ;
 
 	/* ------------ */
 	/* Constructeur */
@@ -45,17 +45,17 @@ public class Parterre {
 		{
 			for( int i = 0; i < 6; i++ ) // boucle qui parcourt tous les sommets d'une dalle
 			{
-			boolean existe = false; // on part du principe que le pilier n'existe pas 
+				boolean existe = false; // on part du principe que le pilier n'existe pas 
 
-			for( int j = 0; j < Pilier.ensemblePilier.size(); j++ ) { // parcours de tous les piliers déjà créés
-				if( ( Pilier.ensemblePilier.get(j).getX() == d.getSommets()[0][i] ) && ( Pilier.ensemblePilier.get(j).getY() == d.getSommets()[1][i] ) ) { existe = true; }// si le pilier existe déjà, existe = true
-			}
+				for( int j = 0; j < Pilier.ensemblePilier.size(); j++ ) { // parcours de tous les piliers déjà créés
+					if( ( Pilier.ensemblePilier.get(j).getX() == d.getSommets()[0][i] ) && ( Pilier.ensemblePilier.get(j).getY() == d.getSommets()[1][i] ) ) { existe = true; }// si le pilier existe déjà, existe = true
+				}
 
-			if(!existe) { Pilier.ensemblePilier.add( new Pilier( d.getSommets()[0][i], d.getSommets()[1][i] ) ); } // ajout du pilier
+				if(!existe) { Pilier.ensemblePilier.add( new Pilier( d.getSommets()[0][i], d.getSommets()[1][i] ) ); } // ajout du pilier
 			}
 		}
 
-		//complétion tabPilier de Dalle.java
+		//ajout des piliers  tabPilier de Dalle.java
 		for( Dalle d: Dalle.ensembleDalle )
 		{
 			for( Pilier p: Pilier.ensemblePilier )
@@ -72,10 +72,18 @@ public class Parterre {
 			}
 		}
 
+		System.out.println(Dalle.ensembleDalle.get(0).getPilier().get(0) == Pilier.ensemblePilier.get(0));
+		//System.out.println(d                         .getPilier().get(0) == p                    .get(0);)
 		//complétion tabDalle de Pilier.java
-		/*for( Pilier p: Pilier.ensemblePilier )
+		for( Pilier p: Pilier.ensemblePilier )
 		{
-			
+			for( Dalle d: Dalle.ensembleDalle )
+			{
+				for( int i = 0; i < 6; i++ )
+				{
+					if( d.getPilier().get(i) ==  p ) { p.getDalle().add(d); break; }
+				}
+			}
 		}
 
 		for( Pilier p : Pilier.ensemblePilier )
@@ -87,7 +95,7 @@ public class Parterre {
 					System.out.println( p.getDalle().get(i) );
 				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
 			}
-		}*/
+		}
 
 		/*for( Dalle d : Dalle.ensembleDalle )
 		{
@@ -105,6 +113,14 @@ public class Parterre {
 	/* -------- */
 	/* Methodes */
 	/* -------- */
+
+	public void setPilier( char id, int index, String couleur )
+	{
+		for (Dalle d : Dalle.ensembleDalle) {
+			if( d.getID() == id )
+				d.getPilier().get(index).setCouleur(couleur);
+		}
+	}
 
 	public String toString()
 	{

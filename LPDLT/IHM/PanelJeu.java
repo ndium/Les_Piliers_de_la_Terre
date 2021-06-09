@@ -9,44 +9,43 @@ import java.util.ArrayList ;
 
 public class PanelJeu extends JPanel
 {
-    //Constante
-    //!\ Modifier les chemins pour qu'il n'y ait a rajouté que les couleur
-    private final String IMAGE_DALLE        = "./LPDLT/images/Dalle.png";
-    private final String IMAGE_PILIER_GRIS  = "./LPDLT/images/pilier_gris.png";
-    private final String IMAGE_PILIER_MARON = "./LPDLT/images/pilier_maron.png";
-    private final String IMAGE_ANNEAU_GRIS  = "./LPDLT/images/anneau_gris.png";
-    private final String IMAGE_ANNEAU_MARON = "./LPDLT/images/anneau_maron.png";
+    //Constante de chemin pour les image
+    private final String CHEMIN_DALLE   = "./LPDLT/images/Dalle.png";
+    private final String CHEMIN_PILIER  = "./LPDLT/images/pilier_";
+    private final String CHEMIN_ANNEAU  = "./LPDLT/images/anneau_";
 
     //ensemble changeant 
     private ArrayList<JLabel> tabLabelPilier = new ArrayList<JLabel>();
     private ArrayList<JLabel> tabLabelAnneau = new ArrayList<JLabel>();
 
     //attribut
-    private ArrayList<Dalle>  list ;
+    private ArrayList<Dalle>  ensembleDalle ;
     private ArrayList<Pilier> ensemblePilier ;
 
-    public PanelJeu(ArrayList<Dalle> list,ArrayList<Pilier> ensemblePilier)
+    /*--------------------------------------------*/
+    /*--------------------------------------------*/
+    /*              El Constructor ¿              */
+    /*--------------------------------------------*/
+    /*--------------------------------------------*/
+
+    public PanelJeu(ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier)
     {
         this.setLayout(null);
-        this.list = list ;
+        this.ensembleDalle  = ensembleDalle ;
         this.ensemblePilier = ensemblePilier ;
 
         /*----------------------*/
         /* Creation des Anneaux */
         /*----------------------*/
 
-        for (Dalle d : list)
+        for (Dalle d : ensembleDalle)
         {
-            JLabel labelTmp = new JLabel(new ImageIcon(""));
-
-            if (d.getCouleur().equals("Gris"))
-                labelTmp= new JLabel(new ImageIcon(IMAGE_ANNEAU_GRIS));
-
-            if (d.getCouleur().equals("Maron"))
-                labelTmp= new JLabel(new ImageIcon(IMAGE_ANNEAU_MARON));
+            JLabel labelTmp = new JLabel(new ImageIcon(CHEMIN_ANNEAU+d.getCouleur()+".png"));
 
             tabLabelAnneau.add(labelTmp);
+            
             this.add(labelTmp);
+
             labelTmp.setLocation(d.getX()-33,d.getY()-33);
             labelTmp.setSize(67,67);
         }
@@ -57,18 +56,12 @@ public class PanelJeu extends JPanel
 
         for(Pilier p : ensemblePilier)
         {
-            JLabel labelTmp = new JLabel(new ImageIcon(""));
-
-            if (p.getCouleur().equals("Gris")){
-                labelTmp.setIcon(new ImageIcon(IMAGE_PILIER_GRIS));
-            }
-
-            if (p.getCouleur().equals("Maron")){
-                labelTmp.setIcon(new ImageIcon(IMAGE_PILIER_MARON));
-            }
+            JLabel labelTmp = new JLabel( new ImageIcon(CHEMIN_PILIER+p.getCouleur()+".png"));
 
             tabLabelPilier.add(labelTmp);
+
             this.add(labelTmp);
+
             labelTmp.setLocation(p.getX()-6,p.getY()-6); 
             labelTmp.setSize(13,13);          
         }
@@ -77,16 +70,17 @@ public class PanelJeu extends JPanel
         /* Creation des Dalle */
         /*--------------------*/
 
-        for (Dalle d : list)
+        for (Dalle d : ensembleDalle)
         {
-
-            /* On fait creer un panel avec un icone dedans*/
-
+            //JLabel specialement pour les numeros
             JLabel labelTmp = new JLabel(
                 
-                new ImageIcon(IMAGE_DALLE)
+                new ImageIcon(CHEMIN_DALLE)
                 {
-                    public synchronized void paintIcon(Component c, Graphics g, int x, int y) 
+                    //on redefinie cette methode a la voler specialement pour les ID 
+                    //elle est l'equivalent de PaintComponent pour les ImageIcon
+
+                    public void paintIcon(Component c, Graphics g, int x, int y) 
                     {
                         super.paintIcon(c,g,x,y);
 
@@ -98,28 +92,26 @@ public class PanelJeu extends JPanel
                     }
                 });
 
+            //les dalle n'ont pas de ensembleDallee car on n'a pas besoin d'y retoucher apres
             this.add(labelTmp);
             labelTmp.setLocation(d.getX()-33,d.getY()-33);
             labelTmp.setSize(67,67);
         }
 
+        //Architecte implementera ->
+
         //this.addMouseListener();
         //this.addMouseMotionListener();
 
     }
-    public void getID(int index)
-    {
-        tabLabelPilier.get(index).setIcon(null);
-    }
 
+    /**
+     * @param index   -> index a changer 
+     * @param couleur -> couleur du joueur qui la prendra 
+     */
     public void prendrePilier(String couleur,int index)
     {
-        if(couleur.equals("GRIS")){
-            tabLabelPilier.get(index).setIcon(new ImageIcon(IMAGE_PILIER_GRIS));
-        }
-        if(couleur.equals("MARON")){
-            tabLabelPilier.get(index).setIcon(new ImageIcon(IMAGE_PILIER_MARON));
-        }
+        tabLabelPilier.get(index).setIcon(new ImageIcon(CHEMIN_PILIER+couleur+".png"));
     }
 
     public void detruirePilier(int index)

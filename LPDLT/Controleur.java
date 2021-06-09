@@ -1,6 +1,7 @@
 package LPDLT ;
 import LPDLT.IHM.FrameJeu;
 import LPDLT.Metier.Architecte;
+import LPDLT.Metier.ArbitrePlateau;
 import LPDLT.Metier.Parterre;
 import LPDLT.Metier.Dalle ;
 import LPDLT.Metier.Pilier ;
@@ -10,54 +11,42 @@ public class Controleur {
 
     public Controleur(int mode)
     {
-        Architecte joueur1 = new Architecte("Noir");
-        Architecte joueur2 = new Architecte("Maron");
-        boolean AuJoueur1DeJouer = true;
+        Architecte joueur1 = new Architecte("gris");
+        Architecte joueur2 = new Architecte("maron");
+        Architecte joueurActif = joueur1 ;
         
-        //mode CUI
-        if (mode == 0){
+        ArbitrePlateau metier = new ArbitrePlateau(this) ;
+
+        while (!joueur1.gagner() && !joueur2.gagner())
+        {
+            System.out.println( metier.toString());
+
+            //inversement des joueur a la mi-temps
+            if (joueurActif == joueur1){joueurActif = joueur2 ;}
+            if (joueurActif == joueur2){joueurActif = joueur1 ;}
+
+            System.out.println("Au "+joueurActif.toString()+" de jouer !");
+
+
+            System.out.println("Sur quelle dalle voulez vous poser un pilier ? ");
             
+            char lettreDalle = Clavier.lire_char();
+
+            System.out.println("Sur quel sommet voulez vous jouer de [0-5] ?");
+
+            int numSommet = Clavier.lire_int();
+
+            System.out.println("Construction du pilier !");
+            
+            metier.ajouterPilier(lettreDalle, numSommet, joueurActif.getCouleur());
+
+            FrameJeu IHM    = new FrameJeu(this, Dalle.ensembleDalle, Pilier.ensemblePilier);
         }
-        Parterre   metier = new Parterre() ;
-        FrameJeu   IHM    = new FrameJeu(this,Dalle.ensembleDalle,Pilier.ensemblePilier);
-        
-        System.out.println( metier.toString());
-       
         /*
-        while (!Joueur1.gagner() || !Joueur2.gagner()){
-
-            if (AuJoueur1DeJouer == true)
-            {
-                System.out.println("Au joueur 1 de jouer !");
-
-                System.out.println("Sur quelle dalle voulez vous poser un pilier ? ");
-                char lettreDalle = Clavier.lire_char();
-
-                System.out.println("Sur quel sommet voulez vous jouer de 0 à 5 ?");
-                int numSommet = Clavier.lire_int();
-
-                System.out.println("Construction du pilier !");
-
-                AuJoueur1DeJouer = false;
-            }
-            else
-            {
-                System.out.println("Au joueur 2 de jouer !");
-
-                System.out.println("Sur quelle dalle voulez vous poser un pilier ? ");
-                char lettreDalle = Clavier.lire_char();
-
-                System.out.println("Sur quel sommet voulez vous jouer de 0 à 5 ?");
-                int numSommet = Clavier.lire_int();
-
-                System.out.println("Construction du pilier !");
-
-                AuJoueur1DeJouer = true;               
-            }
-
+        condition de fin comme R4
             metier.getAction(joueurActif.getAction());
-            metier.toString();
-        }*/
+            metier.toString();*/
+
 
     }
     public static void main(String[] args) {

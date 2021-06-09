@@ -12,7 +12,7 @@ public class Dalle {
     //numero du proprietaire de la case 0 pour personne
     private int x, y;
     
-    private String couleur = "Gris";
+    private String couleur = "maron";
 
     private char identifiant ;
 
@@ -20,7 +20,7 @@ public class Dalle {
     
     public ArrayList<Pilier> tabPilier = new ArrayList<Pilier>(16);
 
-    private final int[][] sommets  ;
+    private final int[][] sommets;
 
     /**Constructeur de dalle qui prend les coordonnées
      * 
@@ -28,7 +28,8 @@ public class Dalle {
      * @param y
      */
     
-    public Dalle(int x, int y){
+    public Dalle(int x, int y)
+    {
         this.x = x;
         this.y = y;
         this.identifiant = Dalle.Compteur_Nommeur++;

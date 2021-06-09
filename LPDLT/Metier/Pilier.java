@@ -8,7 +8,7 @@ public class Pilier
     /* Attribut */
     /* -------- */
 
-    private String couleur = "Maron";
+    private String couleur = "maron";
 
     private int nbPilier;
     private int posX;
@@ -42,6 +42,6 @@ public class Pilier
         
     }
 
-    public String toString() { return String.format("%11d", this.posX + "/" + this.posY); }
+    public String toString() { return  this.posX + "/" + this.posY; }
 
 }
