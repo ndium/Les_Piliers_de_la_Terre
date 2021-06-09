@@ -17,6 +17,8 @@ public class Controleur {
         
         ArbitrePlateau metier = new ArbitrePlateau(this) ;
 
+        FrameJeu IHM    = new FrameJeu(this, Dalle.ensembleDalle, Pilier.ensemblePilier);
+        
         while (!joueur1.gagner() && !joueur2.gagner())
         {
             System.out.println( metier.toString());
@@ -44,7 +46,7 @@ public class Controleur {
             
             metier.ajouterPilier(lettreDalle, numSommet, joueurActif.getCouleur());
 
-            FrameJeu IHM    = new FrameJeu(this, Dalle.ensembleDalle, Pilier.ensemblePilier);
+            IHM.maj();
         }
         /*
         condition de fin comme R4

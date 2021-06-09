@@ -98,24 +98,39 @@ public class PanelJeu extends JPanel
             labelTmp.setSize(67,67);
         }
 
-        //Architecte implementera ->
+        /*---------------------*/
+        /*         /!\         */
+        /*---------------------*/
 
+        //Architecte implementera ->
         //this.addMouseListener();
         //this.addMouseMotionListener();
 
     }
 
-    /**
-     * @param index   -> index a changer 
-     * @param couleur -> couleur du joueur qui la prendra 
-     */
-    public void prendrePilier(String couleur,int index)
+    public void maj()
     {
-        tabLabelPilier.get(index).setIcon(new ImageIcon(CHEMIN_PILIER+couleur+".png"));
-    }
+        /*-------------------------*/
+        /* mise a jour des anneaux */
+        /*-------------------------*/
 
-    public void detruirePilier(int index)
-    {
-        tabLabelPilier.get(index).setIcon(null);
+        for (int i=0  ; i<tabLabelAnneau.size(); i++)
+        {
+            tabLabelAnneau.get(i).setIcon(new ImageIcon(CHEMIN_ANNEAU+ensembleDalle.get(i).getCouleur()+".png"));
+
+            tabLabelAnneau.get(i).setSize(67,67);
+        }
+
+        /*--------------------------*/
+        /* mise a jour des Pilliers */
+        /*--------------------------*/
+
+        for(int i=0  ; i<tabLabelPilier.size(); i++)
+        {
+            tabLabelPilier.get(i).setIcon( new ImageIcon(CHEMIN_PILIER+ensemblePilier.get(i).getCouleur()+".png"));
+
+            tabLabelPilier.get(i).setSize(13,13);          
+        }
+        //Dalle n'a pas besoin d'etre mise a jour
     }
 }

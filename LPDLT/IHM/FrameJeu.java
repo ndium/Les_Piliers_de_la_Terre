@@ -42,6 +42,6 @@ public class FrameJeu extends JFrame{
     /* -------- */
 
     public void maj(){
-
+        panel.maj();
     }
 }
