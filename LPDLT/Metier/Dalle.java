@@ -18,7 +18,7 @@ public class Dalle {
 
     private Dalle[] voisin = new Dalle[6];
 
-    /// FAIRE LES PILLIER ///
+    private int[][] sommets  ;
 
 
     /**Constructeur de dalle qui prend les coordonnées
@@ -31,6 +31,7 @@ public class Dalle {
         this.x = x;
         this.y = y;
         this.identifiant = Dalle.Compteur_Nommeur++;
+        this.sommets     = new int[][] { {x+16, x+33, x+16, x-16, x-33, x-16}, {y-33, y, y+33, y+33, y, y-33} };
 
         //reperage des voisin du nouvel objet
         for (Dalle d : ensembleDalle) 
@@ -102,6 +103,8 @@ public class Dalle {
     public int getX(){return this.x;}
 
     public int getY(){return this.y;}
+
+    public int[][] getSommets() { return this.sommets; }
 
 
     public String toString(){

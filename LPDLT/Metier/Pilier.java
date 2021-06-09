@@ -1,5 +1,7 @@
 package LPDLT.Metier ;
 
+import java.util.ArrayList ;
+
 public class Pilier
 {
     /* -------- */
@@ -14,6 +16,8 @@ public class Pilier
 
     private Dalle[] tabDalles = new Dalle[3];
 
+    public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>();
+
     /*public Pilier creerPilier(String couleur,int x, int y)
     {
         if (couleur.equals("Noire") || couleur.equals("Marron"))
@@ -27,15 +31,17 @@ public class Pilier
     /* Constructeur */
     /* ------------ */
 
-    /*private  Pilier(String couleur,int posX,int posY)
+    public Pilier(int x, int y)
     {
-        this.couleur  = couleur;
-        this.posX   = posX;
-        this.posY     = posY;
-        this.nbPilier = 0;
-
+        this.posX = x;
+        this.posY = y;
     }
 
+    public String toString() { return this.posX + "/" + this.posY; }
+
+    public int getX() { return this.posX; }
+    public int getY() { return this.posY; }
+/*
     private boolean placerPillier (String couleur, int x, int y)
     {
         if (nbPilier <= NB_PILIER)
