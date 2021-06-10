@@ -38,7 +38,9 @@ public class Controleur {
             { 
                 IHM.maj();
 
-                System.out.println("Au "+joueurActif.toString()+" de jouer !");
+                System.out.println(joueurActif); // à tèj
+
+                System.out.println("Au joueur "+joueurActif.getCouleur()+" de jouer !");
 
                 System.out.println("Sur quelle dalle voulez vous poser un pilier[A-P] ? ");
                 
