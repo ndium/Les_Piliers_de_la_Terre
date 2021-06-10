@@ -11,9 +11,12 @@ public class Pilier
 
     private String couleur = "neutre";
 
-    private Dalle[] tabDalle = new Dalle[6]; // Tableau contenant les Dalles adjacentes au Pilier
+    //private Dalle[] tabDalle = new Dalle[3]; // Tableau contenant les Dalles adjacentes au Pilier
 
-    public int nbPilier = 0; // Nombre de Piliers "créés" ( basculement de couleur vers maron ou gris )
+    private Pilier[] tabVoisinPilier = new Pilier[3];
+
+    public static int nbPilierMax = 24; // Nombre de Pilier limite
+
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
     /*----Constructeur----*/
@@ -39,6 +42,11 @@ public class Pilier
         this.couleur = couleur;
         if( !this.couleur.equals("neutre") ) // Si le basculement de la couleur donne du maron ou du gris
             nbPilier++;
+    }
+
+    public void setVoisinPilier(int index,Pilier p)
+    {
+        tabVoisinPilier[index] = p ;
     }
 
     /*----- toString -----*/

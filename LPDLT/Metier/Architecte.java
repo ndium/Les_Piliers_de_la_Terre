@@ -1,4 +1,4 @@
-package LPDLT.Metier ;
+package LPDLT.Metier;
 
 public class Architecte
 {
@@ -31,7 +31,7 @@ public class Architecte
     public int     getNbDalles        () { return this.nbDalle;          }
     public String  getCouleur         () { return this.couleur;          }
     public int     getCptPilierDetruit() { return this.cptPilierDetruit; }
-    public boolean gagner          () { return this.gagner;           }
+    public boolean gagner             () { return this.gagner;           }
 
     /*----- Setteur -----*/
 

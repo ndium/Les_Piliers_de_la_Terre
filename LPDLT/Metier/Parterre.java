@@ -15,22 +15,22 @@ public class Parterre {
 	public Parterre(){
 
 		//losange de base 
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+  50));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+151,DECALY+  83));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+249,DECALY+  83));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+102,DECALY+ 116));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+ 116));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+298,DECALY+ 116));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+ 53,DECALY+ 149));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+151,DECALY+ 149));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+249,DECALY+ 149));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+347,DECALY+ 149));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+102,DECALY+ 182));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+ 182));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+298,DECALY+ 182));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+151,DECALY+ 215));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+249,DECALY+ 215));
-		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+ 248));
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+  50 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+  83 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+  83 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+102, DECALY+ 116 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 116 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+298, DECALY+ 116 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+ 53, DECALY+ 149 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+ 149 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+ 149 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+347, DECALY+ 149 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+102, DECALY+ 182 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 182 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+298, DECALY+ 182 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+ 215 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+ 215 ) );
+		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 248 ) );
 
 		//création de l'arraylist contenant tout les piliers
 		Pilier.ensemblePilier.add( new Pilier( Dalle.ensembleDalle.get(0).getSommets()[0][0], Dalle.ensembleDalle.get(0).getSommets()[1][0] ) );
@@ -50,7 +50,7 @@ public class Parterre {
 			}
 		}
 
-		//ajout des piliers  tabPilier de Dalle.java
+		//ajout des piliers tabPilier de Dalle.java
 		for( Dalle d: Dalle.ensembleDalle )
 		{
 			for( Pilier p: Pilier.ensemblePilier )
@@ -77,30 +77,28 @@ public class Parterre {
 			}
 		}
 
-		/*for( Pilier p : Pilier.ensemblePilier )
+		//complétion tabDalle de Pilier.java
+		/*for( Pilier p1: Pilier.ensemblePilier )
 		{
-			System.out.println(p);
-			for ( int i = 0; i < 3; i++ )
+			int indice = 0;
+			for( Pilier p2: Pilier.ensemblePilier )
 			{
-				try {
-					System.out.println( p.getDalle()[i] );
-				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
-			}
-		}*/
+				if ( p.getX() == d.getX()-16 && p.getY() == d.getY()-33 ) { p1.getPilier()[0] = p; } // en haut à gauche       : 0
+				if ( p.getX() == d.getX()+16 && p.getY() == d.getY()-33 ) { d.getPilier()[1] = p; } // en haut à droite indice: 1
+				if ( p.getX() == d.getX()+33 && p.getY() == d.getY()    ) { d.getPilier()[2] = p; } // à droite               : 2
+				if ( p.getX() == d.getX()+16 && p.getY() == d.getY()+33 ) { d.getPilier()[3] = p; } // en bas à droite        : 3
+				if ( p.getX() == d.getX()-16 && p.getY() == d.getY()+33 ) { d.getPilier()[4] = p; } // en bas à gauche        : 4
+				if ( p.getX() == d.getX()-33 && p.getY() == d.getY()    ) { d.getPilier()[5] = p; } // à gauche               : 5
 
-		/*for( Dalle d : Dalle.ensembleDalle )
-		{
-			System.out.println(d);
-			for ( int i = 0; i < 6; i++ )
-			{
-				try {
-					System.out.println( d.getPilier()[i] );
-				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
+				for( int i = 0; i < 6; i++ )
+				{
+					if( d.getPilier()[i] == p ) { p.getDalle()[ indice++ ] = d; }
+				}
 			}
 		}*/
 	}
 
-	/*----Methodes----*/
+	/*---- Getteur ----*/
 
 	public Pilier getPilier( char id, int index )
 	{
@@ -114,6 +112,8 @@ public class Parterre {
 		return null;
 	}
 
+	/*----- Setteur -----*/
+
 	public void setPilier( char id, int index, String couleur )
 	{
 		for (Dalle d : Dalle.ensembleDalle)
@@ -125,6 +125,8 @@ public class Parterre {
 		}
 	}
 
+	/*----- ToString() -----*/
+
 	public String toString()
 	{
 		String s =  "           [   Lié a   ]\n"+
@@ -135,18 +137,16 @@ public class Parterre {
 					"           | x | y |\n"+
 					"+----------+---+---+\n";
 
-
 		for( Dalle d : Dalle.ensembleDalle )
 		{
 			s += "|"+d.toString()+"\n";
 			m += "| Dalle " + d.getID() + ": |" + String.format("%3d", d.getX() ) + "|" + String.format("%3d", d.getY() ) + "|\n";
 		}
+
 		s += "+----------+-+-+-+-+-+-+";
 		m += "+----------+---+---+";
 
 		return ""; //s + "\n\n" + m;
-
-
 	}
 }
 

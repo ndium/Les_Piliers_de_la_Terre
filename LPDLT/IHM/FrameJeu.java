@@ -15,6 +15,7 @@ public class FrameJeu extends JFrame{
     private Controleur ctrl ;
 
     /*----Panel----*/
+    
     private PanelJeu panel ;
 
     /*----Constructeur----*/

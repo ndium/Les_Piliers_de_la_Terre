@@ -1,4 +1,5 @@
 package LPDLT ;
+
 import LPDLT.IHM.FrameJeu;
 import LPDLT.Metier.Architecte;
 import LPDLT.Metier.ArbitrePlateau;
@@ -13,46 +14,38 @@ public class Controleur {
     {
         Architecte joueur1 = new Architecte("gris");
         Architecte joueur2 = new Architecte("maron");
-        Architecte joueurActif = joueur1 ;
+        Architecte joueurActif = joueur1;
 
-        int  numSommet   = 7;
-        char lettreDalle = 'Q';
+        int  numSommet   = 7;   // Un sommet qui ne peut pas exister
+        char lettreDalle = 'Q'; // Une lettre qui ne peut pas exister
         
-        ArbitrePlateau metier = new ArbitrePlateau(this) ;
+        ArbitrePlateau metier = new ArbitrePlateau(this);
 
-        FrameJeu IHM = new FrameJeu(this, Dalle.ensembleDalle, Pilier.ensemblePilier);
+        FrameJeu IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier );
         
-        while (!joueur1.gagner() && !joueur2.gagner())
+        while ( !joueur1.gagner() && !joueur2.gagner() )// && Pilier.nbPilierMax > 0)
         {
-            System.out.println( metier.toString());
+            System.out.println( metier.toString() );
 
-            //inversement des joueur a la mi-temps
-            if (joueurActif == joueur1){
-                joueurActif = joueur2 ;
-            }
-            else{
-                joueurActif = joueur1 ;
-            }
+            //inversement des joueurs
+            if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
+            else                          { joueurActif = joueur1; }
 
             do
             { 
                 IHM.maj();
 
-                System.out.println(joueurActif); // à tèj
+                // Annonce du joueur actif + demande de dalle sur laquelle jouer
+                System.out.println( "Joueur " + joueurActif.getCouleur() + ", sur quelle dalle voulez-vous poser un pilier ? [A-P]" );
+                lettreDalle = Character.toUpperCase( Clavier.lire_char() );
 
-                System.out.println("Au joueur "+joueurActif.getCouleur()+" de jouer !");
-
-                System.out.println("Sur quelle dalle voulez vous poser un pilier[A-P] ? ");
-                
-                lettreDalle = Character.toUpperCase(Clavier.lire_char());
-
-                System.out.println("Sur quel sommet voulez vous jouer de [0-5] ?");
-
+                // Demande du sommet de la dalle sur lequel on veut jouer
+                System.out.println( "\nSur quel sommet voulez vous jouer de [0-5] ?" );
                 numSommet = Clavier.lire_int();
             } 
-            while ( !( metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );
+            while ( !( metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );//&& Pilier.nbPilierMax > 0 ) );
             
-            System.out.println("Construction du pilier !");
+            System.out.println( "\nPilier construit !!" );
         }
         /*
         condition de fin comme R4
@@ -62,6 +55,6 @@ public class Controleur {
 
     }
     public static void main(String[] args) {
-        new Controleur(0);
+        new Controleur( 0 );
     }
 }

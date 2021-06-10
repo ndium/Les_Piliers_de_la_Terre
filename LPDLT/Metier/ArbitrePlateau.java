@@ -23,20 +23,24 @@ public class ArbitrePlateau
         {
             plateau.setPilier(dalle, index, couleur);
 
-            checkPlateau( plateau );
+            while(checkPlateau( plateau ));
 
             return true;
         }
         else
+        {
+            System.out.println( "\nIl y a déjà un Pilier ici !!" );
             return false;
+        }
         // verification du plateau
 
 
     }
 
-    public void checkPlateau( Parterre plateau )
+    //renvoie si il a modifier qqch
+    public boolean checkPlateau( Parterre plateau )
     {
-        Regle1_2( plateau );
+        return Regle1_2( plateau );
 
         // à la fin
         //VerifScore( plateau );
@@ -47,35 +51,86 @@ public class ArbitrePlateau
     La prise de contrôle par majorite
     Lorsqu’un Architecte place son 4ème Pilier sur une même dalle, il en prend 
     le contrôle et place son ou ses Anneaux de prise de contrôle.*/
-    public void Regle1_2( Parterre plateau )
-    {
-        for( Dalle d: Dalle.ensembleDalle )
-        {
-            int cptGris  = 0;
-            int cptMaron = 0;
-
-            for( int i = 0; i < 6; i++ )
-            {
-                if( d.getPilier()[i].getCouleur().equals("gris")  ) { cptGris++;  }
-                if( d.getPilier()[i].getCouleur().equals("maron") ) { cptMaron++; }
-            }
-
-            if( cptGris  >= 4 ) { d.setCouleur("gris" ); }
-            if( cptMaron >= 4 ) { d.setCouleur("maron"); }
-
-            // Destruction des piliers de couleur différente de la dalle
-            for( int i = 0; i < 6; i++ )
-            {
-                if( !d.getCouleur().equals("neutre") && !d.getPilier()[i].getCouleur().equals( d.getCouleur() ) ) { d.getPilier()[i].setCouleur("neutre"); }
-            }
-        }
-    }
 
 
     /*R2
     La destruction de pilier(s) adverse(s)
     Lors de la prise contrôle d’une Dalle, tous les Piliers adverses sur cette Dalle
     sont détruits.*/
+
+    public boolean Regle1_2( Parterre plateau )
+    {
+        boolean retour = false ;
+
+        //on parcour toute les dalles
+        for( Dalle d: Dalle.ensembleDalle )
+        {
+            boolean detruire = true ;
+            int cptGris  = 0;
+            int cptMaron = 0;
+
+            //on parcour ces pillier et on note les score
+            for( int i = 0; i < 6; i++ )
+            {
+                if( d.getPilier()[i].getCouleur().equals("gris")  ) { cptGris++;  }
+                if( d.getPilier()[i].getCouleur().equals("maron") ) { cptMaron++; }
+            }
+
+            //si on n'a 4 pillier ou plus 
+            if( cptGris  >= 4 ) 
+            {
+                //si la dalle est deja de cette couleur elle ne dtruira pas les pilier
+                if (!d.getCouleur().equals("gris"))
+                {
+                    d.setCouleur("gris" );
+                    retour = true ;
+                }
+                else
+                    detruire = false ;
+            }
+
+            if( cptMaron >= 4 ) 
+            { 
+                if (!d.getCouleur().equals("maron"))
+                {
+                    d.setCouleur("maron" );
+                    retour = true ;
+                }
+                else
+                    detruire = false ;
+            }
+
+            //on pourrait reunnir les 2 if
+            //si elle n'a plus ces 4 pilier 
+            if (cptGris < 4 && d.getCouleur().equals("gris"))
+            {
+                System.out.println("couleur neutre");
+                d.setCouleur("neutre" );
+                retour = true ;
+            }
+            if (cptMaron < 4 && d.getCouleur().equals("maron"))
+            {
+                System.out.println("couleur neutre");
+                d.setCouleur("neutre" );
+                retour = true ;
+            }
+
+
+            // Destruction des piliers de couleur différente de la dalle
+            if (detruire)
+            {
+                for( int i = 0; i < 6; i++ )
+                {
+                    if( !d.getCouleur().equals("neutre") && !d.getPilier()[i].getCouleur().equals( d.getCouleur() ) ) 
+                    { 
+                        d.getPilier()[i].setCouleur("neutre");
+                        retour = true ;
+                    }
+                }
+            }
+        }
+        return retour ;
+    }
 
     /*R3 
     L’enfermement
