@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Pilier
 {
-    /* Attributs */
+    /*----Attributs----*/
 
     private int x;
     private int y;
@@ -15,7 +15,7 @@ public class Pilier
 
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>();
 
-    /* Constructeur */
+    /*----Constructeur----*/
 
     public Pilier(int x, int y)
     {
@@ -23,7 +23,7 @@ public class Pilier
         this.y = y;
     }
 
-    /* Getteur */
+    /*----Getteur----*/
     public int getX() { return this.x; }
     public int getY() { return this.y; }
     
@@ -31,10 +31,10 @@ public class Pilier
 
     public Dalle[] getDalle() { return this.tabDalle; }
 
-    /* Setteur */
+    /*----Setteur----*/
     public void setCouleur(String couleur) { this.couleur = couleur; }
 
-    /* toString */
+    /*----toString----*/
     public String toString() { return  this.x + ":" + this.y; }
 
 }
