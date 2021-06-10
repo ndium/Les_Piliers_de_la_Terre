@@ -110,6 +110,7 @@ public class Dalle {
 
     public int[][] getSommets() { return this.sommets; }
 
+    public void setCouleur( String couleur ) { this.couleur = couleur; }
 
     public String toString(){
 

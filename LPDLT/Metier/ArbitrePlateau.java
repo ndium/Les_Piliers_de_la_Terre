@@ -1,6 +1,8 @@
 package LPDLT.Metier;
 
-import LPDLT.Controleur ;
+import LPDLT.Controleur;
+
+import java.util.ArrayList;
 
 public class ArbitrePlateau
 {
@@ -20,14 +22,22 @@ public class ArbitrePlateau
         if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
         {
             plateau.setPilier(dalle, index, couleur);
+
+            checkPlateau( plateau );
+
             return true;
         }
         else
             return false;
         // verification du plateau
+
+
     }
 
-
+    public void checkPlateau( Parterre plateau )
+    {
+        Regle1( plateau );
+    }
 
 
     /*R1 
@@ -35,6 +45,28 @@ public class ArbitrePlateau
     Lorsqu’un Architecte place son 4
     ème Pilier sur une même dalle, il en prend le
     contrôle et place son ou ses Anneaux de prise de contrôle.*/
+    public void Regle1( Parterre plateau )
+    {
+        for( Dalle d: Dalle.ensembleDalle )
+        {
+            int cptGris  = 0;
+            int cptMaron = 0;
+
+            for( int i = 0; i < 6; i++ )
+            {
+                if( d.getPilier()[i].getCouleur().equals("gris")  ) { cptGris++;  }
+                if( d.getPilier()[i].getCouleur().equals("maron") ) { cptMaron++; }
+            }
+
+            if( cptGris  >= 4 ) { d.setCouleur("gris" ); }
+            if( cptMaron >= 4 ) { d.setCouleur("maron"); }
+
+            for( int i = 0; i < 6; i++ )
+            {
+                if( !d.getCouleur().equals("neutre") && !d.getPilier()[i].getCouleur().equals( d.getCouleur() ) ) { d.getPilier()[i].setCouleur("neutre"); }
+            }
+        }
+    }
 
     /*R2
     La destruction de pilier(s) adverse(s)
