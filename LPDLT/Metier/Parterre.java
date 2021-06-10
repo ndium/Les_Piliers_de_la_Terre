@@ -4,17 +4,13 @@ import java.util.ArrayList;
 
 public class Parterre {
 
-	/* --------- */
-	/* Attributs */
-	/* --------- */
+	/*----Attributs----*/
 
 	//Constantes
 	public final int DECALX = 0 ;
 	public final int DECALY = 0 ;
 
-	/* ------------ */
-	/* Constructeur */
-	/* ------------ */
+	/*----Constructeur----*/
 
 	public Parterre(){
 
@@ -104,9 +100,7 @@ public class Parterre {
 		}*/
 	}
 
-	/* -------- */
-	/* Methodes */
-	/* -------- */
+	/*----Methodes----*/
 
 	public Pilier getPilier( char id, int index )
 	{
