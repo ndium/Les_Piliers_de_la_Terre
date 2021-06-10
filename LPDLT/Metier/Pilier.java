@@ -1,21 +1,19 @@
 package LPDLT.Metier ;
 
-import java.util.ArrayList ;
+import java.util.ArrayList;
 
 public class Pilier
 {
-    /* -------- */
-    /* Attribut */
-    /* -------- */
+    /* --------- */
+    /* Attributs */
+    /* --------- */
+
+    private int x;
+    private int y;
+
+    private Dalle[] tabDalle = new Dalle[6];
 
     private String couleur = "neutre";
-
-    private int nbPilier;
-    private int posX;
-    private int posY;
-
-    //public static ArrayList<Dalle>  tabDalle       = new ArrayList<Dalle>();
-    public Dalle[] tabDalle = new Dalle[6];
 
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>();
 
@@ -25,24 +23,28 @@ public class Pilier
 
     public Pilier(int x, int y)
     {
-        this.posX = x;
-        this.posY = y;
+        this.x = x;
+        this.y = y;
     }
 
-    public int getX() { return this.posX; }
-    public int getY() { return this.posY; }
+    /* ------- */
+    /* Getteur */
+    /* ------- */
+    public int getX() { return this.x; }
+    public int getY() { return this.y; }
 
     public String getCouleur() { return this.couleur; }
 
     public Dalle[] getDalle() { return this.tabDalle; }
 
+    /* ------- */
+    /* Setteur */
+    /* ------- */
     public void setCouleur(String couleur) { this.couleur = couleur; }
 
-    private void destructionPilier ()
-    {
-        
-    }
-
-    public String toString() { return  this.posX + "/" + this.posY; }
+    /* -------- */
+    /* toString */
+    /* -------- */
+    public String toString() { return  this.x + ":" + this.y; }
 
 }

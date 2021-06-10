@@ -3,8 +3,11 @@
 ./LPDLT/Metier/Architecte.java
 ./LPDLT/Metier/Pilier.java
 ./LPDLT/Metier/Parterre.java
+./LPDLT/Metier/ArbitrePlateau.java
 
 ./LPDLT/IHM/FrameJeu.java
 ./LPDLT/IHM/PanelJeu.java
+
+./LPDLT/CUI/CUI.java
 
 ./LPDLT/Controleur.java

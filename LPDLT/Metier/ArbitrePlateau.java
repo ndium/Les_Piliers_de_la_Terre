@@ -15,9 +15,15 @@ public class ArbitrePlateau
         this.plateau = new Parterre();
     }
 
-    public void ajouterPilier(char dalle, int index, String couleur)
+    public boolean ajouterPilier(char dalle, int index, String couleur)
     {
-        plateau.setPilier(dalle, index, couleur);
+        if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
+        {
+            plateau.setPilier(dalle, index, couleur);
+            return true;
+        }
+        else
+            return false;
         // verification du plateau
     }
 

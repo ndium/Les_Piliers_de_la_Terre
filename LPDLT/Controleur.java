@@ -14,10 +14,13 @@ public class Controleur {
         Architecte joueur1 = new Architecte("gris");
         Architecte joueur2 = new Architecte("maron");
         Architecte joueurActif = joueur1 ;
+
+        int  numSommet   = 7;
+        char lettreDalle = 'Q';
         
         ArbitrePlateau metier = new ArbitrePlateau(this) ;
 
-        FrameJeu IHM    = new FrameJeu(this, Dalle.ensembleDalle, Pilier.ensemblePilier);
+        FrameJeu IHM = new FrameJeu(this, Dalle.ensembleDalle, Pilier.ensemblePilier);
         
         while (!joueur1.gagner() && !joueur2.gagner())
         {
@@ -31,22 +34,23 @@ public class Controleur {
                 joueurActif = joueur1 ;
             }
 
-            System.out.println("Au "+joueurActif.toString()+" de jouer !");
+            do
+            { 
+                IHM.maj();
 
+                System.out.println("Au "+joueurActif.toString()+" de jouer !");
 
-            System.out.println("Sur quelle dalle voulez vous poser un pilier[A-P] ? ");
+                System.out.println("Sur quelle dalle voulez vous poser un pilier[A-P] ? ");
+                
+                lettreDalle = Character.toUpperCase(Clavier.lire_char());
+
+                System.out.println("Sur quel sommet voulez vous jouer de [0-5] ?");
+
+                numSommet = Clavier.lire_int();
+            } 
+            while ( !( metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );
             
-            char lettreDalle = Character.toUpperCase(Clavier.lire_char());
-
-            System.out.println("Sur quel sommet voulez vous jouer de [0-5] ?");
-
-            int numSommet = Clavier.lire_int();
-
             System.out.println("Construction du pilier !");
-            
-            metier.ajouterPilier(lettreDalle, numSommet, joueurActif.getCouleur());
-
-            IHM.maj();
         }
         /*
         condition de fin comme R4
