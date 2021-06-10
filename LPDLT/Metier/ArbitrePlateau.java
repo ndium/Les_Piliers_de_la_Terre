@@ -23,6 +23,7 @@ public class ArbitrePlateau
         {
             plateau.setPilier(dalle, index, couleur);
 
+            ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
             while(checkPlateau( plateau ));
 
             return true;
@@ -32,20 +33,18 @@ public class ArbitrePlateau
             System.out.println( "\nIl y a déjà un Pilier ici !!" );
             return false;
         }
-        // verification du plateau
-
-
     }
 
     //renvoie si il a modifier qqch
     public boolean checkPlateau( Parterre plateau )
     {
-        return Regle1_2( plateau );
+        //si un des 2 a modifier qqch
+        return Regle1_2( plateau ) ||
+               Regle3  ( plateau );
 
         // à la fin
         //VerifScore( plateau );
     }
-
 
     /*R1 
     La prise de contrôle par majorite
@@ -60,6 +59,12 @@ public class ArbitrePlateau
 
     public boolean Regle1_2( Parterre plateau )
     {
+        /*---------------------*/
+        /*         /!\         */
+        /*---------------------*/
+
+        //->ajout des compteur de dalle et de pilier etc ...
+
         boolean retour = false ;
 
         //on parcour toute les dalles
@@ -145,6 +150,73 @@ public class ArbitrePlateau
     - Lorsque les Architectes ont construit 24 Piliers, l’Architecte contrôlant
     le plus de Dalles l’emporte
     R4 en cas d’égalité, l’Architecte ayant détruit le plus de Pilier l’emporte*/
+
+    public boolean Regle3(Parterre plateau)
+    {
+        boolean retour = false ;
+
+        //tableau qui evite les boucle et qui permet de tout supprimer
+        ArrayList<Pilier> dejaVu = new ArrayList<Pilier>() ;
+
+        /*
+        on va parcourir les ensemble de tache 
+        */
+        for (Pilier p : Pilier.ensemblePilier ) 
+        {
+            //si le pilier et neutre on ne parcour pas ses voisin 
+            if (!p.getCouleur().equals("neutre") && !p.getCouleur().isEmpty())
+            {
+                //si parcour retourne vrai c'est quil a tout parcouru sans trouvé de pillier neutre ou null
+                if (parcour(p,dejaVu))
+                {
+                    supprimer(dejaVu);
+                    retour = true ;
+                }
+                dejaVu = new ArrayList<Pilier>() ;
+                //sinon il n'y a rien a changé
+            }
+        }
+        return retour ;
+    }
+
+    public boolean parcour(Pilier p , ArrayList<Pilier> dejaVu)
+    {
+        //si on a pas deja fait ce pilier
+        if (!dejaVu.contains(p))
+        {
+            for(Pilier voisin : p.getVoisin())
+            {
+                //condition qui font qu'il ne sont pas enfermé
+                if (voisin == null)                                                       {break ;}
+                if (voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty()){break ;}
+
+                //conition de parcour
+                //si il a un voisin de ca couleur
+                if (voisin.getCouleur().equals(p.getCouleur()) )
+                {
+                    parcour(p,dejaVu);
+                }
+                //si il a un voisin d'une autre couleur qui n'est pas neutre 
+                if (!voisin.getCouleur().equals(p.getCouleur()) && !(voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty()))
+                {dejaVu.add(voisin);}
+            }
+        }
+        return false ;
+    }
+
+
+    /* Methodes qui rend neutre a nouveau les pilier 
+    qui sont sonner */
+    public void supprimer(ArrayList<Pilier> list)
+    {
+        for (Pilier p : Pilier.ensemblePilier) 
+        {
+            if (list.contains(p))
+            {
+                p.setCouleur("neutre");
+            }
+        }
+    }
 
     public String toString()
     {
