@@ -26,7 +26,7 @@ public class Pilier
     /* Getteur */
     public int getX() { return this.x; }
     public int getY() { return this.y; }
-
+    
     public String getCouleur() { return this.couleur; }
 
     public Dalle[] getDalle() { return this.tabDalle; }

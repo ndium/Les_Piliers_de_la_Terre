@@ -2,44 +2,43 @@ package LPDLT.Metier ;
 
 public class Architecte
 {
-    /* --------- */
-    /* Attributs */
-    /* --------- */
+    /*----- Attributs -----*/
 
-    // attribut static
+    // static
     private static int nbJoueurs = 0;
 
-    // attribut non static
+    // non static
     private int numJoueur;
-    private int nbDalles = 0;
+
+    private String couleur;
+
+    private int nbDalle = 0;
     private int cptPilierDetruit = 0;
 
     private boolean gagner = false;
 
-    private String couleur;
-
-    /* ------------ */
-    /* Constructeur */
-    /* ------------ */
+    /*----- Constructeur -----*/
 
     public Architecte(String couleur)
     {
         this.numJoueur = ++Architecte.nbJoueurs;
-        this.couleur = couleur;
+        this.couleur   = couleur;
     }
 
-    /* -------- */
-    /* Methodes */
-    /* -------- */
+    /*----- Getteur -----*/
 
-    public int    getNumJoueur() { return this.numJoueur; }
-    public int    getNbDalles () { return this.nbDalles;  }
-    public String getCouleur  () { return this.couleur;   }
-    public boolean gagner() { return this.gagner; }
+    public int     getNumJoueur       () { return this.numJoueur;        }
+    public int     getNbDalles        () { return this.nbDalle;          }
+    public String  getCouleur         () { return this.couleur;          }
+    public int     getCptPilierDetruit() { return this.cptPilierDetruit; }
+    public boolean gagner             () { return this.gagner;           }
 
-    public void ajouterDalle()         { this.nbDalles++;         }
+    /*----- Méthodes -----*/
+
+    public void ajouterDalle        () { this.nbDalle++;          }
     public void ajouterPilierDetruit() { this.cptPilierDetruit++; }
-    public void ajouterPilier(){}
+
+    /*----- ToString() -----*/
 
     public String toString()
     {
