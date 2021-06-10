@@ -13,7 +13,7 @@ public class Pilier
 
     private Dalle[] tabDalle = new Dalle[6]; // Tableau contenant les Dalles adjacentes au Pilier
 
-    public int nbPilier = 0;
+    public int nbPilier = 0; // Nombre de Piliers "créés" ( basculement de couleur vers maron ou gris )
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
     /*----- Constructeur -----*/
@@ -37,10 +37,11 @@ public class Pilier
     public void setCouleur(String couleur)
     {
         this.couleur = couleur;
-        nbPilier++;
+        if( !this.couleur.equals("neutre") ) // Si le basculement de la couleur donne du maron ou du gris
+            nbPilier++;
     }
 
-    /* toString */
+    /*----- toString -----*/
 
     public String toString() { return  this.x + ":" + this.y; }
 
