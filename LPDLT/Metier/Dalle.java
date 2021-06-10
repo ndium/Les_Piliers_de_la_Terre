@@ -18,7 +18,7 @@ public class Dalle {
 
     private Dalle [] voisin    = new Dalle [6];
     
-    public ArrayList<Pilier> tabPilier = new ArrayList<Pilier>(16);
+    public Pilier[] tabPilier = new Pilier[6];
 
     private final int[][] sommets;
 
@@ -106,7 +106,7 @@ public class Dalle {
 
     public int getY(){return this.y;}
 
-    public ArrayList<Pilier> getPilier() { return this.tabPilier; }
+    public Pilier[] getPilier() { return this.tabPilier; }
 
     public int[][] getSommets() { return this.sommets; }
 

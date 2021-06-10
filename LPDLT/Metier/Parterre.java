@@ -60,41 +60,35 @@ public class Parterre {
 		{
 			for( Pilier p: Pilier.ensemblePilier ) // à faire en switch
 			{
-				if( ( p.getX()==d.getX()+16 && p.getY()==d.getY()-33 ) || // en haut à droite indice: 0
-					( p.getX()==d.getX()+33 && p.getY()==d.getY()    ) || // à droite               : 1
-					( p.getX()==d.getX()+16 && p.getY()==d.getY()+33 ) || // en bas à droite        : 2
-					( p.getX()==d.getX()-16 && p.getY()==d.getY()+33 ) || // en bas à gauche        : 3
-					( p.getX()==d.getX()-33 && p.getY()==d.getY()    ) || // à gauche               : 4
-					( p.getX()==d.getX()-16 && p.getY()==d.getY()-33 ) ) {// en haut à gauche       : 5
-					
-					d.getPilier().add( p );
-				}
+				if ( p.getX()==d.getX()-16 && p.getY()==d.getY()-33 ) { d.getPilier()[0] = p; } // en haut à gauche       : 0
+				if ( p.getX()==d.getX()+16 && p.getY()==d.getY()-33 ) { d.getPilier()[1] = p; } // en haut à droite indice: 1
+				if ( p.getX()==d.getX()+33 && p.getY()==d.getY()    ) { d.getPilier()[2] = p; } // à droite               : 2
+				if ( p.getX()==d.getX()+16 && p.getY()==d.getY()+33 ) { d.getPilier()[3] = p; } // en bas à droite        : 3
+				if ( p.getX()==d.getX()-16 && p.getY()==d.getY()+33 ) { d.getPilier()[4] = p; } // en bas à gauche        : 4
+				if ( p.getX()==d.getX()-33 && p.getY()==d.getY()    ) { d.getPilier()[5] = p; } // à gauche               : 5
 			}
 		}
 
-		System.out.println(Dalle.ensembleDalle.get(0).getPilier().get(0) == Pilier.ensemblePilier.get(0));
-		//System.out.println(d                         .getPilier().get(0) == p                    .get(0);)
 		//complétion tabDalle de Pilier.java
 		for( Pilier p: Pilier.ensemblePilier )
 		{
+			int indice = 0;
 			for( Dalle d: Dalle.ensembleDalle )
 			{
 				for( int i = 0; i < 6; i++ )
 				{
-					if( d.getPilier().get(i) ==  p ) { p.getDalle().add(d); break; }
+					if( d.getPilier()[i] == p ) { p.getDalle()[ indice++ ] = d; }
 				}
 			}
 		}
-		System.out.println( Dalle.ensembleDalle.get(0).getPilier().get(0) );
-
 
 		/*for( Pilier p : Pilier.ensemblePilier )
 		{
 			System.out.println(p);
-			for ( int i = 0; i < 6; i++ )
+			for ( int i = 0; i < 3; i++ )
 			{
 				try {
-					System.out.println( p.getDalle().get(i) );
+					System.out.println( p.getDalle()[i] );
 				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
 			}
 		}*/
@@ -105,7 +99,7 @@ public class Parterre {
 			for ( int i = 0; i < 6; i++ )
 			{
 				try {
-					System.out.println( d.getPilier().get(i) );
+					System.out.println( d.getPilier()[i] );
 				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
 			}
 		}*/
@@ -120,7 +114,7 @@ public class Parterre {
 	{
 		for (Dalle d : Dalle.ensembleDalle) {
 			if( d.getID() == id )
-				d.getPilier().get(index).setCouleur(couleur);
+				d.getPilier()[index].setCouleur(couleur);
 		}
 	}
 
@@ -143,7 +137,7 @@ public class Parterre {
 		s += "+----------+-+-+-+-+-+-+";
 		m += "+----------+---+---+";
 
-		return s + "\n\n" + m;
+		return s + "\n\n";
 
 
 	}

@@ -14,7 +14,8 @@ public class Pilier
     private int posX;
     private int posY;
 
-    public static ArrayList<Dalle>  tabDalle       = new ArrayList<Dalle>();
+    //public static ArrayList<Dalle>  tabDalle       = new ArrayList<Dalle>();
+    public Dalle[] tabDalle = new Dalle[6];
 
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>();
 
@@ -33,7 +34,7 @@ public class Pilier
 
     public String getCouleur() { return this.couleur; }
 
-    public ArrayList<Dalle> getDalle() { return this.tabDalle; }
+    public Dalle[] getDalle() { return this.tabDalle; }
 
     public void setCouleur(String couleur) { this.couleur = couleur; }
 
