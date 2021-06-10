@@ -44,10 +44,9 @@ public class ArbitrePlateau
 
 
     /*R1 
-    La prise de contrôle par majorité
-    Lorsqu’un Architecte place son 4
-    ème Pilier sur une même dalle, il en prend le
-    contrôle et place son ou ses Anneaux de prise de contrôle.*/
+    La prise de contrôle par majorite
+    Lorsqu’un Architecte place son 4ème Pilier sur une même dalle, il en prend 
+    le contrôle et place son ou ses Anneaux de prise de contrôle.*/
     public void Regle1_2( Parterre plateau )
     {
         for( Dalle d: Dalle.ensembleDalle )
