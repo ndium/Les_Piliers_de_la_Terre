@@ -33,7 +33,7 @@ public class Dalle {
         this.x = x;
         this.y = y;
         this.identifiant = Dalle.Compteur_Nommeur++;
-        this.sommets     = new int[][] { {x+16, x+33, x+16, x-16, x-33, x-16}, {y-33, y, y+33, y+33, y, y-33} };
+        this.sommets     = new int[][] { {x-16, x+16, x+33, x+16, x-16, x-33}, {y-33, y-33, y, y+33, y+33, y} };
 
         //reperage des voisin du nouvel objet
         for (Dalle d : ensembleDalle) 

@@ -85,8 +85,10 @@ public class Parterre {
 				}
 			}
 		}
+		System.out.println( Dalle.ensembleDalle.get(0).getPilier().get(0) );
 
-		for( Pilier p : Pilier.ensemblePilier )
+
+		/*for( Pilier p : Pilier.ensemblePilier )
 		{
 			System.out.println(p);
 			for ( int i = 0; i < 6; i++ )
@@ -95,7 +97,7 @@ public class Parterre {
 					System.out.println( p.getDalle().get(i) );
 				} catch( IndexOutOfBoundsException e ) {System.out.println("erreur2");}
 			}
-		}
+		}*/
 
 		/*for( Dalle d : Dalle.ensembleDalle )
 		{
