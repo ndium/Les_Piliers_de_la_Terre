@@ -10,18 +10,14 @@ import java.util.ArrayList ;
 
 public class FrameJeu extends JFrame{
 
-    /* -------- */
-    /* Attribut */
-    /* -------- */
+    /*----Attribut----*/
 
     private Controleur ctrl ;
 
     //panel
     private PanelJeu panel ;
 
-    /* ------------ */
-    /* Constructeur */
-    /* ------------ */
+    /*----Constructeur----*/
 
     public FrameJeu(Controleur ctrl, ArrayList<Dalle> ensembleDalles,ArrayList<Pilier> ensemblePilier)
     {
@@ -37,9 +33,7 @@ public class FrameJeu extends JFrame{
         this.setVisible(true);
     }
 
-    /* -------- */
-    /* Methodes */
-    /* -------- */
+    /*----Methodes----*/
 
     public void maj(){
         panel.maj();
