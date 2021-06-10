@@ -50,7 +50,7 @@ public class Parterre {
 			}
 		}
 
-		//ajout des piliers tabPilier de Dalle.java
+		//liens pillier <- dalle 
 		for( Dalle d: Dalle.ensembleDalle )
 		{
 			for( Pilier p: Pilier.ensemblePilier )
@@ -64,7 +64,8 @@ public class Parterre {
 			}
 		}
 
-		//complétion tabDalle de Pilier.java
+		//liens Dalle <- pilier
+		/*
 		for( Pilier p: Pilier.ensemblePilier )
 		{
 			int indice = 0;
@@ -75,27 +76,27 @@ public class Parterre {
 					if( d.getPilier()[i] == p ) { p.getDalle()[ indice++ ] = d; }
 				}
 			}
+		}*/
+
+		Pilier.lierVoisin();
+
+		//parcour pillier
+
+		for (Pilier p  : Pilier.ensemblePilier)
+		{
+			System.out.println("pilier observé: " + p);
+
+			for (int i = 0; i < 3; i++)
+			{
+				System.out.println(p.getVoisin()[i]);
+			}
 		}
 
-		//complétion tabDalle de Pilier.java
-		/*for( Pilier p1: Pilier.ensemblePilier )
+		for( int i = 0; i < 6; i++ )
 		{
-			int indice = 0;
-			for( Pilier p2: Pilier.ensemblePilier )
-			{
-				if ( p.getX() == d.getX()-16 && p.getY() == d.getY()-33 ) { p1.getPilier()[0] = p; } // en haut à gauche       : 0
-				if ( p.getX() == d.getX()+16 && p.getY() == d.getY()-33 ) { d.getPilier()[1] = p; } // en haut à droite indice: 1
-				if ( p.getX() == d.getX()+33 && p.getY() == d.getY()    ) { d.getPilier()[2] = p; } // à droite               : 2
-				if ( p.getX() == d.getX()+16 && p.getY() == d.getY()+33 ) { d.getPilier()[3] = p; } // en bas à droite        : 3
-				if ( p.getX() == d.getX()-16 && p.getY() == d.getY()+33 ) { d.getPilier()[4] = p; } // en bas à gauche        : 4
-				if ( p.getX() == d.getX()-33 && p.getY() == d.getY()    ) { d.getPilier()[5] = p; } // à gauche               : 5
+			System.out.println( Dalle.ensembleDalle.get(0).getPilier()[i] );
+		}
 
-				for( int i = 0; i < 6; i++ )
-				{
-					if( d.getPilier()[i] == p ) { p.getDalle()[ indice++ ] = d; }
-				}
-			}
-		}*/
 	}
 
 	/*---- Getteur ----*/

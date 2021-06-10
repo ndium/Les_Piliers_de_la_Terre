@@ -18,6 +18,8 @@ public class Controleur {
 
         int  numSommet   = 7;   // Un sommet qui ne peut pas exister
         char lettreDalle = 'Q'; // Une lettre qui ne peut pas exister
+
+        int tour = 0;
         
         ArbitrePlateau metier = new ArbitrePlateau(this);
 
@@ -27,9 +29,8 @@ public class Controleur {
         {
             System.out.println( metier.toString() );
 
-            //inversement des joueurs
-            if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
-            else                          { joueurActif = joueur1; }
+            if ( joueurActif == joueur1 ) { tour++; }
+            System.out.println( "---------- Tour n°" + tour + " ----------" );
 
             do
             { 
@@ -45,7 +46,11 @@ public class Controleur {
             } 
             while ( !( metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );//&& Pilier.nbPilierMax > 0 ) );
             
-            System.out.println( "\nPilier construit !!" );
+            System.out.println( "\nPilier construit !! Il en reste " + Pilier.nbPilierMax + " à poser." );
+
+            //invertion des joueurs
+            if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
+            else                          { joueurActif = joueur1; }
         }
         /*
         condition de fin comme R4

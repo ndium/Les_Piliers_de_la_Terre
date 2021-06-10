@@ -45,46 +45,6 @@ public class Dalle {
         this.y = y;
         this.identifiant = Dalle.Compteur_Nommeur++;
         this.sommets     = new int[][] { {x-16, x+16, x+33, x+16, x-16, x-33}, {y-33, y-33, y, y+33, y+33, y} };
-
-        // Remplissage du tableau de Dalles regroupant les voisins de la Dalle
-        for (Dalle d : ensembleDalle) 
-        {
-            if( this.x == d.getX() && this.y-66 == d.getY() )
-            {
-                d.setVoisin( 0, this );
-                this.setVoisin( 3, d );
-            }
-
-            if( this.x+49 == d.getX() && this.y-33 == d.getY() )
-            {
-                d.setVoisin( 1, this );
-                this.setVoisin( 4, d );
-            }
-
-            if( this.x+49 == d.getX() && this.y+33 == d.getY() )
-            {
-                d.setVoisin( 2, this );
-                this.setVoisin( 5, d );
-            }
-
-            if( this.x == d.getX() && this.y+66 == d.getY() )
-            {
-                d.setVoisin( 3 , this );
-                this.setVoisin( 0, d );
-            }
-
-            if( this.x-49 == d.getX() && this.y+33 == d.getY() )
-            {
-                d.setVoisin( 4, this );
-                this.setVoisin( 1, d );
-            }
-
-            if( this.x-49 == d.getX() && this.y-33 == d.getY() )
-            {
-                d.setVoisin( 5, this );
-                this.setVoisin( 2, d );
-            }
-        }
     }
 
     /*----- Getteur -----*/

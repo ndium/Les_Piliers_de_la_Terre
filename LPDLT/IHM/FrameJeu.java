@@ -5,10 +5,12 @@ import LPDLT.Controleur ;
 import LPDLT.Metier.Dalle ;
 import LPDLT.Metier.Pilier ;
 
+import java.awt.event.*;
 import javax.swing.* ;
 import java.util.ArrayList ;
 
-public class FrameJeu extends JFrame{
+public class FrameJeu extends JFrame implements MouseListener
+{
 
     /*----Attribut----*/
 
@@ -38,5 +40,31 @@ public class FrameJeu extends JFrame{
 
     public void maj(){
         panel.maj();
+    }
+
+
+    public void mouseExited(MouseEvent e)
+    {
+        System.out.println(e.getX()+":"+e.getY());
+    }
+
+    public void mouseEntered(MouseEvent e)
+    {
+        System.out.println(e.getX()+":"+e.getY());
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+        System.out.println(e.getX()+":"+e.getY());
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+        System.out.println(e.getX()+":"+e.getY());
+    }
+
+    public void mouseClicked(MouseEvent e)
+    {
+        System.out.println(e.getX()+":"+e.getY());
     }
 }
