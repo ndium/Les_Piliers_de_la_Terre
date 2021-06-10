@@ -36,7 +36,10 @@ public class ArbitrePlateau
 
     public void checkPlateau( Parterre plateau )
     {
-        Regle1( plateau );
+        Regle1_2( plateau );
+
+        // à la fin
+        //VerifScore( plateau );
     }
 
 
@@ -45,7 +48,7 @@ public class ArbitrePlateau
     Lorsqu’un Architecte place son 4
     ème Pilier sur une même dalle, il en prend le
     contrôle et place son ou ses Anneaux de prise de contrôle.*/
-    public void Regle1( Parterre plateau )
+    public void Regle1_2( Parterre plateau )
     {
         for( Dalle d: Dalle.ensembleDalle )
         {
@@ -61,12 +64,14 @@ public class ArbitrePlateau
             if( cptGris  >= 4 ) { d.setCouleur("gris" ); }
             if( cptMaron >= 4 ) { d.setCouleur("maron"); }
 
+            // Destruction des piliers de couleur différente de la dalle
             for( int i = 0; i < 6; i++ )
             {
                 if( !d.getCouleur().equals("neutre") && !d.getPilier()[i].getCouleur().equals( d.getCouleur() ) ) { d.getPilier()[i].setCouleur("neutre"); }
             }
         }
     }
+
 
     /*R2
     La destruction de pilier(s) adverse(s)

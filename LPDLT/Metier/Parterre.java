@@ -19,22 +19,22 @@ public class Parterre {
 	public Parterre(){
 
 		//losange de base 
-		Dalle.ensembleDalle.add (new Dalle(DECALX+200,DECALY+  50));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+151,DECALY+  83));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+249,DECALY+  83));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+102,DECALY+ 116));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+200,DECALY+ 116));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+298,DECALY+ 116));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+ 53,DECALY+ 149));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+151,DECALY+ 149));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+249,DECALY+ 149));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+347,DECALY+ 149));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+102,DECALY+ 182));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+200,DECALY+ 182));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+298,DECALY+ 182));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+151,DECALY+ 215));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+249,DECALY+ 215));
-		Dalle.ensembleDalle.add (new Dalle(DECALX+200,DECALY+ 248));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+  50));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+151,DECALY+  83));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+249,DECALY+  83));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+102,DECALY+ 116));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+ 116));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+298,DECALY+ 116));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+ 53,DECALY+ 149));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+151,DECALY+ 149));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+249,DECALY+ 149));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+347,DECALY+ 149));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+102,DECALY+ 182));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+ 182));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+298,DECALY+ 182));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+151,DECALY+ 215));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+249,DECALY+ 215));
+		Dalle.ensembleDalle.add (Dalle.creerDalle(DECALX+200,DECALY+ 248));
 
 		//création de l'arraylist contenant tout les piliers
 		Pilier.ensemblePilier.add( new Pilier( Dalle.ensembleDalle.get(0).getSommets()[0][0], Dalle.ensembleDalle.get(0).getSommets()[1][0] ) );
@@ -119,7 +119,7 @@ public class Parterre {
 		}
 		return null;
 	}
-	
+
 	public void setPilier( char id, int index, String couleur )
 	{
 		for (Dalle d : Dalle.ensembleDalle)

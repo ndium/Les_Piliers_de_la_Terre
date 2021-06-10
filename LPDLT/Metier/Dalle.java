@@ -28,7 +28,16 @@ public class Dalle {
      * @param y
      */
     
-    public Dalle(int x, int y)
+    public static Dalle creerDalle(int x, int y)
+    {
+        if( Dalle.ensembleDalle.size() < 16)
+            return new Dalle(x, y);
+        
+        return null;
+    }
+
+    
+    private Dalle(int x, int y)
     {
         this.x = x;
         this.y = y;
