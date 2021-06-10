@@ -31,9 +31,9 @@ public class Architecte
     public int     getNbDalles        () { return this.nbDalle;          }
     public String  getCouleur         () { return this.couleur;          }
     public int     getCptPilierDetruit() { return this.cptPilierDetruit; }
-    public boolean gagner             () { return this.gagner;           }
+    public boolean gagner          () { return this.gagner;           }
 
-    /*----- Méthodes -----*/
+    /*----- Setteur -----*/
 
     public void ajouterDalle        () { this.nbDalle++;          }
     public void ajouterPilierDetruit() { this.cptPilierDetruit++; }
@@ -42,8 +42,8 @@ public class Architecte
 
     public String toString()
     {
-        return "Joueur " + this.couleur;
-        /*"\n Possède " + this.nbDalles + " dalle(s)" +
-        "\n A détruit " + this.cptPilierDetruit + " pilier(s)";*/
+        return "Joueur " + this.couleur          + ":" +
+        "\n Possède "    + this.nbDalle          + " dalle(s)" +
+        "\n A détruit "  + this.cptPilierDetruit + " pilier(s)\n";
     }
 }
