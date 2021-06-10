@@ -18,15 +18,11 @@ public class PanelJeu extends JPanel
     private ArrayList<JLabel> tabLabelPilier = new ArrayList<JLabel>();
     private ArrayList<JLabel> tabLabelAnneau = new ArrayList<JLabel>();
 
-    //attribut
+    /*----Attribut----*/
     private ArrayList<Dalle>  ensembleDalle ;
     private ArrayList<Pilier> ensemblePilier ;
 
-    /*--------------------------------------------*/
-    /*--------------------------------------------*/
-    /*              El Constructor ¿              */
-    /*--------------------------------------------*/
-    /*--------------------------------------------*/
+    /*----Constructeur----*/
 
     public PanelJeu(ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier)
     {
@@ -34,9 +30,7 @@ public class PanelJeu extends JPanel
         this.ensembleDalle  = ensembleDalle ;
         this.ensemblePilier = ensemblePilier ;
 
-        /*----------------------*/
-        /* Creation des Anneaux */
-        /*----------------------*/
+        /*----Creation des Anneaux----*/
 
         for (Dalle d : ensembleDalle)
         {
@@ -50,9 +44,7 @@ public class PanelJeu extends JPanel
             labelTmp.setSize(67,67);
         }
 
-        /*---------------------*/
-        /* Creation des Pilier */
-        /*---------------------*/
+        /*----Creation des Pilier----*/
 
         for(Pilier p : ensemblePilier)
         {
@@ -66,9 +58,7 @@ public class PanelJeu extends JPanel
             labelTmp.setSize(13,13);          
         }
 
-        /*--------------------*/
-        /* Creation des Dalle */
-        /*--------------------*/
+        /*----Creation des Dalle----*/
 
         for (Dalle d : ensembleDalle)
         {
@@ -110,9 +100,7 @@ public class PanelJeu extends JPanel
 
     public void maj()
     {
-        /*-------------------------*/
-        /* mise a jour des anneaux */
-        /*-------------------------*/
+        //mise a jour des anneaux
 
         for (int i=0  ; i<tabLabelAnneau.size(); i++)
         {
@@ -121,9 +109,7 @@ public class PanelJeu extends JPanel
             tabLabelAnneau.get(i).setSize(67,67);
         }
 
-        /*--------------------------*/
-        /* mise a jour des Pilliers */
-        /*--------------------------*/
+        // mise a jour des Pilliers
 
         for(int i=0  ; i<tabLabelPilier.size(); i++)
         {
