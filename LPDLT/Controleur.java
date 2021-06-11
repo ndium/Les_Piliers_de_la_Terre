@@ -1,5 +1,7 @@
 package LPDLT ;
 
+import javax.lang.model.util.ElementScanner14;
+
 import LPDLT.IHM.FrameJeu;
 import LPDLT.Metier.Architecte;
 import LPDLT.Metier.ArbitrePlateau;
@@ -56,8 +58,34 @@ public class Controleur {
         condition de fin comme R4
             metier.getAction(joueurActif.getAction());
             metier.toString();*/
+        
+        public void verificationFinJeu()
+        {
+            // Vérification du nombre de Dalle de chaque joueur
+            if( joueur1.getNbDalle() >= 9 ) { arretJeu = true; gagnant = joueur1; }
+            if( joueur2.getNbDalle() >= 9 ) { arretJeu = true; gagnant = joueur2; }
 
-
+            // Vérification du nombre de Piliers construits
+            if( Piler.nbPilierConstruit <= 0 )
+            {
+                arretJeu = true;
+                
+                // Contrôle du joueur qui a le plus de dalle
+                if( joueur1.getNbDalle() > joueur2.getNbDalle() ) { gagnant = joueur1; } // Cas où le joueur1 a le plus de Dalles
+                else
+                {
+                    if( joueur1.getNbDalle() < joueur2.getNbDalle() ) { gagnant = joueur2; } // Cas où le joueur2 a le plus de Dalles
+                    else // Cas d'égalité en nombre de Dalles possédées
+                    {
+                        if( joueur1.getNbPilierDetruit() > joueur2.getNbPilierDetruit() ) { gagnant = joueur1; } // Cas où le joueur1 a détruit le plus de Piliers
+                        else
+                        {
+                            if( joueur1.getNbPilierDetruit() < joueur2.getNbPilierDetruit() ) { gagnant = joueur2; } // Cas où le joueur2 a détruit le plus de Piliers
+                        }
+                    }
+                } // Si à la fin de cette boucle arretJeu == true mais gagnant == null, c'est qu'il y a égalité parfaite
+            }
+        }
     }
     public static void main(String[] args) {
         new Controleur( 0 );

@@ -151,7 +151,7 @@ public class ArbitrePlateau
     le plus de Dalles l’emporte
     R4 en cas d’égalité, l’Architecte ayant détruit le plus de Pilier l’emporte*/
 
-    public boolean Regle3(Parterre plateau)
+    public boolean Regle3( Parterre plateau )
     {
         boolean retour = false ;
 
@@ -161,13 +161,13 @@ public class ArbitrePlateau
         /*
         on va parcourir les ensemble de tache 
         */
-        for (Pilier p : Pilier.ensemblePilier ) 
+        for ( Pilier p : Pilier.ensemblePilier ) 
         {
-            //si le pilier et neutre on ne parcour pas ses voisin 
-            if (!p.getCouleur().equals("neutre") && !p.getCouleur().isEmpty())
+            //si le pilier et neutre on ne parcoure pas ses voisin 
+            if ( !p.getCouleur().equals("neutre") && !p.getCouleur().isEmpty() )
             {
-                //si parcour retourne vrai c'est quil a tout parcouru sans trouvé de pillier neutre ou null
-                if (parcour(p,dejaVu))
+                //si parcour retourne vrai c'est qu'il a tout parcouru sans trouvé de pillier neutre ou null
+                if ( parcour( p, dejaVu ) )
                 {
                     supprimer(dejaVu);
                     retour = true ;
@@ -179,26 +179,26 @@ public class ArbitrePlateau
         return retour ;
     }
 
-    public boolean parcour(Pilier p , ArrayList<Pilier> dejaVu)
+    public boolean parcour( Pilier p, ArrayList<Pilier> dejaVu )
     {
         //si on a pas deja fait ce pilier
-        if (!dejaVu.contains(p))
+        if ( !dejaVu.contains( p ) )
         {
-            for(Pilier voisin : p.getVoisin())
+            for( Pilier voisin : p.getVoisin() )
             {
-                //condition qui font qu'il ne sont pas enfermé
-                if (voisin == null)                                                       {break ;}
-                if (voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty()){break ;}
+                //condition qui font qu'ils ne sont pas enfermés
+                if( voisin == null )                                                       { return false ; }
+                if( voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty() ){ return false ; }
 
-                //conition de parcour
-                //si il a un voisin de ca couleur
-                if (voisin.getCouleur().equals(p.getCouleur()) )
+                //condition de parcour
+                //si il a un voisin de sa couleur
+                if ( voisin.getCouleur().equals( p.getCouleur() ) )
                 {
                     parcour(p,dejaVu);
                 }
                 //si il a un voisin d'une autre couleur qui n'est pas neutre 
                 if (!voisin.getCouleur().equals(p.getCouleur()) && !(voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty()))
-                {dejaVu.add(voisin);}
+                { dejaVu.add(voisin); }
             }
         }
         return false ;
