@@ -1,6 +1,6 @@
-package LPDLT.Metier;
+package equipe_25.Metier;
 
-import LPDLT.Controleur;
+import equipe_25.Controleur;
 
 import java.util.ArrayList;
 
@@ -143,71 +143,75 @@ public class ArbitrePlateau
     ne dispose plus d’aucune emplacement libre à proximité directe), ce ou ce
     groupe de Piliers sont détruits. */
 
-    /*R4
-    Fin de Jeu et décompte
-    - Si un Architecte possède 9 Dalle, à un moment de la partie, il l’emporte
-    immédiatement.
-    - Lorsque les Architectes ont construit 24 Piliers, l’Architecte contrôlant
-    le plus de Dalles l’emporte
-    R4 en cas d’égalité, l’Architecte ayant détruit le plus de Pilier l’emporte*/
-
     public boolean Regle3( Parterre plateau )
     {
-        boolean retour = false ;
+        boolean aChangerQqch = false;
 
         //tableau qui evite les boucle et qui permet de tout supprimer
         ArrayList<Pilier> dejaVu = new ArrayList<Pilier>() ;
 
-        /*
-        on va parcourir les ensemble de tache 
-        */
+        //on va parcourir les ensemble de tache 
         for ( Pilier p : Pilier.ensemblePilier ) 
         {
-            //si le pilier et neutre on ne parcoure pas ses voisin 
-            if ( !p.getCouleur().equals("neutre") && !p.getCouleur().isEmpty() )
+            //si le pilier et neutre on ne parcour pas ses voisin 
+            if ( !(p.getCouleur().equals("neutre") || p.getCouleur().isEmpty()) )
             {
-                //si parcour retourne vrai c'est qu'il a tout parcouru sans trouvé de pillier neutre ou null
+                //si parcour n'a pas trouvé de sortie pour ce groupe
                 if ( parcour( p, dejaVu ) )
                 {
-                    supprimer(dejaVu);
-                    retour = true ;
+                    supprimer( dejaVu );
+                    //le seul changement que l'on peut faire c'est de supprimer tout
+                    aChangerQqch = true ;
                 }
+                //si il retourne faux c'est que ce n'est pas un groupe entouré
                 dejaVu = new ArrayList<Pilier>() ;
-                //sinon il n'y a rien a changé
             }
+            System.out.println("neutre"+p);
+            //sinon il n'y a rien a changé
         }
-        return retour ;
+        return aChangerQqch ;
     }
 
+    //retourne vrai si n'a jamais trouvé de voisin vide ou neutre 
     public boolean parcour( Pilier p, ArrayList<Pilier> dejaVu )
     {
-        //si on a pas deja fait ce pilier
-        if ( !dejaVu.contains( p ) )
+        //System.out.println(dejaVu);
+        //System.out.println(Pilier.ensemblePilier);
+
+        if (!dejaVu.contains(p))
         {
+            //on note ce sommet
+            dejaVu.add(p);
+
+            //on parcour tout les voisins de ce pillier
             for( Pilier voisin : p.getVoisin() )
             {
-                //condition qui font qu'ils ne sont pas enfermés
-                if( voisin == null )                                                       { return false ; }
-                if( voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty() ){ return false ; }
+                //condition qui font qu'il ne sont pas enfermé
+                if ( voisin == null )                                                       { return false; }
+                if ( voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty() ){ return false; }
 
                 //condition de parcour
                 //si il a un voisin de sa couleur
-                if ( voisin.getCouleur().equals( p.getCouleur() ) )
+                if ( voisin.getCouleur().equals( p.getCouleur()) && !dejaVu.contains(voisin))
                 {
-                    parcour(p,dejaVu);
+                    //si il renvoie faux c'est qu'il a trouvé une sortie
+                    if(!parcour( voisin , dejaVu ))
+                    {return false;}
                 }
-                //si il a un voisin d'une autre couleur qui n'est pas neutre 
-                if (!voisin.getCouleur().equals(p.getCouleur()) && !(voisin.getCouleur().equals("neutre") || voisin.getCouleur().isEmpty()))
-                { dejaVu.add(voisin); }
+                //si il sont d'une couleur different on continu puis on sort
             }
         }
-        return false ;
+        //si on a parcouru tout les voisin sans trouvé de sortie
+        return true ;
     }
 
 
-    /* Methodes qui rend neutre a nouveau les pilier 
-    qui sont sonner */
-    public void supprimer(ArrayList<Pilier> list)
+    
+    /** Methodes qui rend neutre a nouveau les pilier qui sont donner 
+     * 
+     * @param list
+     */
+    public void supprimer( ArrayList<Pilier> list )
     {
         for (Pilier p : Pilier.ensemblePilier) 
         {
@@ -218,6 +222,15 @@ public class ArbitrePlateau
         }
     }
 
+
+    /*R4
+    Fin de Jeu et décompte
+    - Si un Architecte possède 9 Dalle, à un moment de la partie, il l’emporte
+    immédiatement.
+    - Lorsque les Architectes ont construit 24 Piliers, l’Architecte contrôlant
+    le plus de Dalles l’emporte
+    R4 en cas d’égalité, l’Architecte ayant détruit le plus de Pilier l’emporte*/
+    
     public String toString()
     {
         return plateau.toString();

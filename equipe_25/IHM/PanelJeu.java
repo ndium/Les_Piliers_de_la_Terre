@@ -1,6 +1,6 @@
-package LPDLT.IHM ;
-import LPDLT.Metier.Dalle ;
-import LPDLT.Metier.Pilier ;
+package equipe_25.IHM ;
+import equipe_25.Metier.Dalle ;
+import equipe_25.Metier.Pilier ;
 
 import javax.swing.* ;
 import java.awt.*;
@@ -10,9 +10,9 @@ import java.util.ArrayList ;
 public class PanelJeu extends JPanel
 {
     //Constante de chemin pour les image
-    private final String CHEMIN_DALLE   = "./LPDLT/images/Dalle.png";
-    private final String CHEMIN_PILIER  = "./LPDLT/images/pilier_";
-    private final String CHEMIN_ANNEAU  = "./LPDLT/images/anneau_";
+    private final String CHEMIN_DALLE   = "./equipe_25/images/Dalle.png";
+    private final String CHEMIN_PILIER  = "./equipe_25/images/pilier_";
+    private final String CHEMIN_ANNEAU  = "./equipe_25/images/anneau_";
 
     //ensemble changeant 
     private ArrayList<JLabel> tabLabelPilier = new ArrayList<JLabel>();

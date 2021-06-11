@@ -1,6 +1,10 @@
-package LPDLT.Metier;
+package equipe_25.Metier;
 
-public class Architecte
+import java.awt.event.*;
+
+import equipe_25.Metier.Pilier;
+
+public class Architecte implements MouseListener
 {
     /*----- Attributs -----*/
 
@@ -37,6 +41,26 @@ public class Architecte
 
     public void ajouterDalle        () { this.nbDalle++;          }
     public void ajouterPilierDetruit() { this.cptPilierDetruit++; }
+
+    /*-------MouseListener-------*/
+
+    public void mousePressed(MouseEvent e)
+    {
+        for (Pilier p :Pilier.ensemblePilier)
+        {
+            if ((e.getX() >= p.getX()-10 || e.getX() <= p.getX()+10) && (e.getY() >= p.getY()-10 || e.getY() <= p.getY()+10))
+            {System.out.println("touché");}
+        }
+        
+    }
+
+    public void mouseExited(MouseEvent e){}
+
+    public void mouseEntered(MouseEvent e){}
+
+    public void mouseReleased(MouseEvent e){}
+
+    public void mouseClicked(MouseEvent e){}
 
     /*----- ToString() -----*/
 

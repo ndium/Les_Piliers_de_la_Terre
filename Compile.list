@@ -1,13 +1,13 @@
 
-./LPDLT/Metier/Dalle.java
-./LPDLT/Metier/Architecte.java
-./LPDLT/Metier/Pilier.java
-./LPDLT/Metier/Parterre.java
-./LPDLT/Metier/ArbitrePlateau.java
+./equipe_25/Metier/Dalle.java
+./equipe_25/Metier/Architecte.java
+./equipe_25/Metier/Pilier.java
+./equipe_25/Metier/Parterre.java
+./equipe_25/Metier/ArbitrePlateau.java
 
-./LPDLT/IHM/FrameJeu.java
-./LPDLT/IHM/PanelJeu.java
+./equipe_25/IHM/FrameJeu.java
+./equipe_25/IHM/PanelJeu.java
 
-./LPDLT/CUI/CUI.java
+./equipe_25/CUI/CUI.java
 
-./LPDLT/Controleur.java
+./equipe_25/Controleur.java

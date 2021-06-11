@@ -1,13 +1,11 @@
-package LPDLT ;
+package equipe_25 ;
 
-import javax.lang.model.util.ElementScanner14;
-
-import LPDLT.IHM.FrameJeu;
-import LPDLT.Metier.Architecte;
-import LPDLT.Metier.ArbitrePlateau;
-import LPDLT.Metier.Parterre;
-import LPDLT.Metier.Dalle ;
-import LPDLT.Metier.Pilier ;
+import equipe_25.IHM.FrameJeu;
+import equipe_25.Metier.Architecte;
+import equipe_25.Metier.ArbitrePlateau;
+import equipe_25.Metier.Parterre;
+import equipe_25.Metier.Dalle ;
+import equipe_25.Metier.Pilier ;
 import iut.algo.Clavier;
 
 public class Controleur
@@ -36,7 +34,7 @@ public class Controleur
         
         this.metier = new ArbitrePlateau(this);
 
-        this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier );
+        this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueur1);
         
         while ( continueJeu )
         {

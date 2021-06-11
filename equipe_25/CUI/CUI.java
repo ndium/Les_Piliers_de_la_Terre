@@ -1,8 +1,8 @@
-package LPDLT.CUI;
+package equipe_25.CUI;
 
-import LPDLT.Controleur;
-import LPDLT.Metier.Dalle;
-import LPDLT.Metier.Pilier;
+import equipe_25.Controleur;
+import equipe_25.Metier.Dalle;
+import equipe_25.Metier.Pilier;
 
 import java.util.ArrayList;
 
