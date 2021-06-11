@@ -6,19 +6,20 @@ import java.util.ArrayList;
 
 public class ArbitrePlateau
 {
+    /*--------Attribut---------*/
     Parterre plateau ;
     
-    /**Classe qui gere les regles
-     * 
-     * @param ctrl
-     */
+    /*-------------Constructeur--------------*/
     public ArbitrePlateau(Controleur ctrl)
     {
         this.plateau = new Parterre();
     }
 
+
+
     public boolean ajouterPilier(char dalle, int index, String couleur)
     {
+        //si l'endroit est libre
         if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
         {
             plateau.setPilier(dalle, index, couleur);
@@ -35,22 +36,38 @@ public class ArbitrePlateau
         }
     }
 
-    //renvoie si il a modifier qqch
+    public boolean ajouterPilier(Pilier pilier, String couleur)
+    {
+        //si l'endroit est libre
+        if( pilier.getCouleur().equals("neutre") || pilier.getCouleur().isEmpty() )
+        {
+            pilier.setCouleur(couleur);
+
+            ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
+            while(checkPlateau( plateau ));
+
+            return true;
+        }
+        else
+        {
+            System.out.println( "\nIl y a déjà un Pilier ici !!" );
+            return false;
+        }
+    }
+
+
+    /*----------------Verification-----------------*/
     public boolean checkPlateau( Parterre plateau )
     {
         //si un des 2 a modifier qqch
         return Regle1_2( plateau ) ||
                Regle3  ( plateau );
-
-        // à la fin
-        //VerifScore( plateau );
     }
 
     /*R1 
     La prise de contrôle par majorite
     Lorsqu’un Architecte place son 4ème Pilier sur une même dalle, il en prend 
     le contrôle et place son ou ses Anneaux de prise de contrôle.*/
-
 
     /*R2
     La destruction de pilier(s) adverse(s)
@@ -231,6 +248,34 @@ public class ArbitrePlateau
     - Lorsque les Architectes ont construit 24 Piliers, l’Architecte contrôlant
     le plus de Dalles l’emporte
     R4 en cas d’égalité, l’Architecte ayant détruit le plus de Pilier l’emporte*/
+
+    /*public void verificationFinJeu()
+    {
+        // Vérification du nombre de Dalle de chaque joueur
+        if( joueur1.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur1; }
+        if( joueur2.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur2; }
+
+        // Vérification du nombre de Piliers construits
+        if( Piler.cptPilierPose <= 0 )
+        {
+            continueJeu = false;
+            
+            // Contrôle du joueur qui a le plus de dalle
+            if( joueur1.getNbDalle() > joueur2.getNbDalle() ) { gagnant = joueur1; } // Cas où le joueur1 a le plus de Dalles
+            else
+            {
+                if( joueur1.getNbDalle() < joueur2.getNbDalle() ) { gagnant = joueur2; } // Cas où le joueur2 a le plus de Dalles
+                else // Cas d'égalité en nombre de Dalles possédées
+                {
+                    if( joueur1.getNbPilierDetruit() > joueur2.getNbPilierDetruit() ) { gagnant = joueur1; } // Cas où le joueur1 a détruit le plus de Piliers
+                    else
+                    {
+                        if( joueur1.getNbPilierDetruit() < joueur2.getNbPilierDetruit() ) { gagnant = joueur2; } // Cas où le joueur2 a détruit le plus de Piliers
+                    }
+                }
+            } // Si à la fin de cette boucle ( continueJeu == true ) mais ( gagnant == null ), c'est qu'il y a égalité parfaite
+        }
+    }*/
     
     public String toString()
     {

@@ -4,32 +4,30 @@ import java.util.ArrayList ;
 
 public class Dalle {
 
+    /*------Static---------*/
+
+    public static char Compteur_Nommeur = 'A';
+
+    public static ArrayList<Dalle> ensembleDalle = new ArrayList<Dalle>(16);
+
+    /*------CONSTANTE------*/
+
+    private final int[][] sommets; // Tableau qui va contenir les coordonnées des sommets de la Dalle
+
     /*----- attributs -----*/
 
-    // Compteur auto-incrémenté
-    public static char Compteur_Nommeur = 'A';
-    private       char identifiant;
-
-    public static ArrayList<Dalle> ensembleDalle = new ArrayList<Dalle>(16); // Création d'une ArrayList contenant toutes les Dalles du Parterre
+    private char identifiant;
     
     private int x, y;
     
     private String couleur = "neutre";
 
-    private Dalle [] voisin   = new Dalle [6]; // Tableau contenant les Dalles adjacentes
+    private Dalle [] voisin    = new Dalle [6]; // Tableau contenant les Dalles adjacentes
     
-    public Pilier[] tabPilier = new Pilier[6]; // Tableau contenant les bjets Piliers adjecents
-
-    private final int[][] sommets; // Tableau qui va contenir les coordonnées des sommets de la Dalle
+    private Pilier[] tabPilier = new Pilier[6]; // Tableau contenant les bjets Piliers adjecents
 
     /*----- Constructeur -----*/
 
-    /**Constructeur de dalle qui prend les coordonnées
-     * 
-     * @param x
-     * @param y
-     */
-    
     // Factory
     public static Dalle creerDalle(int x, int y)
     {
@@ -49,29 +47,31 @@ public class Dalle {
 
     /*----- Getteur -----*/
 
-    public char   getID     () { return this.identifiant; }
-    public String getCouleur() { return this.couleur;     }
-    public int    getX      () {return this.x;            }
-    public int    getY      () {return this.y;            }
+    public char     getID     () { return this.identifiant; }
 
-    public Pilier[] getPilier() { return this.tabPilier; }
+    public String   getCouleur() { return this.couleur;     }
 
-    public int[][] getSommets() { return this.sommets; }
+    public int      getX      () { return this.x;           }
+
+    public int      getY      () { return this.y;           }
+
+    public Pilier[] getPilier () { return this.tabPilier;   }
+
+    public int[][]  getSommets() { return this.sommets;     }
 
     /*----- Setteur -----*/
 
-    public void setVoisin ( int index, Dalle d ) {
-        this.voisin[index] = d ;
-    }
+    public void setVoisin ( int index, Dalle d ) { this.voisin[index] = d ;     }
 
-    public void setCouleur( String couleur ) {
-        this.couleur = couleur;
-    }
+    public void setCouleur( String couleur     ) { this.couleur       = couleur;}
 
-    public String toString(){
+
+    /*----- ToString -----*/
+
+    public String toString()
+    {
 
         String s = " Dalle " + this.identifiant + ": |";
-
 
         for (int i=0; i<voisin.length; i++)
         {

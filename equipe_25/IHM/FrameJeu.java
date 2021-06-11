@@ -1,4 +1,5 @@
 package equipe_25.IHM ;
+
 import equipe_25.Controleur ;
 import equipe_25.Metier.Architecte;
 import equipe_25.Metier.Dalle ;

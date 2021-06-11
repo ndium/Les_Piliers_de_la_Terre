@@ -88,16 +88,9 @@ public class PanelJeu extends JPanel
             labelTmp.setSize(67,67);
         }
 
-        /*---------------------*/
-        /*         /!\         */
-        /*---------------------*/
-
-        //Architecte implementera ->
-        //this.addMouseListener();
-        //this.addMouseMotionListener();
-
     }
 
+    /*-------------MAJ-------------*/
     public void maj()
     {
         //mise a jour des anneaux

@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import equipe_25.Metier.Pilier;
 import equipe_25.Controleur;
 
-
+/*---------Constructeur-----------*/
 public class Architecte implements MouseListener
 {
     /*----- Attributs -----*/

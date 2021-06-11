@@ -17,6 +17,8 @@ public class Pilier
 
     public static int cptPilierPose = 2 * 24; // Nombre de Pilier limite
 
+    private int dernierChangement;
+
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
     /*----Constructeur----*/
@@ -25,8 +27,6 @@ public class Pilier
     {
         this.x = x;
         this.y = y;
-
-        //lierVoisin();
     }
 
     public static void lierVoisin()
@@ -72,9 +72,11 @@ public class Pilier
 
     public void setCouleur(String couleur)
     {
-        this.couleur = couleur;
-        if( !this.couleur.equals("neutre") ) // Si le basculement de la couleur donne du maron ou du gris
+        if( !couleur.equals( "neutre" ) )
             cptPilierPose--;
+
+        this.dernierChangement = cptPilierPose;
+        this.couleur = couleur;
     }
 
     public void setVoisin(int index,Pilier p)
@@ -84,6 +86,5 @@ public class Pilier
 
     /*----- toString -----*/
 
-    public String toString() { return  this.x + ":" + this.y; }
-
-}
+    public String toString() 
+    { return  this.x + ":" + this.y; }
