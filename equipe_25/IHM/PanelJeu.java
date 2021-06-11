@@ -1,6 +1,8 @@
 package equipe_25.IHM ;
 import equipe_25.Metier.Dalle ;
 import equipe_25.Metier.Pilier ;
+import equipe_25.Metier.Architecte ;
+
 
 import javax.swing.* ;
 import java.awt.*;
@@ -21,12 +23,14 @@ public class PanelJeu extends JPanel
     /*----Attribut----*/
     private ArrayList<Dalle>  ensembleDalle ;
     private ArrayList<Pilier> ensemblePilier ;
+    private Architecte joueur ;
 
     /*----Constructeur----*/
 
-    public PanelJeu(ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier)
+    public PanelJeu(ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier,Architecte joueur)
     {
         this.setLayout(null);
+        this.addMouseListener(joueur);
         this.ensembleDalle  = ensembleDalle ;
         this.ensemblePilier = ensemblePilier ;
 
@@ -88,16 +92,8 @@ public class PanelJeu extends JPanel
             labelTmp.setSize(67,67);
         }
 
-        /*---------------------*/
-        /*         /!\         */
-        /*---------------------*/
-
-        //Architecte implementera ->
-        //this.addMouseListener();
-        //this.addMouseMotionListener();
-
     }
-
+    /*-------------MAJ-------------*/
     public void maj()
     {
         //mise a jour des anneaux

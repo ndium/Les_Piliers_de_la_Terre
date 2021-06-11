@@ -17,7 +17,7 @@ public class Pilier
 
     public static int cptPilierPose = 2 * 24; // Nombre de Pilier limite
 
-    private int dernierChangement = null;
+    private int dernierChangement = -1 ;
 
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
@@ -61,12 +61,15 @@ public class Pilier
     
     /*----- Getteur -----*/
 
-    public int    getX()       { return this.x;       }
-    public int    getY()       { return this.y;       }
-    public String getCouleur() { return this.couleur; }
+    public int      getX      () { return this.x;         }
 
-    public Dalle[]  getDalle () { return this.tabDalle;  }
-    public Pilier[] getVoisin() { return this.tabVoisin; }
+    public int      getY      () { return this.y;         }
+
+    public String   getCouleur() { return this.couleur;   }
+
+    public Dalle[]  getDalle  () { return this.tabDalle;  }
+
+    public Pilier[] getVoisin () { return this.tabVoisin; }
 
     /*----- Setteur -----*/
 

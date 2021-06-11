@@ -50,6 +50,7 @@ public class Architecte implements MouseListener
             if ((e.getX() >= p.getX()-10 && e.getX() <= p.getX()+10) && (e.getY() >= p.getY()-10 && e.getY() <= p.getY()+10))
             {
                 ctrl.jouer(p,this.couleur);
+                ctrl.maj();
             }
         }
     }

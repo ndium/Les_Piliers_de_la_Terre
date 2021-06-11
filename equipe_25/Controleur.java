@@ -39,14 +39,14 @@ public class Controleur
     public Controleur(int mode)
     {
         /*----------Instanciation----------*/
-        this.joueur1     = new Architecte("gris");
-        this.joueur2     = new Architecte("maron");
+        this.joueur1     = new Architecte("gris" ,this);
+        this.joueur2     = new Architecte("maron",this);
         this.joueurActif = joueur1;
         
         this.metier = new ArbitrePlateau(this);
-        this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueur1);
-        
 
+        if (mode == 1) this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueur1);
+        
         /*-----JEU-----*/
         while ( continueJeu )
         {
@@ -57,7 +57,7 @@ public class Controleur
             //cas d'erreur
             do
             {
-                IHM.maj();
+                maj();
 
                 // Annonce du joueur actif + demande de dalle sur laquelle jouer
                 System.out.println( "Joueur " + joueurActif.getCouleur() + ", sur quelle dalle voulez-vous poser un pilier ? [A-P]" );
@@ -83,35 +83,22 @@ public class Controleur
         return metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() );
     }
 
-    /*public void verificationFinJeu()
+    public boolean jouer(Pilier p , String couleur)
     {
-        // Vérification du nombre de Dalle de chaque joueur
-        if( joueur1.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur1; }
-        if( joueur2.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur2; }
+        return metier.ajouterPilier( p , joueurActif.getCouleur() );
+    }
 
-        // Vérification du nombre de Piliers construits
-        if( Piler.cptPilierPose <= 0 )
-        {
-            continueJeu = false;
-            
-            // Contrôle du joueur qui a le plus de dalle
-            if( joueur1.getNbDalle() > joueur2.getNbDalle() ) { gagnant = joueur1; } // Cas où le joueur1 a le plus de Dalles
-            else
-            {
-                if( joueur1.getNbDalle() < joueur2.getNbDalle() ) { gagnant = joueur2; } // Cas où le joueur2 a le plus de Dalles
-                else // Cas d'égalité en nombre de Dalles possédées
-                {
-                    if( joueur1.getNbPilierDetruit() > joueur2.getNbPilierDetruit() ) { gagnant = joueur1; } // Cas où le joueur1 a détruit le plus de Piliers
-                    else
-                    {
-                        if( joueur1.getNbPilierDetruit() < joueur2.getNbPilierDetruit() ) { gagnant = joueur2; } // Cas où le joueur2 a détruit le plus de Piliers
-                    }
-                }
-            } // Si à la fin de cette boucle ( continueJeu == true ) mais ( gagnant == null ), c'est qu'il y a égalité parfaite
-        }
-    }*/
+    public void maj()
+    {
+        IHM.maj();
+    }
+
+    public void afficherScore()
+    {
+        System.out.println("gagner");
+    }
 
     public static void main(String[] args) {
-        new Controleur( 0 );
+        new Controleur( 1 );
     }
 }
