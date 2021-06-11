@@ -2,11 +2,12 @@ package equipe_25.Metier;
 
 import java.util.ArrayList;
 
+import equipe_25.Metier.Pilier;
+
 public class Parterre {
 
-	/*----Attributs----*/
+	/*----CONSTANTES----*/
 
-	//Constantes
 	public final int DECALX = 0 ;
 	public final int DECALY = 0 ;
 
@@ -50,7 +51,7 @@ public class Parterre {
 			}
 		}
 
-		//liens pillier <- dalle 
+		//liens dalle -> Pilier
 		for( Dalle d: Dalle.ensembleDalle )
 		{
 			for( Pilier p: Pilier.ensemblePilier )
@@ -64,39 +65,7 @@ public class Parterre {
 			}
 		}
 
-		//liens Dalle <- pilier
-		/*
-		for( Pilier p: Pilier.ensemblePilier )
-		{
-			int indice = 0;
-			for( Dalle d: Dalle.ensembleDalle )
-			{
-				for( int i = 0; i < 6; i++ )
-				{
-					if( d.getPilier()[i] == p ) { p.getDalle()[ indice++ ] = d; }
-				}
-			}
-		}*/
-
-		Pilier.lierVoisin();
-
-		//parcour pillier
-
-		for (Pilier p  : Pilier.ensemblePilier)
-		{
-			System.out.println("pilier observé: " + p);
-
-			for (int i = 0; i < 3; i++)
-			{
-				System.out.println(p.getVoisin()[i]);
-			}
-		}
-
-		for( int i = 0; i < 6; i++ )
-		{
-			System.out.println( Dalle.ensembleDalle.get(0).getPilier()[i] );
-		}
-
+		Pilier.lierVoisin();//tout les pilier retouve leur voisin 
 	}
 
 	/*---- Getteur ----*/

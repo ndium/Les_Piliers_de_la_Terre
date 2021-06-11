@@ -15,7 +15,7 @@ public class Pilier
 
     private Pilier[] tabVoisin = new Pilier[3];
 
-    public static int nbPilierMax = 2 * 24; // Nombre de Pilier limite
+    public static int cptPilierPose = 2 * 24; // Nombre de Pilier limite
 
     public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
@@ -74,7 +74,7 @@ public class Pilier
     {
         this.couleur = couleur;
         if( !this.couleur.equals("neutre") ) // Si le basculement de la couleur donne du maron ou du gris
-            nbPilierMax--;
+            cptPilierPose--;
     }
 
     public void setVoisin(int index,Pilier p)

@@ -153,21 +153,22 @@ public class ArbitrePlateau
         //on va parcourir les ensemble de tache 
         for ( Pilier p : Pilier.ensemblePilier ) 
         {
-            //si le pilier et neutre on ne parcour pas ses voisin 
-            if ( !(p.getCouleur().equals("neutre") || p.getCouleur().isEmpty()) )
-            {
-                //si parcour n'a pas trouvé de sortie pour ce groupe
-                if ( parcour( p, dejaVu ) )
+            //if( !p.getCouleur().equals( Controleur.joueurActif.getCouleur() ) // && 
+                //si le pilier et neutre on ne parcour pas ses voisin 
+                if ( !(p.getCouleur().equals("neutre") || p.getCouleur().isEmpty()) )
                 {
-                    supprimer( dejaVu );
-                    //le seul changement que l'on peut faire c'est de supprimer tout
-                    aChangerQqch = true ;
+                    //si parcour n'a pas trouvé de sortie pour ce groupe
+                    if ( parcour( p, dejaVu ) )
+                    {
+                        supprimer( dejaVu );
+                        //le seul changement que l'on peut faire c'est de supprimer tout
+                        aChangerQqch = true ;
+                    }
+                    //si il retourne faux c'est que ce n'est pas un groupe entouré
+                    dejaVu = new ArrayList<Pilier>() ;
                 }
-                //si il retourne faux c'est que ce n'est pas un groupe entouré
-                dejaVu = new ArrayList<Pilier>() ;
-            }
-            System.out.println("neutre"+p);
-            //sinon il n'y a rien a changé
+                System.out.println("neutre"+p);
+                //sinon il n'y a rien a changé
         }
         return aChangerQqch ;
     }

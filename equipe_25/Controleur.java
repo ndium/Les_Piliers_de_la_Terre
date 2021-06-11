@@ -10,38 +10,51 @@ import iut.algo.Clavier;
 
 public class Controleur
 {
+
+    /*----- Attributs -----*/
     Architecte joueur1;
+
     Architecte joueur2;
+
     Architecte gagnant = null; // Par défaut, aucun joueur n'est gagnant
+
     Architecte joueurActif;
 
+    /*--------Input-------*/
     int  numSommet   = 7;   // Un sommet qui ne peut pas exister
+
     char lettreDalle = 'Q'; // Une lettre qui ne peut pas exister
 
     int tour = 0; // Initialisation du compteur de tour à 0
 
+    /*----------MVC----------*/
     ArbitrePlateau metier;
 
     FrameJeu IHM;
 
     boolean continueJeu = true;
 
+	/*---------Constructeur----------*/
+
     public Controleur(int mode)
     {
+        /*----------Instanciation----------*/
         this.joueur1     = new Architecte("gris");
         this.joueur2     = new Architecte("maron");
         this.joueurActif = joueur1;
         
         this.metier = new ArbitrePlateau(this);
-
         this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueur1);
         
+
+        /*-----JEU-----*/
         while ( continueJeu )
         {
             if ( joueurActif == joueur1 ) { tour++; } // Augmentation du tour quand on retombe sur le joueur 1
             
             System.out.println( "---------- Tour n°" + tour + " ----------" );
 
+            //cas d'erreur
             do
             {
                 IHM.maj();
@@ -53,17 +66,23 @@ public class Controleur
                 // Demande du sommet de la dalle sur lequel on veut jouer
                 System.out.println( "\nSur quel sommet voulez vous jouer de [0-5] ?" );
                 numSommet = Clavier.lire_int();
+                
             } 
-            while ( !( metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );
+            while ( !( jouer( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );
             
-            System.out.println( "\nPilier construit !! Il en reste " + Pilier.nbPilierMax + " à poser." );
+            System.out.println( "\nPilier construit !! Il en reste " + Pilier.cptPilierPose + " à poser." );
 
             //invertion des joueurs
             if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
             else                          { joueurActif = joueur1; }
         }
     }
-        
+
+    public boolean jouer(char dalle, int index, String couleur)
+    {
+        return metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() );
+    }
+
     /*public void verificationFinJeu()
     {
         // Vérification du nombre de Dalle de chaque joueur
@@ -71,7 +90,7 @@ public class Controleur
         if( joueur2.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur2; }
 
         // Vérification du nombre de Piliers construits
-        if( Piler.nbPilierConstruit <= 0 )
+        if( Piler.cptPilierPose <= 0 )
         {
             continueJeu = false;
             

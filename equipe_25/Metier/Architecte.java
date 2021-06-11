@@ -1,46 +1,45 @@
 package equipe_25.Metier;
 
-import java.awt.event.*;
+
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 import equipe_25.Metier.Pilier;
+import equipe_25.Controleur;
+
 
 public class Architecte implements MouseListener
 {
     /*----- Attributs -----*/
 
-    // static
-    private static int nbJoueurs = 0;
-
-    // non static
-    private int numJoueur;
-
     private String couleur;
 
-    private int nbDalle = 0;
-    private int cptPilierDetruit = 0;
+    private Controleur ctrl ;
 
-    private boolean gagner = false;
+    /*----- Score -----*/
+
+    private int nbDalle = 0;
+
+    private int nbPilierDetruit = 0;
 
     /*----- Constructeur -----*/
 
-    public Architecte(String couleur)
+    public Architecte(String couleur,Controleur ctrl)
     {
-        this.numJoueur = ++Architecte.nbJoueurs;
-        this.couleur   = couleur;
+        this.couleur = couleur;
+        this.ctrl    = ctrl ;
     }
 
     /*----- Getteur -----*/
 
-    public int     getNumJoueur       () { return this.numJoueur;        }
-    public int     getNbDalles        () { return this.nbDalle;          }
+    public int     getNbDalle         () { return this.nbDalle;          }
     public String  getCouleur         () { return this.couleur;          }
-    public int     getCptPilierDetruit() { return this.cptPilierDetruit; }
-    public boolean gagner             () { return this.gagner;           }
+    public int     getNbPilierDetruit () { return this.nbPilierDetruit;  }
 
     /*----- Setteur -----*/
 
     public void ajouterDalle        () { this.nbDalle++;          }
-    public void ajouterPilierDetruit() { this.cptPilierDetruit++; }
+    public void ajouterPilierDetruit() { this.nbPilierDetruit++;  }
 
     /*-------MouseListener-------*/
 
@@ -48,19 +47,17 @@ public class Architecte implements MouseListener
     {
         for (Pilier p :Pilier.ensemblePilier)
         {
-            if ((e.getX() >= p.getX()-10 || e.getX() <= p.getX()+10) && (e.getY() >= p.getY()-10 || e.getY() <= p.getY()+10))
-            {System.out.println("touché");}
+            if ((e.getX() >= p.getX()-10 && e.getX() <= p.getX()+10) && (e.getY() >= p.getY()-10 && e.getY() <= p.getY()+10))
+            {
+                ctrl.jouer(p,this.couleur);
+            }
         }
-        
     }
 
-    public void mouseExited(MouseEvent e){}
-
-    public void mouseEntered(MouseEvent e){}
-
+    public void mouseExited  (MouseEvent e){}
+    public void mouseEntered (MouseEvent e){}
     public void mouseReleased(MouseEvent e){}
-
-    public void mouseClicked(MouseEvent e){}
+    public void mouseClicked (MouseEvent e){}
 
     /*----- ToString() -----*/
 
@@ -68,6 +65,6 @@ public class Architecte implements MouseListener
     {
         return "Joueur " + this.couleur          + ":" +
         "\n Possède "    + this.nbDalle          + " dalle(s)" +
-        "\n A détruit "  + this.cptPilierDetruit + " pilier(s)\n";
+        "\n A détruit "  + this.nbPilierDetruit + " pilier(s)\n";
     }
 }
