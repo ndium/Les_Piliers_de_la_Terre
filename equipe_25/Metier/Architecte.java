@@ -45,14 +45,8 @@ public class Architecte implements MouseListener
 
     public void mousePressed(MouseEvent e)
     {
-        for (Pilier p :Pilier.ensemblePilier)
-        {
-            if ((e.getX() >= p.getX()-10 && e.getX() <= p.getX()+10) && (e.getY() >= p.getY()-10 && e.getY() <= p.getY()+10))
-            {
-                ctrl.jouer(p,this.couleur);
-                ctrl.maj();
-            }
-        }
+        ctrl.jouer(e.getX(),e.getY(),this.couleur);
+        ctrl.maj();
     }
 
     public void mouseExited  (MouseEvent e){}

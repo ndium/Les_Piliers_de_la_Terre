@@ -45,7 +45,7 @@ public class Controleur
         
         this.metier = new ArbitrePlateau(this);
 
-        if (mode == 1) this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueur1);
+        if (mode == 1) this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueurActif);
         
         /*-----JEU-----*/
         while ( continueJeu )
@@ -67,25 +67,23 @@ public class Controleur
                 System.out.println( "\nSur quel sommet voulez vous jouer de [0-5] ?" );
                 numSommet = Clavier.lire_int();
                 
-            } 
+            }
             while ( !( jouer( lettreDalle, numSommet, joueurActif.getCouleur() ) ) );
             
             System.out.println( "\nPilier construit !! Il en reste " + Pilier.cptPilierPose + " à poser." );
-
-            //invertion des joueurs
-            if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
-            else                          { joueurActif = joueur1; }
         }
     }
 
+    //a chaque fois que l'on va jouer correctement cela echangera les joueurs
+    //il y a un doublon de methodes car avec la souris on doit utiliser les coordonnées
     public boolean jouer(char dalle, int index, String couleur)
     {
         return metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() );
     }
 
-    public boolean jouer(Pilier p , String couleur)
+    public boolean jouer(int x , int y , String couleur)
     {
-        return metier.ajouterPilier( p , joueurActif.getCouleur() );
+        return metier.ajouterPilier(x , y , joueurActif.getCouleur() );
     }
 
     public void maj()
@@ -97,6 +95,17 @@ public class Controleur
     {
         System.out.println("gagner");
     }
+
+    public void changerJoueur()
+    {
+        //invertion des joueurs
+        if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
+        else                          { joueurActif = joueur1; }
+    }
+
+    /*------------*/
+    /*    Main    */
+    /*------------*/
 
     public static void main(String[] args) {
         new Controleur( 1 );

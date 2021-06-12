@@ -82,17 +82,28 @@ public class Parterre {
 		return null;
 	}
 
+	public Pilier getPilier(int x ,int y )
+	{
+		for (Pilier p : Pilier.ensemblePilier) 
+        {
+            if ((x >= p.getX()-10 && x <= p.getX()+10) && (y >= p.getY()-10 && y <= p.getY()+10))
+            {
+                return p ;
+            }
+        }
+        return null ;
+	}
+
 	/*----- Setteur -----*/
 
 	public void setPilier( char id, int index, String couleur )
 	{
-		for (Dalle d : Dalle.ensembleDalle)
-		{
-			if( d.getID() == id )
-			{
-				d.getPilier()[index].setCouleur(couleur);
-			}
-		}
+		this.getPilier(id,index).setCouleur(couleur);
+	}
+
+	public void setPilier( int x, int y, String couleur )
+	{
+		this.getPilier(x,y).setCouleur(couleur);
 	}
 
 	/*----- ToString() -----*/
@@ -116,7 +127,7 @@ public class Parterre {
 		s += "+----------+-+-+-+-+-+-+";
 		m += "+----------+---+---+";
 
-		return ""; //s + "\n\n" + m;
+		return s + "\n\n";// + m;
 	}
 }
 

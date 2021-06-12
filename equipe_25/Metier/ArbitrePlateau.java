@@ -8,51 +8,70 @@ public class ArbitrePlateau
 {
     /*--------Attribut---------*/
     Parterre plateau ;
+    Controleur ctrl ;
     
     /*-------------Constructeur--------------*/
     public ArbitrePlateau(Controleur ctrl)
     {
         this.plateau = new Parterre();
+        this.ctrl = ctrl ;
     }
 
 
 
     public boolean ajouterPilier(char dalle, int index, String couleur)
     {
-        //si l'endroit est vide
-        if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
+        if (plateau.getPilier(dalle,index) != null)
         {
-            plateau.setPilier(dalle, index, couleur);
+            //si l'endroit est vide
+            if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
+            {
+                plateau.setPilier(dalle, index, couleur) ;
 
-            ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
-            while(checkPlateau( plateau ));
+                ctrl.changerJoueur() ;
+                ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
+                while(checkPlateau( plateau ));
 
-            return true;
+                return true;
+            }
+            else
+            {
+                System.out.println( "\nIl y a déjà un Pilier ici !!" );
+                return false;
+            }
         }
         else
         {
-            System.out.println( "\nIl y a déjà un Pilier ici !!" );
-            return false;
+            return false ;
         }
     }
 
-    public boolean ajouterPilier(Pilier pilier, String couleur)
+    public boolean ajouterPilier(int x , int y, String couleur)
     {
-        //si l'endroit est libre
-        if( pilier.getCouleur().equals("neutre") || pilier.getCouleur().isEmpty() )
-        {
-            pilier.setCouleur(couleur);
 
-            ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
-            while(checkPlateau( plateau ));
-
-            return true;
-        }
-        else
+        if (plateau.getPilier(x,y) != null)
         {
-            System.out.println( "\nIl y a déjà un Pilier ici !!" );
-            return false;
+            if( plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() )
+            {
+                plateau.setPilier(x,y, couleur);
+                
+                ctrl.changerJoueur() ;
+                
+                while(checkPlateau( plateau ));
+
+                return true;
+            }
+            else
+            {
+                System.out.println( "\nIl y a déjà un Pilier ici !!" );
+                return false;
+            }            
         }
+        else{
+            return false ;
+        }
+
+
     }
 
     /*----------------Verification-----------------*/
@@ -167,8 +186,8 @@ public class ArbitrePlateau
         //tableau qui evite les boucle et qui permet de tout supprimer
         ArrayList<Pilier> dejaVu = new ArrayList<Pilier>() ;
 
-        //on va parcourir les ensemble de tache 
-        for ( Pilier p : Pilier.ensemblePilier ) 
+        //on va parcourir les pilier
+        for ( Pilier p : Pilier.ensemblePilier )
         {
             //if( !p.getCouleur().equals( Controleur.joueurActif.getCouleur() ) // && 
                 //si le pilier et neutre on ne parcour pas ses voisin 
