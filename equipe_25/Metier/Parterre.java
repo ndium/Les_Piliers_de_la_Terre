@@ -11,50 +11,58 @@ public class Parterre {
 	public final int DECALX = 0 ;
 	public final int DECALY = 0 ;
 
+	private ArrayList<Dalle>  ensembleDalle  ;
+	private ArrayList<Pilier> ensemblePilier ;
+
 	/*----Constructeur----*/
 
 	public Parterre(){
 
 		//losange de base 
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+  50 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+  83 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+  83 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+102, DECALY+ 116 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 116 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+298, DECALY+ 116 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+ 53, DECALY+ 149 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+ 149 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+ 149 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+347, DECALY+ 149 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+102, DECALY+ 182 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 182 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+298, DECALY+ 182 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+ 215 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+ 215 ) );
-		Dalle.ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 248 ) );
+
+		ensembleDalle  =  Dalle .getEnsembleDalle () ;
+		ensemblePilier =  Pilier.getEnsemblePilier() ;
+
+
+		ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+  50 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+  83 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+  83 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+102, DECALY+ 116 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 116 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+298, DECALY+ 116 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+ 53, DECALY+ 149 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+ 149 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+ 149 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+347, DECALY+ 149 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+102, DECALY+ 182 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 182 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+298, DECALY+ 182 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+151, DECALY+ 215 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+249, DECALY+ 215 ) );
+		ensembleDalle.add( Dalle.creerDalle( DECALX+200, DECALY+ 248 ) );
 
 		//création de l'arraylist contenant tout les piliers
-		Pilier.ensemblePilier.add( new Pilier( Dalle.ensembleDalle.get(0).getSommets()[0][0], Dalle.ensembleDalle.get(0).getSommets()[1][0] ) );
+		ensemblePilier.add( new Pilier( ensembleDalle.get(0).getSommets()[0][0], ensembleDalle.get(0).getSommets()[1][0] ) );
 
-		for( Dalle d: Dalle.ensembleDalle ) // boucle qui parcourt toutes les dalles
+		for( Dalle d: ensembleDalle ) // boucle qui parcourt toutes les dalles
 		{
 			for( int i = 0; i < 6; i++ ) // boucle qui parcourt tous les sommets d'une dalle
 			{
 				boolean existe = false; // on part du principe que le pilier n'existe pas 
 
-				for( int j = 0; j < Pilier.ensemblePilier.size(); j++ ) // parcours de tous les piliers déjà créés
+				for( int j = 0; j < ensemblePilier.size(); j++ ) // parcours de tous les piliers déjà créés
 				{
-					if( ( Pilier.ensemblePilier.get(j).getX() == d.getSommets()[0][i] ) && ( Pilier.ensemblePilier.get(j).getY() == d.getSommets()[1][i] ) ) { existe = true; }// si le pilier existe déjà, existe = true
+					if( ( ensemblePilier.get(j).getX() == d.getSommets()[0][i] ) && ( ensemblePilier.get(j).getY() == d.getSommets()[1][i] ) ) { existe = true; }// si le pilier existe déjà, existe = true
 				}
 
-				if(!existe) { Pilier.ensemblePilier.add( new Pilier( d.getSommets()[0][i], d.getSommets()[1][i] ) ); } // ajout du pilier
+				if(!existe) { ensemblePilier.add( new Pilier( d.getSommets()[0][i], d.getSommets()[1][i] ) ); } // ajout du pilier
 			}
 		}
 
 		//liens dalle -> Pilier
-		for( Dalle d: Dalle.ensembleDalle )
+		for( Dalle d: ensembleDalle )
 		{
-			for( Pilier p: Pilier.ensemblePilier )
+			for( Pilier p: ensemblePilier )
 			{
 				if ( p.getX() == d.getX()-16 && p.getY() == d.getY()-33 ) { d.getPilier()[0] = p; } // en haut à gauche       : 0
 				if ( p.getX() == d.getX()+16 && p.getY() == d.getY()-33 ) { d.getPilier()[1] = p; } // en haut à droite indice: 1
@@ -72,7 +80,7 @@ public class Parterre {
 
 	public Pilier getPilier( char id, int index )
 	{
-		for (Dalle d : Dalle.ensembleDalle)
+		for (Dalle d : ensembleDalle)
 		{
 			if( d.getID() == id )
 			{
@@ -84,7 +92,7 @@ public class Parterre {
 
 	public Pilier getPilier(int x ,int y )
 	{
-		for (Pilier p : Pilier.ensemblePilier) 
+		for (Pilier p : ensemblePilier) 
         {
             if ((x >= p.getX()-10 && x <= p.getX()+10) && (y >= p.getY()-10 && y <= p.getY()+10))
             {
@@ -118,7 +126,7 @@ public class Parterre {
 					"           | x | y |\n"+
 					"+----------+---+---+\n";
 
-		for( Dalle d : Dalle.ensembleDalle )
+		for( Dalle d : ensembleDalle )
 		{
 			s += "|"+d.toString()+"\n";
 			m += "| Dalle " + d.getID() + ": |" + String.format("%3d", d.getX() ) + "|" + String.format("%3d", d.getY() ) + "|\n";

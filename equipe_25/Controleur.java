@@ -45,7 +45,7 @@ public class Controleur
         
         this.metier = new ArbitrePlateau(this);
 
-        if (mode == 1) this.IHM = new FrameJeu( this, Dalle.ensembleDalle, Pilier.ensemblePilier ,joueurActif);
+        if (mode == 1) this.IHM = new FrameJeu( this, Dalle.getEnsembleDalle() , Pilier.getEnsemblePilier() ,joueurActif);
         
         /*-----JEU-----*/
         while ( continueJeu )

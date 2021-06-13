@@ -6,9 +6,9 @@ public class Dalle {
 
     /*------Static---------*/
 
-    public static char Compteur_Nommeur = 'A';
+    private static char Compteur_Nommeur = 'A';
 
-    public static ArrayList<Dalle> ensembleDalle = new ArrayList<Dalle>(16);
+    private static ArrayList<Dalle> ensembleDalle = new ArrayList<Dalle>(16);
 
     /*------CONSTANTE------*/
 
@@ -29,6 +29,7 @@ public class Dalle {
     /*----- Constructeur -----*/
 
     // Factory
+    // pour limiter dans l'arrayList
     public static Dalle creerDalle(int x, int y)
     {
         if( Dalle.ensembleDalle.size() < 16 )
@@ -46,6 +47,8 @@ public class Dalle {
     }
 
     /*----- Getteur -----*/
+
+    public static ArrayList<Dalle> getEnsembleDalle(){return Dalle.ensembleDalle;}
 
     public char     getID     () { return this.identifiant; }
 

@@ -7,14 +7,20 @@ import java.util.ArrayList;
 public class ArbitrePlateau
 {
     /*--------Attribut---------*/
-    Parterre plateau ;
-    Controleur ctrl ;
+    private Parterre plateau ;
+    private Controleur ctrl ;
+
+    private ArrayList<Dalle>  ensembleDalle  ;
+    private ArrayList<Pilier> ensemblePilier ;
     
     /*-------------Constructeur--------------*/
     public ArbitrePlateau(Controleur ctrl)
     {
         this.plateau = new Parterre();
         this.ctrl = ctrl ;
+
+        ensembleDalle  =  Dalle .getEnsembleDalle () ;
+        ensemblePilier =  Pilier.getEnsemblePilier() ;
     }
 
 
@@ -100,7 +106,7 @@ public class ArbitrePlateau
         boolean retour = false ;
 
         //on parcour toute les dalles
-        for( Dalle d: Dalle.ensembleDalle )
+        for( Dalle d: ensembleDalle )
         {
             boolean detruire = true ;
             int cptGris  = 0;
@@ -183,7 +189,7 @@ public class ArbitrePlateau
         ArrayList<Pilier> dejaVu = new ArrayList<Pilier>() ;
 
         //on va parcourir les pilier
-        for ( Pilier p : Pilier.ensemblePilier )
+        for ( Pilier p : ensemblePilier )
         {
             //if( !p.getCouleur().equals( Controleur.joueurActif.getCouleur() ) // && 
                 //si le pilier et neutre on ne parcour pas ses voisin 
@@ -208,7 +214,7 @@ public class ArbitrePlateau
     public boolean parcour( Pilier p, ArrayList<Pilier> dejaVu )
     {
         //System.out.println(dejaVu);
-        //System.out.println(Pilier.ensemblePilier);
+        //System.out.println(ensemblePilier);
 
         if (!dejaVu.contains(p))
         {
@@ -245,7 +251,7 @@ public class ArbitrePlateau
      */
     public void supprimer( ArrayList<Pilier> list )
     {
-        for (Pilier p : Pilier.ensemblePilier)
+        for (Pilier p : ensemblePilier)
         {
             if (list.contains(p))
             {
