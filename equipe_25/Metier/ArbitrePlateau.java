@@ -27,8 +27,6 @@ public class ArbitrePlateau
             if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
             {
                 plateau.setPilier(dalle, index, couleur) ;
-
-                ctrl.changerJoueur() ;
                 ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
                 while(checkPlateau( plateau ));
 
@@ -54,8 +52,6 @@ public class ArbitrePlateau
             if( plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() )
             {
                 plateau.setPilier(x,y, couleur);
-                
-                ctrl.changerJoueur() ;
                 
                 while(checkPlateau( plateau ));
 

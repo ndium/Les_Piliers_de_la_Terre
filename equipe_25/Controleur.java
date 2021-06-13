@@ -78,12 +78,25 @@ public class Controleur
     //il y a un doublon de methodes car avec la souris on doit utiliser les coordonnées
     public boolean jouer(char dalle, int index, String couleur)
     {
-        return metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() );
+        if (metier.ajouterPilier( lettreDalle, numSommet, joueurActif.getCouleur() ))
+        {
+            changerJoueur() ;
+            return true ;
+        }
+        else 
+            return false ;
+
     }
 
     public boolean jouer(int x , int y , String couleur)
     {
-        return metier.ajouterPilier(x , y , joueurActif.getCouleur() );
+        if (metier.ajouterPilier( x, y, joueurActif.getCouleur() ))
+        {
+            changerJoueur() ;
+            return true ;
+        }
+        else 
+            return false ;
     }
 
     public void maj()
@@ -101,6 +114,11 @@ public class Controleur
         //invertion des joueurs
         if ( joueurActif == joueur1 ) { joueurActif = joueur2; }
         else                          { joueurActif = joueur1; }
+    }
+
+    public Architecte getJoueurActif()
+    {
+        return this.joueurActif ;
     }
 
     /*------------*/

@@ -26,10 +26,10 @@ public class FrameJeu extends JFrame
     {
 
         this.ctrl = ctrl ;
-        panel = new PanelJeu(ensembleDalles , ensemblePilier ,joueur );
+        panel = new PanelJeu(ctrl,ensembleDalles , ensemblePilier);
 
         this.setTitle("Les Piliers De La terre");
-        this.setSize(400,300);
+        this.setSize(420,350);
         this.setDefaultCloseOperation(3);
         this.add(panel) ;
 

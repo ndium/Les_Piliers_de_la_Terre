@@ -1,4 +1,5 @@
 package equipe_25.IHM ;
+import equipe_25.Controleur ;
 import equipe_25.Metier.Dalle ;
 import equipe_25.Metier.Pilier ;
 import equipe_25.Metier.Architecte ;
@@ -23,16 +24,19 @@ public class PanelJeu extends JPanel
     /*----Attribut----*/
     private ArrayList<Dalle>  ensembleDalle ;
     private ArrayList<Pilier> ensemblePilier ;
-    private Architecte joueur ;
+    private Controleur ctrl ;
 
     /*----Constructeur----*/
 
-    public PanelJeu(ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier,Architecte joueur)
+    public PanelJeu(Controleur ctrl ,ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier)
     {
         this.setLayout(null);
-        this.addMouseListener(joueur);
+        this.addMouseListener(ctrl.getJoueurActif());
         this.ensembleDalle  = ensembleDalle ;
         this.ensemblePilier = ensemblePilier ;
+        this.ctrl = ctrl ;
+        //pas obligatoire 
+        this.setBackground((ctrl.getJoueurActif().getCouleur().equals("gris"))? Color.GRAY : Color.ORANGE);
 
         /*----Creation des Anneaux----*/
 
@@ -96,6 +100,9 @@ public class PanelJeu extends JPanel
     /*-------------MAJ-------------*/
     public void maj()
     {
+        //pas obligatoire
+        this.setBackground((ctrl.getJoueurActif().getCouleur().equals("gris"))? Color.GRAY : Color.ORANGE);
+
         //mise a jour des anneaux
 
         for (int i=0  ; i<tabLabelAnneau.size(); i++)
@@ -105,13 +112,13 @@ public class PanelJeu extends JPanel
             tabLabelAnneau.get(i).setSize(67,67);
         }
 
-        // mise a jour des Pilliers
+        // mise a jour des Piliers
 
         for(int i=0  ; i<tabLabelPilier.size(); i++)
         {
             tabLabelPilier.get(i).setIcon( new ImageIcon(CHEMIN_PILIER+ensemblePilier.get(i).getCouleur()+".png"));
 
-            tabLabelPilier.get(i).setSize(13,13);          
+            tabLabelPilier.get(i).setSize(13,13);
         }
         //Dalle n'a pas besoin d'etre mise a jour
     }
