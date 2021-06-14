@@ -1,6 +1,9 @@
 package equipe_25.IHM ;
+import equipe_25.Controleur ;
 import equipe_25.Metier.Dalle ;
 import equipe_25.Metier.Pilier ;
+import equipe_25.Metier.Architecte ;
+
 
 import javax.swing.* ;
 import java.awt.*;
@@ -21,22 +24,27 @@ public class PanelJeu extends JPanel
     /*----Attribut----*/
     private ArrayList<Dalle>  ensembleDalle ;
     private ArrayList<Pilier> ensemblePilier ;
+    private Controleur ctrl ;
 
     /*----Constructeur----*/
 
-    public PanelJeu(ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier)
+    public PanelJeu(Controleur ctrl ,ArrayList<Dalle> ensembleDalle,ArrayList<Pilier> ensemblePilier)
     {
         this.setLayout(null);
+        this.ctrl = ctrl ;
+        this.addMouseListener(this.ctrl.getJoueurActif());
         this.ensembleDalle  = ensembleDalle ;
         this.ensemblePilier = ensemblePilier ;
+        //pas obligatoire 
+        this.setBackground((this.ctrl.getJoueurActif().getCouleur().equals("gris"))? Color.GRAY : Color.ORANGE);
 
         /*----Creation des Anneaux----*/
 
-        for (Dalle d : ensembleDalle)
+        for (Dalle d : this.ensembleDalle)
         {
-            JLabel labelTmp = new JLabel(new ImageIcon(CHEMIN_ANNEAU+d.getCouleur()+".png"));
+            JLabel labelTmp = new JLabel(new ImageIcon(this.CHEMIN_ANNEAU + d.getCouleur() + ".png"));
 
-            tabLabelAnneau.add(labelTmp);
+            this.tabLabelAnneau.add(labelTmp);
             
             this.add(labelTmp);
 
@@ -46,11 +54,11 @@ public class PanelJeu extends JPanel
 
         /*----Creation des Pilier----*/
 
-        for(Pilier p : ensemblePilier)
+        for(Pilier p : this.ensemblePilier)
         {
-            JLabel labelTmp = new JLabel( new ImageIcon(CHEMIN_PILIER+p.getCouleur()+".png"));
+            JLabel labelTmp = new JLabel( new ImageIcon(this.CHEMIN_PILIER+p.getCouleur()+".png"));
 
-            tabLabelPilier.add(labelTmp);
+            this.tabLabelPilier.add(labelTmp);
 
             this.add(labelTmp);
 
@@ -60,12 +68,12 @@ public class PanelJeu extends JPanel
 
         /*----Creation des Dalle----*/
 
-        for (Dalle d : ensembleDalle)
+        for (Dalle d : this.ensembleDalle)
         {
             //JLabel specialement pour les numeros
             JLabel labelTmp = new JLabel(
                 
-                new ImageIcon(CHEMIN_DALLE)
+                new ImageIcon(this.CHEMIN_DALLE)
                 {
                     //on redefinie cette methode a la voler specialement pour les ID 
                     //elle est l'equivalent de PaintComponent pour les ImageIcon
@@ -89,26 +97,28 @@ public class PanelJeu extends JPanel
         }
 
     }
-
     /*-------------MAJ-------------*/
     public void maj()
     {
+        //pas obligatoire
+        this.setBackground((this.ctrl.getJoueurActif().getCouleur().equals("gris"))? Color.GRAY : Color.ORANGE);
+
         //mise a jour des anneaux
 
-        for (int i=0  ; i<tabLabelAnneau.size(); i++)
+        for (int i=0  ; i < this.tabLabelAnneau.size(); i++)
         {
-            tabLabelAnneau.get(i).setIcon(new ImageIcon(CHEMIN_ANNEAU+ensembleDalle.get(i).getCouleur()+".png"));
+            this.tabLabelAnneau.get(i).setIcon(new ImageIcon(this.CHEMIN_ANNEAU + this.ensembleDalle.get(i).getCouleur()+".png"));
 
-            tabLabelAnneau.get(i).setSize(67,67);
+            this.tabLabelAnneau.get(i).setSize(67,67);
         }
 
-        // mise a jour des Pilliers
+        // mise a jour des Piliers
 
-        for(int i=0  ; i<tabLabelPilier.size(); i++)
+        for(int i = 0  ; i < this.tabLabelPilier.size(); i++)
         {
-            tabLabelPilier.get(i).setIcon( new ImageIcon(CHEMIN_PILIER+ensemblePilier.get(i).getCouleur()+".png"));
+            this.tabLabelPilier.get(i).setIcon( new ImageIcon(this.CHEMIN_PILIER + this.ensemblePilier.get(i).getCouleur()+".png"));
 
-            tabLabelPilier.get(i).setSize(13,13);          
+            this.tabLabelPilier.get(i).setSize(13,13);
         }
         //Dalle n'a pas besoin d'etre mise a jour
     }

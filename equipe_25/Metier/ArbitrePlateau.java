@@ -7,61 +7,81 @@ import java.util.ArrayList;
 public class ArbitrePlateau
 {
     /*--------Attribut---------*/
-    Parterre plateau ;
+    private Parterre plateau ;
+    private Controleur ctrl ;
+
+    private ArrayList<Dalle>  ensembleDalle  ;
+    private ArrayList<Pilier> ensemblePilier ;
     
     /*-------------Constructeur--------------*/
     public ArbitrePlateau(Controleur ctrl)
     {
         this.plateau = new Parterre();
+        this.ctrl = ctrl ;
+
+        this.ensembleDalle  =  Dalle .getEnsembleDalle () ;
+        this.ensemblePilier =  Pilier.getEnsemblePilier() ;
     }
 
 
 
     public boolean ajouterPilier(char dalle, int index, String couleur)
     {
-        //si l'endroit est libre
-        if( plateau.getPilier(dalle, index).getCouleur().equals("neutre") || plateau.getPilier(dalle, index).getCouleur().isEmpty() )
+        if (this.plateau.getPilier(dalle,index) != null)
         {
-            plateau.setPilier(dalle, index, couleur);
+            //si l'endroit est vide
+            if( this.plateau.getPilier(dalle, index).getCouleur().equals("neutre") || this.plateau.getPilier(dalle, index).getCouleur().isEmpty() )
+            {
+                this.plateau.setPilier(dalle, index, couleur) ;
+                ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
+                while(checkPlateau( this.plateau ));
 
-            ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
-            while(checkPlateau( plateau ));
-
-            return true;
+                return true;
+            }
+            else
+            {
+                System.out.println( "\nIl y a déjà un Pilier ici !!" );
+                return false;
+            }
         }
         else
         {
-            System.out.println( "\nIl y a déjà un Pilier ici !!" );
-            return false;
+            return false ;
         }
     }
 
-    public boolean ajouterPilier(Pilier pilier, String couleur)
+    public boolean ajouterPilier(int x , int y, String couleur)
     {
-        //si l'endroit est libre
-        if( pilier.getCouleur().equals("neutre") || pilier.getCouleur().isEmpty() )
-        {
-            pilier.setCouleur(couleur);
 
-            ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
-            while(checkPlateau( plateau ));
-
-            return true;
-        }
-        else
+        if (this.plateau.getPilier(x,y) != null)
         {
-            System.out.println( "\nIl y a déjà un Pilier ici !!" );
-            return false;
+            if( this.plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() )
+            {
+                this.plateau.setPilier(x,y, couleur);
+                
+                while(checkPlateau( this.plateau ));
+
+                return true;
+            }
+            else
+            {
+                System.out.println( "\nIl y a déjà un Pilier ici !!" );
+                return false;
+            }            
         }
+        else{
+            return false ;
+        }
+
+
     }
-
 
     /*----------------Verification-----------------*/
     public boolean checkPlateau( Parterre plateau )
     {
         //si un des 2 a modifier qqch
-        return Regle1_2( plateau ) ||
-               Regle3  ( plateau );
+        return Regle1_2( this.plateau ) ||
+               Regle3  ( this.plateau );
     }
 
     /*R1 
@@ -85,7 +105,7 @@ public class ArbitrePlateau
         boolean retour = false ;
 
         //on parcour toute les dalles
-        for( Dalle d: Dalle.ensembleDalle )
+        for( Dalle d: this.ensembleDalle )
         {
             boolean detruire = true ;
             int cptGris  = 0;
@@ -104,7 +124,7 @@ public class ArbitrePlateau
                 //si la dalle est deja de cette couleur elle ne dtruira pas les pilier
                 if (!d.getCouleur().equals("gris"))
                 {
-                    d.setCouleur("gris" );
+                    d.setCouleur(ctrl.getJoueur("gris"));
                     retour = true ;
                 }
                 else
@@ -115,7 +135,7 @@ public class ArbitrePlateau
             { 
                 if (!d.getCouleur().equals("maron"))
                 {
-                    d.setCouleur("maron" );
+                    d.setCouleur(ctrl.getJoueur("maron"));
                     retour = true ;
                 }
                 else
@@ -126,17 +146,14 @@ public class ArbitrePlateau
             //si elle n'a plus ces 4 pilier 
             if (cptGris < 4 && d.getCouleur().equals("gris"))
             {
-                System.out.println("couleur neutre");
-                d.setCouleur("neutre" );
+                d.supprimer(ctrl.getJoueur( d.getCouleur() )) ;
                 retour = true ;
             }
             if (cptMaron < 4 && d.getCouleur().equals("maron"))
             {
-                System.out.println("couleur neutre");
-                d.setCouleur("neutre" );
+                d.supprimer(ctrl.getJoueur( d.getCouleur() )) ;
                 retour = true ;
             }
-
 
             // Destruction des piliers de couleur différente de la dalle
             if (detruire)
@@ -144,8 +161,11 @@ public class ArbitrePlateau
                 for( int i = 0; i < 6; i++ )
                 {
                     if( !d.getCouleur().equals("neutre") && !d.getPilier()[i].getCouleur().equals( d.getCouleur() ) ) 
-                    { 
-                        d.getPilier()[i].setCouleur("neutre");
+                    {
+                        if (!d.getPilier()[i].getCouleur().equals("neutre"))
+                        {
+                            d.getPilier()[i].supprimer(ctrl.getJoueur(d.getCouleur()));
+                        }
                         retour = true ;
                     }
                 }
@@ -167,24 +187,27 @@ public class ArbitrePlateau
         //tableau qui evite les boucle et qui permet de tout supprimer
         ArrayList<Pilier> dejaVu = new ArrayList<Pilier>() ;
 
-        //on va parcourir les ensemble de tache 
-        for ( Pilier p : Pilier.ensemblePilier ) 
+        //on va parcourir les pilier
+        for ( Pilier p : this.ensemblePilier )
         {
             //if( !p.getCouleur().equals( Controleur.joueurActif.getCouleur() ) // && 
                 //si le pilier et neutre on ne parcour pas ses voisin 
                 if ( !(p.getCouleur().equals("neutre") || p.getCouleur().isEmpty()) )
                 {
-                    //si parcour n'a pas trouvé de sortie pour ce groupe
-                    if ( parcour( p, dejaVu ) )
+                    if (!ctrl.getJoueurActif().equals(p.getCouleur()))
                     {
-                        supprimer( dejaVu );
-                        //le seul changement que l'on peut faire c'est de supprimer tout
-                        aChangerQqch = true ;
+                        //si parcour n'a pas trouvé de sortie pour ce groupe
+                        if ( parcour( p, dejaVu ) )
+                        {
+                            supprimer( dejaVu );
+                            //le seul changement que l'on peut faire c'est de supprimer tout
+                            aChangerQqch = true ;
+                        }
+                        //si il retourne faux c'est que ce n'est pas un groupe entouré
+                        dejaVu = new ArrayList<Pilier>() ;
                     }
-                    //si il retourne faux c'est que ce n'est pas un groupe entouré
-                    dejaVu = new ArrayList<Pilier>() ;
+
                 }
-                System.out.println("neutre"+p);
                 //sinon il n'y a rien a changé
         }
         return aChangerQqch ;
@@ -194,7 +217,7 @@ public class ArbitrePlateau
     public boolean parcour( Pilier p, ArrayList<Pilier> dejaVu )
     {
         //System.out.println(dejaVu);
-        //System.out.println(Pilier.ensemblePilier);
+        //System.out.println(ensemblePilier);
 
         if (!dejaVu.contains(p))
         {
@@ -231,51 +254,14 @@ public class ArbitrePlateau
      */
     public void supprimer( ArrayList<Pilier> list )
     {
-        for (Pilier p : Pilier.ensemblePilier) 
+        for (Pilier p : this.ensemblePilier)
         {
             if (list.contains(p))
             {
-                p.setCouleur("neutre");
+                p.supprimer(ctrl.getJoueurAdverse(p.getCouleur()));
             }
         }
     }
-
-
-    /*R4
-    Fin de Jeu et décompte
-    - Si un Architecte possède 9 Dalle, à un moment de la partie, il l’emporte
-    immédiatement.
-    - Lorsque les Architectes ont construit 24 Piliers, l’Architecte contrôlant
-    le plus de Dalles l’emporte
-    R4 en cas d’égalité, l’Architecte ayant détruit le plus de Pilier l’emporte*/
-
-    /*public void verificationFinJeu()
-    {
-        // Vérification du nombre de Dalle de chaque joueur
-        if( joueur1.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur1; }
-        if( joueur2.getNbDalle() >= 9 ) { continueJeu = false; gagnant = joueur2; }
-
-        // Vérification du nombre de Piliers construits
-        if( Piler.cptPilierPose <= 0 )
-        {
-            continueJeu = false;
-            
-            // Contrôle du joueur qui a le plus de dalle
-            if( joueur1.getNbDalle() > joueur2.getNbDalle() ) { gagnant = joueur1; } // Cas où le joueur1 a le plus de Dalles
-            else
-            {
-                if( joueur1.getNbDalle() < joueur2.getNbDalle() ) { gagnant = joueur2; } // Cas où le joueur2 a le plus de Dalles
-                else // Cas d'égalité en nombre de Dalles possédées
-                {
-                    if( joueur1.getNbPilierDetruit() > joueur2.getNbPilierDetruit() ) { gagnant = joueur1; } // Cas où le joueur1 a détruit le plus de Piliers
-                    else
-                    {
-                        if( joueur1.getNbPilierDetruit() < joueur2.getNbPilierDetruit() ) { gagnant = joueur2; } // Cas où le joueur2 a détruit le plus de Piliers
-                    }
-                }
-            } // Si à la fin de cette boucle ( continueJeu == true ) mais ( gagnant == null ), c'est qu'il y a égalité parfaite
-        }
-    }*/
     
     public String toString()
     {

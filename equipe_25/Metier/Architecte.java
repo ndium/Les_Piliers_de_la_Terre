@@ -40,18 +40,14 @@ public class Architecte implements MouseListener
 
     public void ajouterDalle        () { this.nbDalle++;          }
     public void ajouterPilierDetruit() { this.nbPilierDetruit++;  }
+    public void supprimerDalle      () { this.nbDalle-- ;         }
 
     /*-------MouseListener-------*/
 
     public void mousePressed(MouseEvent e)
     {
-        for (Pilier p :Pilier.ensemblePilier)
-        {
-            if ((e.getX() >= p.getX()-10 && e.getX() <= p.getX()+10) && (e.getY() >= p.getY()-10 && e.getY() <= p.getY()+10))
-            {
-                ctrl.jouer(p,this.couleur);
-            }
-        }
+        this.ctrl.jouer(e.getX(),e.getY(),this.couleur);
+        this.ctrl.maj();
     }
 
     public void mouseExited  (MouseEvent e){}

@@ -11,19 +11,17 @@ public class Pilier
 
     private String couleur = "neutre";
 
-    private Dalle[] tabDalle = new Dalle[3]; // Tableau contenant les Dalles adjacentes au Pilier
-
     private Pilier[] tabVoisin = new Pilier[3];
 
     public static int cptPilierPose = 2 * 24; // Nombre de Pilier limite
 
-    private int dernierChangement;
+    private int dernierChangement = -1 ;
 
-    public static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
+    private static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
     /*----Constructeur----*/
 
-    public Pilier(int x, int y)
+    public Pilier(int x, int y )
     {
         this.x = x;
         this.y = y;
@@ -32,9 +30,9 @@ public class Pilier
     public static void lierVoisin()
     {
         // Remplissage du tableau de Dalles regroupant les voisins de la Dalle
-        for (Pilier p1 : ensemblePilier) 
+        for (Pilier p1 : Pilier.ensemblePilier) 
         {
-            for (Pilier p2 : ensemblePilier) 
+            for (Pilier p2 : Pilier.ensemblePilier) 
             {
                 //System.out.println(p2);
 
@@ -61,30 +59,40 @@ public class Pilier
     
     /*----- Getteur -----*/
 
-    public int    getX()       { return this.x;       }
-    public int    getY()       { return this.y;       }
-    public String getCouleur() { return this.couleur; }
+    public static ArrayList<Pilier> getEnsemblePilier(){return Pilier.ensemblePilier;}
 
-    public Dalle[]  getDalle () { return this.tabDalle;  }
-    public Pilier[] getVoisin() { return this.tabVoisin; }
+    public int      getX      () { return this.x;         }
+
+    public int      getY      () { return this.y;         }
+
+    public String   getCouleur() { return this.couleur;   }
+
+    public Pilier[] getVoisin () { return this.tabVoisin; }
 
     /*----- Setteur -----*/
 
     public void setCouleur(String couleur)
     {
         if( !couleur.equals( "neutre" ) )
-            cptPilierPose--;
-
-        this.dernierChangement = cptPilierPose;
+            //this.dernierChangement = -1 ;
+        Pilier.cptPilierPose--;
+        //this.dernierChangement = tour;
         this.couleur = couleur;
+    }
+
+    public void supprimer(Architecte joueur)
+    {
+        joueur.ajouterPilierDetruit() ;
+        this.couleur = "neutre" ;
     }
 
     public void setVoisin(int index,Pilier p)
     {
-        tabVoisin[index] = p ;
+        this.tabVoisin[index] = p ;
     }
 
     /*----- toString -----*/
 
     public String toString() 
     { return  this.x + ":" + this.y; }
+}
