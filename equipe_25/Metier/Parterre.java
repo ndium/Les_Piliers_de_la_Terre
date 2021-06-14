@@ -75,6 +75,7 @@ public class Parterre {
 
 	/*---- Getteur ----*/
 
+	// retourne un pilier en fonction de sin id et de l'index
 	public Pilier getPilier( char id, int index )
 	{
 		for (Dalle d : this.ensembleDalle)
@@ -87,6 +88,7 @@ public class Parterre {
 		return null;
 	}
 
+	// retourne le pilier aux coordonnees x et y
 	public Pilier getPilier(int x ,int y )
 	{
 		for (Pilier p : this.ensemblePilier) 
@@ -101,11 +103,13 @@ public class Parterre {
 
 	/*----- Setteur -----*/
 
+	//ajoute un pilier avec un id , un index et une couleur
 	public void setPilier( char id, int index, String couleur)
 	{
 		this.getPilier(id,index).setCouleur(couleur);
 	}
 
+	// ajoute un pilier avec des coordonnees x et y et une couleur
 	public void setPilier( int x, int y, String couleur )
 	{
 		this.getPilier(x,y).setCouleur(couleur);
