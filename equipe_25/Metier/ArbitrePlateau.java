@@ -12,6 +12,9 @@ public class ArbitrePlateau
 
     private ArrayList<Dalle>  ensembleDalle  ;
     private ArrayList<Pilier> ensemblePilier ;
+
+    private static ArrayList<Pilier> datationEntourant = new ArrayList<Pilier>();
+
     
     /*-------------Constructeur--------------*/
     public ArbitrePlateau(Controleur ctrl)
@@ -30,7 +33,7 @@ public class ArbitrePlateau
         if (this.plateau.getPilier(dalle,index) != null)
         {
             //si l'endroit est vide
-            if( this.plateau.getPilier(dalle, index).getCouleur().equals("neutre") || this.plateau.getPilier(dalle, index).getCouleur().isEmpty() )
+            if( (this.plateau.getPilier(dalle, index).getCouleur().equals("neutre") || this.plateau.getPilier(dalle, index).getCouleur().isEmpty()) && Pilier.cptPilierPose < this.plateau.getPilier(dalle,index).getDate()-1 )
             {
                 this.plateau.setPilier(dalle, index, couleur) ;
                 ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
@@ -53,9 +56,9 @@ public class ArbitrePlateau
     public boolean ajouterPilier(int x , int y, String couleur)
     {
 
-        if (this.plateau.getPilier(x,y) != null)
+        if (this.plateau.getPilier(x,y) != null )
         {
-            if( this.plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() )
+            if(( this.plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() ) && Pilier.cptPilierPose < this.plateau.getPilier(x,y).getDate()-1 )
             {
                 this.plateau.setPilier(x,y, couleur);
                 
@@ -96,11 +99,6 @@ public class ArbitrePlateau
 
     public boolean Regle1_2( Parterre plateau )
     {
-        /*---------------------*/
-        /*         /!\         */
-        /*---------------------*/
-
-        //->ajout des compteur de dalle et de pilier etc ...
 
         boolean retour = false ;
 
@@ -199,9 +197,13 @@ public class ArbitrePlateau
                         //si parcour n'a pas trouvé de sortie pour ce groupe
                         if ( parcour( p, dejaVu ) )
                         {
-                            supprimer( dejaVu );
-                            //le seul changement que l'on peut faire c'est de supprimer tout
-                            aChangerQqch = true ;
+                            //-1 quand + jeune + vieux 
+                            if(this.datation(dejaVu , ArbitrePlateau.datationEntourant )==-1)
+                            {
+                                supprimer( dejaVu );
+                                //le seul changement que l'on peut faire c'est de supprimer tout
+                                aChangerQqch = true ;
+                            }
                         }
                         //si il retourne faux c'est que ce n'est pas un groupe entouré
                         dejaVu = new ArrayList<Pilier>() ;
@@ -216,9 +218,6 @@ public class ArbitrePlateau
     //retourne vrai si n'a jamais trouvé de voisin vide ou neutre 
     public boolean parcour( Pilier p, ArrayList<Pilier> dejaVu )
     {
-        //System.out.println(dejaVu);
-        //System.out.println(ensemblePilier);
-
         if (!dejaVu.contains(p))
         {
             //on note ce sommet
@@ -236,8 +235,13 @@ public class ArbitrePlateau
                 if ( voisin.getCouleur().equals( p.getCouleur()) && !dejaVu.contains(voisin))
                 {
                     //si il renvoie faux c'est qu'il a trouvé une sortie
-                    if(!parcour( voisin , dejaVu ))
-                    {return false;}
+                    if(!parcour( voisin , dejaVu )) {return false;}
+                }
+                else{
+                    if (!voisin.getCouleur().equals(p.getCouleur()))
+                    {
+                        ArbitrePlateau.datationEntourant.add(voisin);
+                    }
                 }
                 //si il sont d'une couleur different on continu puis on sort
             }
@@ -261,6 +265,30 @@ public class ArbitrePlateau
                 p.supprimer(ctrl.getJoueurAdverse(p.getCouleur()));
             }
         }
+    }
+
+    public int datation( ArrayList<Pilier> groupe , ArrayList<Pilier> entourant)
+    {
+        int dateMax1 = 48 ;
+        int dateMax2 = 48 ;
+
+        for (Pilier p : groupe) {
+            if (p.getDate() < dateMax1 ) {dateMax1 = p.getDate() ;  } 
+        }
+
+        for (Pilier p : entourant) {
+            if (p.getDate() < dateMax2 ) {dateMax2 = p.getDate() ;  } 
+        }
+
+        ArbitrePlateau.datationEntourant = new ArrayList<Pilier>() ;
+
+        //le premier est + jeune 
+        if (dateMax2 < dateMax1 )
+        {
+            return -1 ;
+        }
+        else 
+            return +1 ;
     }
     
     public String toString()

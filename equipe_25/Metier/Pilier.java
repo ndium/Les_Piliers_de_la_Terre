@@ -15,7 +15,7 @@ public class Pilier
 
     public static int cptPilierPose = 2 * 24; // Nombre de Pilier limite
 
-    private int dernierChangement = -1 ;
+    private int date = 50;
 
     private static ArrayList<Pilier> ensemblePilier = new ArrayList<Pilier>(); // ArrayList regroupant tous les Piliers du Parterre
 
@@ -69,19 +69,25 @@ public class Pilier
 
     public Pilier[] getVoisin () { return this.tabVoisin; }
 
+    public int      getDate   () { return this.date;      }
+
     /*----- Setteur -----*/
 
     public void setCouleur(String couleur)
     {
-        if( !couleur.equals( "neutre" ) )
-            //this.dernierChangement = -1 ;
+        this.date = Pilier.cptPilierPose ;
         Pilier.cptPilierPose--;
-        //this.dernierChangement = tour;
         this.couleur = couleur;
     }
 
     public void supprimer(Architecte joueur)
     {
+        System.out.println(date);
+
+        this.date = Pilier.cptPilierPose ;
+
+        System.out.println(date);
+
         joueur.ajouterPilierDetruit() ;
         this.couleur = "neutre" ;
     }
