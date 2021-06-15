@@ -2,6 +2,5 @@
 
 cd ..
 javac @Compile.list
-java equipe_25.Controleur &
-sleep 1
-echo "a"
+{echo "a" ; echo "1"} | java equipe_25.Controleur 
+

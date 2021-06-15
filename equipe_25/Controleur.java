@@ -41,7 +41,7 @@ public class Controleur
     {
         /*----------Instanciation----------*/
         this.joueur1     = new Architecte("gris" ,this);
-        this.joueur2     = new Architecte("maron",this);
+        this.joueur2     = new Architecte("marron",this);
         this.joueurActif = joueur1;
         
         this.metier = new ArbitrePlateau(this);

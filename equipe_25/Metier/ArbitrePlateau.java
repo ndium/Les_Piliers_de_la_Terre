@@ -107,13 +107,13 @@ public class ArbitrePlateau
         {
             boolean detruire = true ;
             int cptGris  = 0;
-            int cptMaron = 0;
+            int cptmarron = 0;
 
             //on parcour ces pillier et on note les score
             for( int i = 0; i < 6; i++ )
             {
                 if( d.getPilier()[i].getCouleur().equals("gris")  ) { cptGris++;  }
-                if( d.getPilier()[i].getCouleur().equals("maron") ) { cptMaron++; }
+                if( d.getPilier()[i].getCouleur().equals("marron") ) { cptmarron++; }
             }
 
             //si on n'a 4 pillier ou plus 
@@ -129,11 +129,11 @@ public class ArbitrePlateau
                     detruire = false ;
             }
 
-            if( cptMaron >= 4 ) 
+            if( cptmarron >= 4 ) 
             { 
-                if (!d.getCouleur().equals("maron"))
+                if (!d.getCouleur().equals("marron"))
                 {
-                    d.setCouleur(ctrl.getJoueur("maron"));
+                    d.setCouleur(ctrl.getJoueur("marron"));
                     retour = true ;
                 }
                 else
@@ -147,7 +147,7 @@ public class ArbitrePlateau
                 d.supprimer(ctrl.getJoueur( d.getCouleur() )) ;
                 retour = true ;
             }
-            if (cptMaron < 4 && d.getCouleur().equals("maron"))
+            if (cptmarron < 4 && d.getCouleur().equals("marron"))
             {
                 d.supprimer(ctrl.getJoueur( d.getCouleur() )) ;
                 retour = true ;

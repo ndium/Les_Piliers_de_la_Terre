@@ -82,11 +82,8 @@ public class Pilier
 
     public void supprimer(Architecte joueur)
     {
-        System.out.println(date);
 
-        this.date = Pilier.cptPilierPose ;
-
-        System.out.println(date);
+        this.date = Pilier.cptPilierPose-- ;
 
         joueur.ajouterPilierDetruit() ;
         this.couleur = "neutre" ;
