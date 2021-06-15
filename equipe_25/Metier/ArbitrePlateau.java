@@ -4,7 +4,7 @@ import equipe_25.Controleur;
 
 import java.util.ArrayList;
 
-public class ArbitrePlateau
+public class ArbitrePlateau implements java.io.Serializable
 {
     /*--------Attribut---------*/
     private Parterre plateau ;
@@ -43,7 +43,7 @@ public class ArbitrePlateau
             }
             else
             {
-                System.out.println( "\nIl y a déjà un Pilier ici !!" );
+                System.out.println( "\nPlacement impossible !!" );
                 return false;
             }
         }

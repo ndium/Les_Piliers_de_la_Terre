@@ -26,7 +26,7 @@ public class FrameJeu extends JFrame
     {
         this.ctrl = ctrl ;
         this.panel = new PanelJeu(this.ctrl, ensembleDalles, ensemblePilier);
-
+        this.addKeyListener(this.ctrl.getJoueurActif());
         this.setTitle("Les Piliers De La terre");
         this.setSize(420,350);
         this.setDefaultCloseOperation(3);
@@ -45,6 +45,9 @@ public class FrameJeu extends JFrame
 
         super.processWindowEvent(e);
     }
+
+    public void fermer()
+    { this.setVisible(false);}
 
     public void maj(){
         this.panel.maj();

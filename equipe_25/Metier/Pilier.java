@@ -2,7 +2,7 @@ package equipe_25.Metier ;
 
 import java.util.ArrayList;
 
-public class Pilier
+public class Pilier implements java.io.Serializable
 {
     /*----- Attributs -----*/
 

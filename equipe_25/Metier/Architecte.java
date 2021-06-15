@@ -4,11 +4,14 @@ package equipe_25.Metier;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+
 import equipe_25.Metier.Pilier;
 import equipe_25.Controleur;
 
 /*---------Constructeur-----------*/
-public class Architecte implements MouseListener
+public class Architecte implements MouseListener , java.io.Serializable, KeyListener
 {
     /*----- Attributs -----*/
 
@@ -46,14 +49,37 @@ public class Architecte implements MouseListener
 
     public void mousePressed(MouseEvent e)
     {
-        this.ctrl.jouer(e.getX(),e.getY(),this.couleur);
-        this.ctrl.maj();
+        if (this.ctrl.jouer(e.getX(),e.getY(),this.couleur))
+        {
+            this.ctrl.maj();
+        }
     }
 
     public void mouseExited  (MouseEvent e){}
     public void mouseEntered (MouseEvent e){}
     public void mouseReleased(MouseEvent e){}
     public void mouseClicked (MouseEvent e){}
+
+    /*-------KeyListener-------*/
+
+    public void keyPressed (KeyEvent e){
+        if(e.getKeyCode() == KeyEvent.VK_S)
+        {
+            //this.ctrl.sauvegarde();
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_F1)
+        {
+            //this.ctrl.reprendre(1);
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_F2)
+        {
+            //this.ctrl.reprendre(2);
+        }
+    }
+    public void	keyReleased(KeyEvent e){}
+    public void	keyTyped   (KeyEvent e){}
 
     /*----- ToString() -----*/
 
