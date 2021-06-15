@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList ;
 
 
-public class PanelJeu extends JPanel
+public class PanelJeu extends JPanel implements java.io.Serializable
 {
     //Constante de chemin pour les image
     private final String CHEMIN_DALLE   = "./equipe_25/images/Dalle.png";

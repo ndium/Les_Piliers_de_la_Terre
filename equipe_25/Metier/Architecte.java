@@ -65,17 +65,17 @@ public class Architecte implements MouseListener , java.io.Serializable, KeyList
     public void keyPressed (KeyEvent e){
         if(e.getKeyCode() == KeyEvent.VK_S)
         {
-            //this.ctrl.sauvegarde();
+            Sauvegarde.sauvegarde(ctrl);
         }
 
         if(e.getKeyCode() == KeyEvent.VK_F1)
         {
-            //this.ctrl.reprendre(1);
+            this.ctrl = Sauvegarde.reprendre(1);
         }
 
         if(e.getKeyCode() == KeyEvent.VK_F2)
         {
-            //this.ctrl.reprendre(2);
+            this.ctrl = Sauvegarde.reprendre(2);
         }
     }
     public void	keyReleased(KeyEvent e){}

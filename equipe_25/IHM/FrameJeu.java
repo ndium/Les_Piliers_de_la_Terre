@@ -9,7 +9,7 @@ import javax.swing.* ;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList ;
 
-public class FrameJeu extends JFrame
+public class FrameJeu extends JFrame  implements java.io.Serializable
 {
 
     /*----Attribut----*/

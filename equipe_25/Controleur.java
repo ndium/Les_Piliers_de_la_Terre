@@ -8,12 +8,6 @@ import equipe_25.Metier.Dalle ;
 import equipe_25.Metier.Pilier ;
 
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-
 import iut.algo.Clavier;
 
 public class Controleur implements java.io.Serializable
@@ -146,9 +140,9 @@ public class Controleur implements java.io.Serializable
         else                                    { this.joueurActif = this.joueur1; }
     }
 
-    /*---------------*/
-    /*    Méthode    */
-    /*---------------*/
+    /*-----------*/
+    /*    Jeu    */
+    /*-----------*/
 
     //a chaque fois que l'on va jouer correctement cela echangera les joueurs
     //il y a un doublon de methodes car avec la souris on doit utiliser les coordonnées
@@ -186,6 +180,10 @@ public class Controleur implements java.io.Serializable
         if (!continueJeu)
         {this.scoreFinal();}
     }
+
+    /*-----------------*/
+    /*    Affichage    */
+    /*-----------------*/
 
     public void scoreFinal()
     {
@@ -245,42 +243,6 @@ public class Controleur implements java.io.Serializable
             } // Si à la fin de cette boucle ( this.continueJeu == true ) mais ( this.gagnant == null ), c'est qu'il y a égalité parfaite
         }
     }
-    
-    /*------------------*/
-    /*    Sauvegarde    */
-    /*------------------*/
-    
-    public void sauvegarde()
-    {
-        try
-        {
-            FileOutputStream   fos = new FileOutputStream  ( "./equipe_25/Scenarii/scenario_1.data" );
-            ObjectOutputStream oos = new ObjectOutputStream( fos );
-
-            oos.writeObject( this );
-
-            oos.close();
-        }
-        catch ( IOException e ) { e.printStackTrace(); }
-
-    }
-
-    public void reprendre(int numScenario)
-    {
-        Controleur controleur = null;
-        try
-        {
-            FileInputStream   fis = new FileInputStream( "./equipe_25/Scenarii/scenario_" + numScenario + ".data" );
-            ObjectInputStream ois = new ObjectInputStream( fis );
-
-            controleur = (Controleur) ois.readObject();
-
-            ois.close();
-        }
-        catch ( Exception e ) { e.printStackTrace(); }
-
-        //this = control;
-    }
 
     /*------------*/
     /*    Main    */
@@ -288,7 +250,7 @@ public class Controleur implements java.io.Serializable
 
     public static void main( String[] args ) 
     {
-        System.out.println( "voulez vous en mode GUI ou CUI ? \n G|C" );
+        System.out.println( "Voulez vous en mode GUI ou CUI ? \n G|C" );
 
         if ( Character.toUpperCase( Clavier.lire_char() ) == 'C' )
         {
