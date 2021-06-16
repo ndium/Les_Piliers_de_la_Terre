@@ -4,6 +4,8 @@
 ./equipe_25/Metier/Pilier.java
 ./equipe_25/Metier/Parterre.java
 ./equipe_25/Metier/ArbitrePlateau.java
+./equipe_25/Metier/Jeu.java
+./equipe_25/Metier/LectureScenario.java
 
 ./equipe_25/IHM/FrameJeu.java
 ./equipe_25/IHM/PanelJeu.java

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import equipe_25.Metier.Pilier;
 
-public class Parterre implements java.io.Serializable
+public class Parterre
 {
 
 	/*----CONSTANTES----*/

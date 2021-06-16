@@ -4,7 +4,7 @@ import equipe_25.Controleur;
 
 import java.util.ArrayList;
 
-public class ArbitrePlateau implements java.io.Serializable
+public class ArbitrePlateau
 {
     /*--------Attribut---------*/
     private Parterre plateau ;
@@ -192,22 +192,22 @@ public class ArbitrePlateau implements java.io.Serializable
                 //si le pilier et neutre on ne parcour pas ses voisin 
                 if ( !(p.getCouleur().equals("neutre") || p.getCouleur().isEmpty()) )
                 {
-                    if (!ctrl.getJoueurActif().equals(p.getCouleur()))
+                    //if (!this.ctrl.getJoueurActif().equals(p.getCouleur()))
+                    
+                    //si parcour n'a pas trouvé de sortie pour ce groupe
+                    if ( this.parcour( p, dejaVu ) )
                     {
-                        //si parcour n'a pas trouvé de sortie pour ce groupe
-                        if ( parcour( p, dejaVu ) )
+                        //-1 quand + jeune + vieux 
+                        if(this.datation(dejaVu , ArbitrePlateau.datationEntourant )==-1)
                         {
-                            //-1 quand + jeune + vieux 
-                            if(this.datation(dejaVu , ArbitrePlateau.datationEntourant )==-1)
-                            {
-                                supprimer( dejaVu );
-                                //le seul changement que l'on peut faire c'est de supprimer tout
-                                aChangerQqch = true ;
-                            }
+                            supprimer( dejaVu );
+                            //le seul changement que l'on peut faire c'est de supprimer tout
+                            aChangerQqch = true ;
                         }
-                        //si il retourne faux c'est que ce n'est pas un groupe entouré
-                        dejaVu = new ArrayList<Pilier>() ;
                     }
+                    //si il retourne faux c'est que ce n'est pas un groupe entouré
+                    dejaVu = new ArrayList<Pilier>() ;
+                    
 
                 }
                 //sinon il n'y a rien a changé
