@@ -2,7 +2,7 @@ package equipe_25.Metier;
 
 import java.util.ArrayList ;
 
-public class Dalle implements java.io.Serializable
+public class Dalle
 {
 
     /*------Static---------*/

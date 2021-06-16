@@ -1,0 +1,37 @@
+// base
+e
+0
+e
+5
+e
+1
+j
+2
+e
+4
+
+// à faire
+j
+3
+
+e // ne pas placer sur un autre pilier
+5
+
+e // prise de dalle + destruction piliers adverses
+2
+
+e // impossible de replacer sur un pilier tout juste détruit
+5
+
+e // possibilité de placer sur une dalle adverse
+3
+
+j
+4
+h
+3
+j
+5
+
+e // possibilité de détruire une dalle adverse
+5

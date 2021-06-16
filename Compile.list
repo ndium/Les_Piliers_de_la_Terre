@@ -8,6 +8,5 @@
 ./equipe_25/IHM/FrameJeu.java
 ./equipe_25/IHM/PanelJeu.java
 
-./equipe_25/CUI/CUI.java
 
 ./equipe_25/Controleur.java

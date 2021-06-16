@@ -2,6 +2,7 @@ package equipe_25 ;
 
 import equipe_25.IHM.FrameJeu;
 import equipe_25.Metier.Architecte;
+import equipe_25.Metier.LectureScenario ;
 import equipe_25.Metier.ArbitrePlateau;
 import equipe_25.Metier.Parterre;
 import equipe_25.Metier.Dalle ;
@@ -10,7 +11,7 @@ import equipe_25.Metier.Pilier ;
 
 import iut.algo.Clavier;
 
-public class Controleur implements java.io.Serializable
+public class Controleur
 {
 
     /*-----------------*/
@@ -49,7 +50,7 @@ public class Controleur implements java.io.Serializable
     /*    Constructeur    */
     /*--------------------*/
 
-    public Controleur(int mode) // Constructeur
+    public Controleur(int mode,int scenario) // Constructeur
     {
         /*----- Instanciation -----*/
         this.joueur1     = new Architecte("gris" ,this);
@@ -66,7 +67,7 @@ public class Controleur implements java.io.Serializable
         }
         
         /*-----JEU-----*/
-        if (mode != 1)
+        if (mode == 2)
         {
             while ( this.continueJeu )
             {
@@ -89,6 +90,22 @@ public class Controleur implements java.io.Serializable
                 this.verificationFinJeu();
             }
             this.scoreFinal();
+        }
+        if (mode == 3)
+        {
+            LectureScenario.lireScenario(scenario);
+
+            this.IHM = new FrameJeu( this, Dalle.getEnsembleDalle() , Pilier.getEnsemblePilier() );
+
+            while (!LectureScenario.estTerminer())
+            {
+                if ( this.joueurActif == this.joueur1 ) { this.tour++; }
+                this.lettreDalle = Character.toUpperCase(LectureScenario.getActionSuivante());
+                this.numSommet   = Character.getNumericValue(LectureScenario.getActionSuivante());
+                this.jouer( this.lettreDalle, this.numSommet, this.joueurActif.getCouleur()  );
+                this.IHM.maj() ;
+                try {Thread.sleep(100);} catch (Exception e) {}
+            }
         }
     }
 
@@ -250,15 +267,26 @@ public class Controleur implements java.io.Serializable
 
     public static void main( String[] args ) 
     {
-        System.out.println( "Voulez vous en mode GUI ou CUI ? \n G|C" );
+        System.out.println( "Voulez vous en mode GUI, CUI ou? \nG|C|S" );
 
-        if ( Character.toUpperCase( Clavier.lire_char() ) == 'C' )
+        char reponse = Character.toUpperCase( Clavier.lire_char() ) ;
+
+        if (reponse == 'G')
         {
-            new Controleur( 0 );
+            new Controleur(1,0);
         }
-        else
+
+        if (reponse == 'C')
         {
-            new Controleur( 1 ) ;
+            new Controleur(2,0);
         }
+
+        if (reponse == 'S')
+        {
+            System.out.println( "Quel scenario voulez-vous ?" );
+
+            new Controleur(3, Clavier.lire_int());
+        }
+
     }
 }

@@ -1,0 +1,33 @@
+// base
+e
+4
+e
+5
+e
+3
+e
+2
+a
+0
+a
+1
+g
+1
+l
+2
+g
+3
+g
+2
+d
+2
+
+// à faire
+l // enfermement simple
+5
+k // enfermement avec espace
+2
+k // enfermement volontaire
+1
+a // enfermement en bordure
+2

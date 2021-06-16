@@ -2,7 +2,7 @@ package equipe_25.Metier ;
 
 import java.util.ArrayList;
 
-public class Pilier implements java.io.Serializable
+public class Pilier
 {
     /*----- Attributs -----*/
 
@@ -83,7 +83,7 @@ public class Pilier implements java.io.Serializable
     public void supprimer(Architecte joueur)
     {
 
-        this.date = Pilier.cptPilierPose-- ;
+        this.date = Pilier.cptPilierPose ;
 
         joueur.ajouterPilierDetruit() ;
         this.couleur = "neutre" ;

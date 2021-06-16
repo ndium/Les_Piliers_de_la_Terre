@@ -4,7 +4,7 @@ import equipe_25.Controleur;
 
 import java.util.ArrayList;
 
-public class ArbitrePlateau implements java.io.Serializable
+public class ArbitrePlateau
 {
     /*--------Attribut---------*/
     private Parterre plateau ;
@@ -33,7 +33,7 @@ public class ArbitrePlateau implements java.io.Serializable
         if (this.plateau.getPilier(dalle,index) != null)
         {
             //si l'endroit est vide
-            if( (this.plateau.getPilier(dalle, index).getCouleur().equals("neutre") || this.plateau.getPilier(dalle, index).getCouleur().isEmpty()) && Pilier.cptPilierPose < this.plateau.getPilier(dalle,index).getDate()-1 )
+            if( (this.plateau.getPilier(dalle, index).getCouleur().equals("neutre") || this.plateau.getPilier(dalle, index).getCouleur().isEmpty()) && Pilier.cptPilierPose < this.plateau.getPilier(dalle,index).getDate() )
             {
                 this.plateau.setPilier(dalle, index, couleur) ;
                 ///on verifie le plateau jusqu'a qu'il n'y ait plus rien a faire changer
@@ -43,7 +43,7 @@ public class ArbitrePlateau implements java.io.Serializable
             }
             else
             {
-                System.out.println( "\nPlacement impossible !!" );
+                System.out.println( "\nPlacement impossible !!" + dalle + index );
                 return false;
             }
         }
@@ -58,7 +58,7 @@ public class ArbitrePlateau implements java.io.Serializable
 
         if (this.plateau.getPilier(x,y) != null )
         {
-            if(( this.plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() ) && Pilier.cptPilierPose < this.plateau.getPilier(x,y).getDate()-1 )
+            if(( this.plateau.getPilier(x,y).getCouleur().equals("neutre") || plateau.getPilier(x,y).getCouleur().isEmpty() ) && Pilier.cptPilierPose < this.plateau.getPilier(x,y).getDate() )
             {
                 this.plateau.setPilier(x,y, couleur);
                 

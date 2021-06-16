@@ -9,7 +9,7 @@ import javax.swing.* ;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList ;
 
-public class FrameJeu extends JFrame  implements java.io.Serializable
+public class FrameJeu extends JFrame
 {
 
     /*----Attribut----*/
@@ -26,7 +26,6 @@ public class FrameJeu extends JFrame  implements java.io.Serializable
     {
         this.ctrl = ctrl ;
         this.panel = new PanelJeu(this.ctrl, ensembleDalles, ensemblePilier);
-        this.addKeyListener(this.ctrl.getJoueurActif());
         this.setTitle("Les Piliers De La terre");
         this.setSize(420,350);
         this.setDefaultCloseOperation(3);
