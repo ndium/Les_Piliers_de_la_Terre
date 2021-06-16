@@ -76,7 +76,9 @@ public class Pilier
     public void setCouleur(String couleur)
     {
         this.date = Pilier.cptPilierPose ;
-        Pilier.cptPilierPose--;
+
+        if( !couleur.equals("neutre") ) { Pilier.cptPilierPose--; }
+        
         this.couleur = couleur;
     }
 
