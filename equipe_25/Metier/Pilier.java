@@ -76,16 +76,14 @@ public class Pilier
     public void setCouleur(String couleur)
     {
         this.date = Pilier.cptPilierPose ;
-
-        if( !couleur.equals("neutre") ) { Pilier.cptPilierPose--; }
-        
+        Pilier.cptPilierPose--;
         this.couleur = couleur;
     }
 
     public void supprimer(Architecte joueur)
     {
 
-        this.date = Pilier.cptPilierPose-- ;
+        this.date = Pilier.cptPilierPose;
 
         joueur.ajouterPilierDetruit() ;
         this.couleur = "neutre" ;
