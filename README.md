@@ -19,6 +19,3 @@
 3. Build and run the game.
 
 Follow the on-screen instructions to immerse yourself in the point'n'click adventure.
-
-## Screenshots
-
