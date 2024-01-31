@@ -14,7 +14,7 @@
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/votre-utilisateur/les-piliers-de-la-terre.git`
+1. Clone the repository: `git clone https://github.com/ndium/Les_Piliers_de_la_Terre.git`
 2. Open the project in your preferred Java development environment.
 3. Build and run the game.
 
